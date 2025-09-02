@@ -7,21 +7,23 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Trash2, Plus, Copy, Download } from "lucide-react"
+import { Trash2, Plus } from "lucide-react"
 import { translations, type Language } from "@/lib/translations"
 import { type WizardData, type Proposal, defaultPreset } from "@/lib/wizard-config"
 import StepHelpDialog from "./StepHelpDialog"
 import WizardConfigButtons from "./WizardConfigButtons"
+import ProposalDisplay from "./ProposalDisplay"
+import { GeneratedProposal } from "@/lib/proposal-generator"
 
 export default function ProposalWizard() {
   const [currentStep, setCurrentStep] = useState(0)
   const [language, setLanguage] = useState<Language>("es")
   const [isGenerating, setIsGenerating] = useState(false)
-  const [result, setResult] = useState<WizardData | null>(null)
-  const [editingResult, setEditingResult] = useState<WizardData | null>(null)
+  const [result, setResult] = useState<GeneratedProposal | null>(null)
+  // const [editingResult, setEditingResult] = useState<WizardData | null>(null)
 
   const [formData, setFormData] = useState<WizardData>({
     presentation: "",
@@ -132,7 +134,7 @@ export default function ProposalWizard() {
     console.info("Form data generated with the wizard", formData)
 
     try {
-      const response = await fetch("/api/mock-echo", {
+      const response = await fetch("/api/generate-proposal", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -146,7 +148,8 @@ export default function ProposalWizard() {
 
       const data = await response.json()
       setResult(data)
-      setEditingResult(data)
+      // setEditingResult(data)
+      console.info("Data returned from backend", data)
     } catch (error) {
       console.error("Error generating proposal:", error)
     } finally {
@@ -154,59 +157,20 @@ export default function ProposalWizard() {
     }
   }
 
-  const copyToClipboard = () => {
-    if (editingResult) {
-      navigator.clipboard.writeText(JSON.stringify(editingResult, null, 2))
-    }
-  }
-
-  const downloadJSON = () => {
-    if (editingResult) {
-      const blob = new Blob([JSON.stringify(editingResult, null, 2)], {
-        type: "application/json",
-      })
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement("a")
-      a.href = url
-      a.download = "proposal.json"
-      a.click()
-      URL.revokeObjectURL(url)
-    }
-  }
-
   if (result) {
     return (
       <div className="max-w-4xl mx-auto p-6 space-y-6">
-        <div className="flex flex-col md:flex-row gap-6 justify-between items-center">
+        <div className="flex flex-col flex-row gap-6 justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold">{t.result.title}</h1>
             <p className="text-muted-foreground">{t.result.subtitle}</p>
           </div>
-          <div className="flex gap-2">
-            <Button onClick={() => setResult(null)} variant="outline">
-              {t.buttons.back}
-            </Button>
-            <Button onClick={copyToClipboard} variant="outline">
-              <Copy className="w-4 h-4 mr-2" />
-              {t.buttons.copy}
-            </Button>
-            <Button onClick={downloadJSON}>
-              <Download className="w-4 h-4 mr-2" />
-              {t.buttons.download}
-            </Button>
-          </div>
+          <WizardConfigButtons language={language} loadPreset={loadPreset} setLanguage={setLanguage} />
         </div>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>{t.result.jsonPreview}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <pre className="bg-muted p-4 rounded-lg overflow-auto text-sm">
-              {JSON.stringify(editingResult, null, 2)}
-            </pre>
-          </CardContent>
-        </Card>
+        <ProposalDisplay result={result} language={language} />
+        <Button onClick={() => setResult(null)} variant="outline">
+          {t.buttons.back}
+        </Button>
       </div>
     )
   }

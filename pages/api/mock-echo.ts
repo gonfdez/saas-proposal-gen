@@ -4,7 +4,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" })
   }
-  // Log result recieved
+  // Log recieved wizard result 
   console.log("New Wizard generated JSON recieved", req.body)
 
   // Simulate processing delay
