@@ -15,8 +15,6 @@ import { translations, type Language } from "@/lib/translations"
 import { type WizardData, type Proposal, defaultPreset } from "@/lib/wizard-config"
 import StepHelpDialog from "./StepHelpDialog"
 import WizardConfigButtons from "./WizardConfigButtons"
-import { Checkbox } from "./ui/checkbox"
-import { Switch } from "./ui/switch"
 
 export default function ProposalWizard() {
   const [currentStep, setCurrentStep] = useState(0)
