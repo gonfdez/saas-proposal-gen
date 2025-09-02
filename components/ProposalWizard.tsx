@@ -108,6 +108,7 @@ export default function ProposalWizard() {
     if (!validateStep(currentStep)) return
 
     setIsGenerating(true)
+    console.info("Form data generated with the wizard", formData)
 
     try {
       const response = await fetch("/api/mock-echo", {
