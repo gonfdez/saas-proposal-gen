@@ -15,14 +15,14 @@ A multi-step wizard for generating business proposals with internationalization 
 ## Getting Started
 
 1. Install dependencies:
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 2. Run the development server:
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 3. Open [http://localhost:3000/mvp-proposal](http://localhost:3000/mvp-proposal) in your browser.
 
@@ -39,7 +39,7 @@ npm run dev
 
 ### Example Preset Data
 
-\`\`\`json
+```json
 {
   "audience": "Director de marketing de TechGrowth",
   "proposals": [
@@ -57,7 +57,7 @@ npm run dev
     "appVersion": "0.1.0"
   }
 }
-\`\`\`
+```
 
 ## API Endpoints
 
