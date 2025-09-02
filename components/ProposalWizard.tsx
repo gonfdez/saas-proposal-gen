@@ -381,9 +381,11 @@ export default function ProposalWizard() {
       </Card>
 
       <div className="flex justify-between">
-        <Button onClick={prevStep} disabled={currentStep === 0} variant="outline">
-          {t.buttons.back}
-        </Button>
+        {currentStep !== 0 ?
+          <Button onClick={prevStep} disabled={currentStep === 0} variant="outline">
+            {t.buttons.back}
+          </Button> : <div></div>
+        }
 
         {currentStep < totalSteps - 1 ? (
           <Button onClick={nextStep}>{t.buttons.next}</Button>
