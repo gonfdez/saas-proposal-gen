@@ -49,20 +49,24 @@ export default function ProposalWizard() {
 
   const validateStep = (step: number): boolean => {
     const newErrors: Record<string, string> = {}
+    const formData = trimFormData();
 
     if (step === 0) {
-      if (!formData.audience || formData.audience.length < 3) {
-        newErrors.audience = formData.audience.length === 0 ? t.validation.required : t.validation.minLength
+      if (!formData.audience || formData.audience.length === 0) {
+        newErrors.audience = t.validation.required
       }
     }
 
     if (step === 1) {
-      if (formData.proposals.length === 0 || !formData.proposals[0].title) {
+      if (formData.proposals.length === 0) {
         newErrors.proposals = t.validation.required
       }
       formData.proposals.forEach((proposal, index) => {
-        if (!proposal.title) {
-          newErrors[`proposal-${index}`] = t.validation.required
+        if (!proposal.title || proposal.title.length === 0) {
+          newErrors[`proposal-${index}-title`] = t.validation.required
+        }
+        if (!proposal.description || proposal.description.length === 0) {
+          newErrors[`proposal-${index}-description`] = t.validation.required
         }
       })
     }
@@ -72,6 +76,7 @@ export default function ProposalWizard() {
   }
 
   const nextStep = () => {
+    trimFormData();
     if (validateStep(currentStep)) {
       setCurrentStep((prev) => Math.min(prev + 1, totalSteps - 1))
     }
@@ -102,6 +107,16 @@ export default function ProposalWizard() {
       ...prev,
       proposals: prev.proposals.map((proposal, i) => (i === index ? { ...proposal, [field]: value } : proposal)),
     }))
+  }
+
+  const trimFormData = () => {
+    const refinedFormData = {
+      ...formData,
+      audience: formData.audience.trim(),
+      proposals: formData.proposals.map((p) => ({ title: p.title.trim(), description: p.description.trim(), details: p.details?.trim() }))
+    }
+    setFormData(refinedFormData);
+    return refinedFormData;
   }
 
   const generateProposal = async () => {
@@ -251,11 +266,11 @@ export default function ProposalWizard() {
                     <Input
                       value={proposal.title}
                       onChange={(e) => updateProposal(index, "title", e.target.value)}
-                      placeholder={t.step2.placeholder}
-                      className={errors[`proposal-${index}`] ? "border-red-500" : ""}
+                      placeholder={t.step2.titlePlaceholder}
+                      className={errors[`proposal-${index}-title`] ? "border-red-500" : ""}
                     />
-                    {errors[`proposal-${index}`] && (
-                      <p className="text-sm text-red-500">{errors[`proposal-${index}`]}</p>
+                    {errors[`proposal-${index}-title`] && (
+                      <p className="text-sm text-red-500">{errors[`proposal-${index}-title`]}</p>
                     )}
 
                     <Label className="font-medium">
@@ -264,9 +279,13 @@ export default function ProposalWizard() {
                     <Textarea
                       value={proposal.description || ""}
                       onChange={(e) => updateProposal(index, "description", e.target.value)}
-                      placeholder={t.step2.descriptionLabel}
+                      placeholder={t.step2.descriptionPlaceholder}
                       rows={3}
+                      className={errors[`proposal-${index}-description`] ? "border-red-500" : ""}
                     />
+                    {errors[`proposal-${index}-description`] && (
+                      <p className="text-sm text-red-500">{errors[`proposal-${index}-description`]}</p>
+                    )}
 
                     <Label className="font-medium">
                       {t.step2.detailsLabel}
@@ -274,7 +293,7 @@ export default function ProposalWizard() {
                     <Textarea
                       value={proposal.details || ""}
                       onChange={(e) => updateProposal(index, "details", e.target.value)}
-                      placeholder={t.step2.detailsLabel}
+                      placeholder={t.step2.detailsPlaceholder}
                       rows={3}
                     />
                   </div>

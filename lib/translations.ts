@@ -28,12 +28,13 @@ export const translations = {
     step2: {
       badgeTitle: "Contenido",
       title: "¿Qué quieres proponer?",
-      placeholder: "Ej: Servicios de SEO mensual para mejorar tráfico y leads",
-      optionalDetails: "Detalles opcionales (beneficios, entregables, pruebas sociales)...",
       addAnother: "Agregar otro servicio/idea",
       titleLabel: "Titulo",
+      titlePlaceholder: "Ej: Servicios de SEO mensual para mejorar tráfico y leads",
       descriptionLabel: "Descripcion",
+      descriptionPlaceholder: "¿En que consiste?",
       detailsLabel: "Detalles",
+      detailsPlaceholder: "Detalles opcionales (beneficios, entregables, pruebas sociales)...",
     },
     step3: {
       badgeTitle: "Formato",
@@ -105,12 +106,13 @@ export const translations = {
     step2: {
       badgeTitle: "Content",
       title: "What do you want to propose?",
-      placeholder: "Ex: Monthly SEO services to increase traffic and leads",
-      optionalDetails: "Optional details (benefits, deliverables, social proof)...",
       addAnother: "Add another service/idea",
       titleLabel: "Title",
+      titlePlaceholder: "Ex: Monthly SEO services to increase traffic and leads",
       descriptionLabel: "Description",
+      descriptionPlaceholder: "What's it about?",
       detailsLabel: "Details",
+      detailsPlaceholder: "Optional details (benefits, deliverables, social proof)...",
     },
     step3: {
       badgeTitle: "Format",
