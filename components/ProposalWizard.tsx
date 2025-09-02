@@ -26,7 +26,6 @@ export default function ProposalWizard() {
   const [editingResult, setEditingResult] = useState<WizardData | null>(null)
 
   const [formData, setFormData] = useState<WizardData>({
-    includePresentation: true,
     presentation: "",
     audience: "",
     proposals: [{ title: "", description: "", details: "" }],
@@ -58,9 +57,6 @@ export default function ProposalWizard() {
     if (step === 0) {
       if (!formData.audience || formData.audience.length === 0) {
         newErrors.audience = t.validation.required
-      }
-      if (formData.includePresentation && (!formData.presentation || formData.presentation.length === 0)) {
-        newErrors.presentation = t.validation.required
       }
     }
 
@@ -239,35 +235,17 @@ export default function ProposalWizard() {
         <CardContent className="space-y-6">
           {currentStep === 0 && (
             <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <Label htmlFor="includePresentation" className="text-lg font-semibold">
-                  {t.step1.includePresentation}
-                </Label>
-                <Switch id="includePresentation"
-                  checked={formData.includePresentation || false}
-                  onCheckedChange={(checked) => setFormData((prev) => ({
-                    ...prev,
-                    includePresentation: checked ? true : false,
-                    presentation: checked ? prev.presentation : ""
-                  }))}
-                />
-              </div>
-              {formData.includePresentation && (
-                <div className="space-y-2 mt-4">
-                  <Label htmlFor="presentation" className="font-medium">
-                    {t.step1.presentationLabel}
-                  </Label>
-                  <Textarea
-                    id="presentation"
-                    value={formData.presentation || ""}
-                    onChange={(e) => setFormData((prev) => ({ ...prev, presentation: e.target.value }))}
-                    placeholder={t.step1.presentationPlaceholder}
-                    rows={4}
-                    className={errors.presentation ? "border-red-500" : ""}
-                  />
-                  {errors.presentation && <p className="text-sm text-red-500 mt-1">{errors.presentation}</p>}
-                </div>
-              )}
+              <Label htmlFor="presentation" className="text-lg font-semibold">
+                {t.step1.presentationLabel}
+              </Label>
+              <Textarea
+                id="presentation"
+                value={formData.presentation || ""}
+                onChange={(e) => setFormData((prev) => ({ ...prev, presentation: e.target.value }))}
+                placeholder={t.step1.presentationPlaceholder}
+                rows={4}
+                className={errors.presentation ? "border-red-500" : ""}
+              />
 
               <Label htmlFor="audience" className="text-lg font-semibold">
                 {t.step1.title}
