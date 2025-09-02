@@ -155,7 +155,7 @@ export default function ProposalWizard() {
   if (result) {
     return (
       <div className="max-w-4xl mx-auto p-6 space-y-6">
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col md:flex-row gap-6 justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold">{t.result.title}</h1>
             <p className="text-muted-foreground">{t.result.subtitle}</p>
@@ -190,17 +190,19 @@ export default function ProposalWizard() {
   }
 
   return (<>
-    <WizardConfigButtons language={language} loadPreset={loadPreset} setLanguage={setLanguage} />
     <div className="max-w-2xl mx-auto p-6 space-y-6">
-      <h1 className="text-3xl font-bold text-center">{t.wizard.title}</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-3xl font-bold">{t.wizard.title}</h1>
+        <WizardConfigButtons language={language} loadPreset={loadPreset} setLanguage={setLanguage} />
+      </div>
 
       <div className="space-y-4">
         <Progress value={progress} className="w-full" />
-        <div className="flex items-center justify-center gap-6">
+        <div className="flex items-center justify-center gap-8">
           {stepBadgeTitles.map((step, index) => (
-              <Badge variant={index === currentStep ? "default" : index < currentStep ? "secondary" : "outline"} className="text-sm" key={index}>
-                {index + 1}. {step}
-              </Badge>
+            <Badge variant={index === currentStep ? "default" : index < currentStep ? "secondary" : "outline"} className="text-sm" key={index}>
+              {index + 1}. {step}
+            </Badge>
           ))}
         </div>
       </div>
@@ -236,7 +238,7 @@ export default function ProposalWizard() {
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <Label className="font-medium">
-                        {t.step2.titleLabel} {index + 1}
+                        {t.step2.titleLabel}
                       </Label>
                       {formData.proposals.length > 1 && (
                         <Button onClick={() => removeProposal(index)} variant="ghost" size="sm">
@@ -255,12 +257,19 @@ export default function ProposalWizard() {
                       <p className="text-sm text-red-500">{errors[`proposal-${index}`]}</p>
                     )}
 
-                    <Input
+                    <Label className="font-medium">
+                      {t.step2.descriptionLabel}
+                    </Label>
+                    <Textarea
                       value={proposal.description || ""}
                       onChange={(e) => updateProposal(index, "description", e.target.value)}
                       placeholder={t.step2.descriptionLabel}
+                      rows={3}
                     />
 
+                    <Label className="font-medium">
+                      {t.step2.detailsLabel}
+                    </Label>
                     <Textarea
                       value={proposal.details || ""}
                       onChange={(e) => updateProposal(index, "details", e.target.value)}

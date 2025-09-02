@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Propousal Generator",
-  description: "Saas propousal generator",
+  title: "Proposal Generator",
+  description: "SaaS Proposal generator",
 };
 
 export default function RootLayout({
