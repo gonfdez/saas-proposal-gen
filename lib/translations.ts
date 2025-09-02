@@ -21,9 +21,12 @@ export const translations = {
       },
     },
     step1: {
-      badgeTitle: "Destinatario",
+      badgeTitle: "Contexto",
       title: "¿A quién va dirigida tu propuesta?",
       placeholder: "Ej: Director de marketing de TechGrowth",
+      includePresentation: "¿Quieres presentarte?",
+      presentationLabel: "¿Quién eres?",
+      presentationPlaceholder: "Ej: Soy [nombre], fundador de [empresa]. Nos dedicamos a [actividad] y hemos logrado [logros relevantes]..."
     },
     step2: {
       badgeTitle: "Contenido",
@@ -99,9 +102,12 @@ export const translations = {
       },
     },
     step1: {
-      badgeTitle: "Destinatary",
+      badgeTitle: "Context",
       title: "Who is your proposal for?",
       placeholder: "Ex: Marketing Director at TechGrowth",
+      includePresentation: "Include presentation?",
+      presentationLabel: "Who are you?",
+      presentationPlaceholder: "Ex: I'm [name], founder of [company]. We specialize in [activity] and have achieved [relevant achievements]..."
     },
     step2: {
       badgeTitle: "Content",

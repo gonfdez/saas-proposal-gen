@@ -6,6 +6,8 @@ export interface Proposal {
 
 export interface WizardData {
   audience: string
+  includePresentation?: boolean
+  presentation?: string
   proposals: Proposal[]
   format: "text" | "email" | "pdf"
   language: "ES" | "EN"
@@ -17,7 +19,9 @@ export interface WizardData {
 }
 
 export const defaultPreset: WizardData = {
-  audience: "Director de marketing de TechGrowth",
+  includePresentation: true,
+  presentation: "Director de Ventas de SEO Consulting SL",
+  audience: "Equipo de marketing de TechGrowth",
   proposals: [
     {
       title: "Servicios de SEO mensual",
