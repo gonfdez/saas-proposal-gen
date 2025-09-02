@@ -18,7 +18,7 @@ export interface WizardData {
 }
 
 export const defaultPreset: WizardData = {
-  presentation: "Director de Ventas de SEO Consulting SL",
+  presentation: "Fulano Dominguez, Director de Ventas de SEO Consulting SL",
   audience: "Equipo de marketing de TechGrowth",
   proposals: [
     {
