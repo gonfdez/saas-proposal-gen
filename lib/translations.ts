@@ -5,17 +5,17 @@ export const translations = {
     },
     help: {
       step1: {
-        title: "Paso 1: Define tu audiencia",
+        title: "Define tu audiencia",
         content:
           "Especifica a quién va dirigida tu propuesta. Puede ser una persona específica (ej: 'Director de Marketing de TechGrowth') o un tipo de cliente (ej: 'Empresas de tecnología con 50-200 empleados'). Esto ayudará a personalizar el tono y contenido de tu propuesta.",
       },
       step2: {
-        title: "Paso 2: Define tu propuesta",
+        title: "Define tu propuesta",
         content:
           "Describe qué servicios o productos quieres ofrecer. Puedes agregar múltiples propuestas. El título debe ser claro y conciso, la descripción puede incluir beneficios clave, y los detalles pueden contener información adicional como casos de éxito o entregables específicos.",
       },
       step3: {
-        title: "Paso 3: Formato y parámetros",
+        title: "Formato y parámetros",
         content:
           "Selecciona el formato de salida (texto, email o PDF), el idioma del contenido final y el tono que quieres usar. Estos parámetros determinarán cómo se estructura y presenta tu propuesta final.",
       },
