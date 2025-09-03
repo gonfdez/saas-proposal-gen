@@ -4,18 +4,29 @@ import { Button } from "@/components/ui/button"
 import { Copy, FileText, Mail, MessageSquareText } from "lucide-react"
 import { type Language } from "@/lib/translations"
 import { GeneratedProposal } from "@/lib/proposal-generator"
+import { SetStateAction, useEffect, useRef } from "react"
 
 interface ProposalDisplayProps {
   result: GeneratedProposal;
+  setResult: (value: SetStateAction<GeneratedProposal | null>) => void;
   language: Language;
 }
 
-export default function ProposalDisplay({ result, language }: ProposalDisplayProps) {
+export default function ProposalDisplay({ result, setResult, language }: ProposalDisplayProps) {
   const copyContent = () => {
     if (result.content) {
       navigator.clipboard.writeText(result.content);
     }
   };
+
+  const editContent = (newContent: string) => { 
+    setResult((prev) => { 
+      if (!prev) return prev;
+      return {
+        ...prev, content: newContent 
+      }
+    }) 
+  }
 
   const formatIcons = {
     text_message: MessageSquareText,
@@ -57,7 +68,10 @@ export default function ProposalDisplay({ result, language }: ProposalDisplayPro
 
       {/* Contenido según formato */}
       {result.format === 'text_message' ? (
-        <TextProposalDisplay content={result.content} />
+        <TextProposalDisplay
+          content={result.content}
+          editContent={editContent}
+        />
       ) : (
         <JSONFallbackDisplay result={result} language={language} />
       )}
@@ -66,14 +80,38 @@ export default function ProposalDisplay({ result, language }: ProposalDisplayPro
 }
 
 // Componente para mostrar propuestas de texto
-function TextProposalDisplay({ content }: { content: string }) {
+function TextProposalDisplay({ content, editContent }: { content: string, editContent: (newContent: string) => void }) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const autoResize = () => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    textarea.style.height = "auto"; // Reset para calcular bien
+    textarea.style.height = `${textarea.scrollHeight}px`; // Ajusta a contenido
+  };
+
+  useEffect(() => {
+    autoResize(); // Ajusta cuando se monte el componente
+  }, [content]);
+
+  useEffect(() => {
+    const handleResize = () => autoResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="prose prose-sm max-w-none">
-      <div className="bg-background border rounded-lg p-6">
-        <div className="whitespace-pre-wrap text-foreground leading-relaxed">
-          {content}
-        </div>
-      </div>
+      <textarea
+        ref={textareaRef}
+        value={content}
+        onChange={(e) => editContent(e.target.value)}
+        onInput={autoResize}
+        className="bg-card border rounded-lg p-6 whitespace-pre-wrap text-foreground w-full overflow-hidden"
+        placeholder="Escribe tu propuesta aquí..."
+      />
     </div>
   );
 }

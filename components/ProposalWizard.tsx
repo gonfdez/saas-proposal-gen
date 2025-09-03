@@ -138,7 +138,7 @@ export default function ProposalWizard(props : ProposalWizardProps) {
           </div>
           <WizardConfigButtons language={language} loadPreset={loadPreset} setLanguage={setLanguage} />
         </div>
-        <ProposalDisplay result={result} language={language} />
+        <ProposalDisplay result={result} setResult={setResult} language={language} />
         <Button onClick={() => setResult(null)} variant="outline">
           {t.buttons.back}
         </Button>
