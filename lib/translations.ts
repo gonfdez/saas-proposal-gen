@@ -31,7 +31,7 @@ export const translations = {
       badgeTitle: "Contenido",
       content: "¿Qué quieres proponer?",
       contentPlaceholder: "Ej: Servicios de SEO mensual para mejorar tráfico y leads",
-      objective: "¿Qué quieres lograr con esta propuesta?",
+      objective: "¿Cuál es tu objetivo con esta propuesta?",
       objectivePlaceholder: "Ejemplo: Agendar una llamada telefónica para ponernos en contacto y detallarles mis servicios."
     },
     step3: {
