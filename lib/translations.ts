@@ -42,7 +42,7 @@ export const translations = {
       badgeTitle: "Formato",
       title: "Formato de la propuesta",
       options: {
-        text: "Texto",
+        text: "Mensaje de texto",
         email: "Correo electrónico",
         pdf: "PDF 1 página",
       },
@@ -53,6 +53,16 @@ export const translations = {
         Amigable: "Amigable",
         Persuasivo: "Persuasivo",
         Directo: "Directo",
+      },
+      includeEmojis: "Incluir emojis",
+      includeEmojisOptions: {
+        yes: "Sí",
+        no: "No"
+      },
+      readingTime: "Tiempo de lectura",
+      readingTimeOptions: {
+        less2mins: "Menos de 2 minutos",
+        less4mins: "Menos de 4 minutos"
       },
     },
     buttons: {
@@ -122,7 +132,7 @@ export const translations = {
       badgeTitle: "Format",
       title: "Proposal format",
       options: {
-        text: "Text",
+        text: "Text message",
         email: "Email",
         pdf: "1-page PDF",
       },
@@ -133,6 +143,16 @@ export const translations = {
         Amigable: "Friendly",
         Persuasivo: "Persuasive",
         Directo: "Direct",
+      },
+      includeEmojis: "Include emojis",
+      includeEmojisOptions: {
+        yes: "Yes",
+        no: "No"
+      },
+      readingTime: "Reading time",
+      readingTimeOptions: {
+        less2mins: "Less than 2 minutes",
+        less4mins: "Less than 4 minutes"
       },
     },
     buttons: {

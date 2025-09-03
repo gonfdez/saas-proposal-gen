@@ -18,7 +18,7 @@ export default function ProposalDisplay({ result, language }: ProposalDisplayPro
   };
 
   const formatLabels = {
-    text: language === 'es' ? 'Texto' : 'Text',
+    text_message: language === 'es' ? 'Texto' : 'Text',
     email: language === 'es' ? 'Email' : 'Email',
     pdf: 'PDF'
   };
@@ -39,7 +39,7 @@ export default function ProposalDisplay({ result, language }: ProposalDisplayPro
           </span>
         </div>
 
-        {result.format === 'text' && (
+        {result.format === 'text_message' && (
           <Button onClick={copyContent} variant="outline" size="sm">
             <Copy className="w-4 h-4 mr-2" />
             {language === 'es' ? 'Copiar texto' : 'Copy text'}
@@ -48,7 +48,7 @@ export default function ProposalDisplay({ result, language }: ProposalDisplayPro
       </div>
 
       {/* Contenido según formato */}
-      {result.format === 'text' ? (
+      {result.format === 'text_message' ? (
         <TextProposalDisplay content={result.content} />
       ) : (
         <JSONFallbackDisplay result={result} language={language} />

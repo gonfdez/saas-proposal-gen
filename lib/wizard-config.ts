@@ -8,9 +8,11 @@ export interface WizardData {
   audience: string
   presentation: string
   proposals: Proposal[]
-  format: "text" | "email" | "pdf"
+  format: "text_message" | "email" | "pdf"
   language: "ES" | "EN"
-  tone: "Profesional" | "Amigable" | "Persuasivo" | "Directo"
+  tone: "Profesional" | "Amigable" | "Persuasivo" | "Directo",
+  includeEmojis:boolean,
+  readingTime: number,
   meta: {
     createdAt: string
     appVersion: string
@@ -31,6 +33,8 @@ export const defaultPreset: WizardData = {
   format: "email",
   language: "ES",
   tone: "Profesional",
+  includeEmojis: true,
+  readingTime: 2,
   meta: {
     createdAt: "2025-09-02T12:00:00.000Z",
     appVersion: "0.1.0",

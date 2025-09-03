@@ -32,6 +32,8 @@ export default function ProposalWizard() {
     format: "email",
     language: "ES",
     tone: "Profesional",
+    includeEmojis: true,
+    readingTime: 2,
     meta: {
       createdAt: new Date().toISOString(),
       appVersion: "0.1.0",
@@ -299,13 +301,13 @@ export default function ProposalWizard() {
                 <Label className="font-medium mb-3 block">Formato</Label>
                 <RadioGroup
                   value={formData.format}
-                  onValueChange={(value: "text" | "email" | "pdf") =>
+                  onValueChange={(value: "text_message" | "email" | "pdf") =>
                     setFormData((prev) => ({ ...prev, format: value }))
                   }
                 >
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="text" id="text" />
-                    <Label htmlFor="text">{t.step3.options.text}</Label>
+                    <RadioGroupItem value="text_message" id="text_message" />
+                    <Label htmlFor="text_message">{t.step3.options.text}</Label>
                   </div>
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="email" id="email" />
@@ -354,6 +356,43 @@ export default function ProposalWizard() {
                       </SelectContent>
                     </Select>
                   </div>
+
+                  <div className="space-y-2">
+                    <Label className="font-medium">{t.step3.includeEmojis}</Label>
+                    <Select
+                      value={formData.includeEmojis ? "yes" : "no"}
+                      onValueChange={(value: "yes" | "no") =>
+                        setFormData((prev) => ({ ...prev, includeEmojis: value === "yes" ? true : false }))
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="yes">{t.step3.includeEmojisOptions.yes}</SelectItem>
+                        <SelectItem value="no">{t.step3.includeEmojisOptions.no}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label className="font-medium">{t.step3.readingTime}</Label>
+                    <Select
+                      value={String(formData.readingTime)}
+                      onValueChange={(value: string) =>
+                        setFormData((prev) => ({ ...prev, readingTime: Number(value) }))
+                      }
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="2">{t.step3.readingTimeOptions.less2mins}</SelectItem>
+                        <SelectItem value="4">{t.step3.readingTimeOptions.less4mins}</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
                 </div>
               </div>
             </div>

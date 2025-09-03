@@ -1,6 +1,6 @@
 import { WizardData } from './wizard-config';
 import { generateWithGemini } from './ai/gemini';
-import { buildTextProposalPrompt } from './ai/prompts';
+import { buildTextMessageProposalPrompt } from './ai/prompts';
 
 export interface GeneratedProposal {
   content: string;
@@ -13,7 +13,7 @@ export async function generateProposal(data: WizardData): Promise<GeneratedPropo
   let content: string;
   
   switch (data.format) {
-    case 'text':
+    case 'text_message':
       content = await generateTextProposal(data);
       break;
     case 'email':
@@ -37,6 +37,6 @@ export async function generateProposal(data: WizardData): Promise<GeneratedPropo
 }
 
 async function generateTextProposal(data: WizardData): Promise<string> {
-  const prompt = buildTextProposalPrompt(data);
+  const prompt = buildTextMessageProposalPrompt(data);
   return await generateWithGemini(prompt);
 }

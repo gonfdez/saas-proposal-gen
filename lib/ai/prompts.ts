@@ -1,6 +1,6 @@
 import { WizardData } from '../wizard-config';
 
-export function buildTextProposalPrompt(data: WizardData): string {
+export function buildTextMessageProposalPrompt(data: WizardData): string {
   const { presentation, audience, proposals, language, tone } = data;
   
   const languagePrompt = language === 'ES' ? 'español' : 'inglés';
