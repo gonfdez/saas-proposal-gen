@@ -1,56 +1,60 @@
 import { WizardData } from '../wizard-config';
 
 export function buildTextMessageProposalPrompt(data: WizardData): string {
-  const { presentation, audience, proposals, language, tone } = data;
-  
-  const languagePrompt = language === 'ES' ? 'español' : 'inglés';
-  const toneInstructions = getToneInstructions(tone, language);
-  
-  let prompt = `Genera una propuesta comercial profesional en ${languagePrompt} con las siguientes características:\n\n`;
-  
-  prompt += `FORMATO: Texto plano limpio y bien estructurado\n`;
-  prompt += `TONO: ${toneInstructions}\n\n`;
-  
-  if (presentation) {
-    prompt += `PRESENTACIÓN (quién soy):\n${presentation}\n\n`;
-  }
-  
-  prompt += `DESTINATARIO:\n${audience}\n\n`;
-  
-  prompt += `PROPUESTAS A INCLUIR:\n`;
-  proposals.forEach((proposal, index) => {
-    prompt += `${index + 1}. TÍTULO: ${proposal.title}\n`;
-    prompt += `   DESCRIPCIÓN: ${proposal.description}\n`;
-    if (proposal.details) {
-      prompt += `   DETALLES: ${proposal.details}\n`;
-    }
-    prompt += `\n`;
-  });
-  
-  prompt += `INSTRUCCIONES ESPECÍFICAS:\n`;
-  prompt += `- Crea una propuesta comercial completa y persuasiva\n`;
-  prompt += `- Incluye una introducción personalizada para el destinatario\n`;
-  if (presentation) {
-    prompt += `- Comienza presentándote usando la información proporcionada\n`;
-  }
-  prompt += `- Desarrolla cada propuesta con beneficios claros y específicos\n`;
-  prompt += `- Incluye un call-to-action claro al final\n`;
-  prompt += `- Mantén un ${toneInstructions} durante toda la propuesta\n`;
-  prompt += `- El resultado debe ser texto plano sin formato markdown\n`;
-  prompt += `- Longitud aproximada: 300-500 palabras\n\n`;
-  
-  prompt += `Genera ÚNICAMENTE el contenido de la propuesta, sin prefijos como "Aquí tienes" o explicaciones adicionales.`;
-  
-  return prompt;
-}
+  const { presentation, audience, content, objective, language, tone, includeEmojis, readingTime } = data;
 
-function getToneInstructions(tone: string, language: string): string {
+  // Idioma y tono
+  const languagePrompt = language === 'ES' ? 'español' : 'inglés';
   const toneMap = {
-    'Profesional': language === 'ES' ? 'tono formal y profesional' : 'formal and professional tone',
-    'Amigable': language === 'ES' ? 'tono cercano y amigable' : 'friendly and approachable tone',
-    'Persuasivo': language === 'ES' ? 'tono persuasivo y convincente' : 'persuasive and compelling tone',
-    'Directo': language === 'ES' ? 'tono directo y conciso' : 'direct and concise tone'
+    'Profesional': language === 'ES' ? 'formal y profesional' : 'formal and professional',
+    'Amigable': language === 'ES' ? 'cercano y amigable' : 'friendly and approachable',
+    'Persuasivo': language === 'ES' ? 'persuasivo y convincente' : 'persuasive and compelling',
+    'Directo': language === 'ES' ? 'directo y conciso' : 'direct and concise',
   };
-  
-  return toneMap[tone as keyof typeof toneMap] || toneMap['Profesional'];
+  const toneInstructions = toneMap[tone as keyof typeof toneMap] || toneMap['Profesional'];
+
+  // Ajuste dinámico de longitud según tiempo de lectura
+  const minWords = Math.max(80, readingTime * 120);
+  const maxWords = Math.max(150, readingTime * 180);
+
+  return `
+Genera una propuesta comercial en ${languagePrompt} siguiendo estas instrucciones estrictamente:
+
+OBJETIVO PRINCIPAL:
+Crear un mensaje de texto persuasivo y breve para un cliente potencial (${audience}). 
+El objetivo final de este mensaje es lograr lo siguiente: "${objective}". 
+Este objetivo debe reflejarse en el llamado a la acción, pero NO debe copiarse textualmente. 
+
+CONTEXTO DE REFERENCIA:
+- Presentación de quién envía el mensaje: ${presentation}.
+- Información clave sobre el servicio o propuesta (usa esto solo como guía, nunca literalmente):
+${content}
+
+FORMATO:
+- Salida en texto plano, sin numeraciones, sin etiquetas como "Título:" o "Descripción:", sin markdown.
+- Debe sonar natural y conversacional, adecuado para WhatsApp o mensajes directos.
+
+ESTRUCTURA PSICOLÓGICA:
+1. Inicio que capture la atención y genere cercanía.
+2. Presentación breve y natural de quién eres (usando como referencia la presentación dada).
+3. Explica de forma clara los beneficios clave y el valor que ofreces, conectando con las necesidades de ${audience}.
+4. Genera deseo, mostrando cómo tu propuesta puede mejorar su situación o resolver un problema.
+5. Finaliza con un llamado a la acción directo y motivador, alineado con el objetivo definido.
+
+TONO:
+Utiliza un estilo ${toneInstructions}.
+
+LONGITUD:
+Entre ${minWords} y ${maxWords} palabras.
+
+${includeEmojis ? 'EMOJIS: Integra hasta 3 emojis sutiles y relevantes para dar calidez al mensaje, sin exagerar.' : ''}
+
+REGLAS IMPORTANTES:
+- No repitas textualmente la información proporcionada por el usuario, úsala solo como guía.
+- No incluyas listas con viñetas ni numeraciones en el mensaje final.
+- No añadas frases como "Aquí tienes tu mensaje" ni explicaciones.
+- El resultado debe ser únicamente el texto final, listo para enviar.
+
+Genera directamente el mensaje final ahora.
+`.trim();
 }

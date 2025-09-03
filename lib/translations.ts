@@ -29,14 +29,10 @@ export const translations = {
     },
     step2: {
       badgeTitle: "Contenido",
-      title: "¿Qué quieres proponer?",
-      addAnother: "Agregar otro servicio/idea",
-      titleLabel: "Titulo",
-      titlePlaceholder: "Ej: Servicios de SEO mensual para mejorar tráfico y leads",
-      descriptionLabel: "Descripcion",
-      descriptionPlaceholder: "¿En que consiste?",
-      detailsLabel: "Detalles",
-      detailsPlaceholder: "Detalles opcionales (beneficios, entregables, pruebas sociales)...",
+      content: "¿Qué quieres proponer?",
+      contentPlaceholder: "Ej: Servicios de SEO mensual para mejorar tráfico y leads",
+      objective: "¿Qué quieres lograr con esta propuesta?",
+      objectivePlaceholder: "Ejemplo: Agendar una llamada telefónica para ponernos en contacto y detallarles mis servicios."
     },
     step3: {
       badgeTitle: "Formato",
@@ -61,8 +57,11 @@ export const translations = {
       },
       readingTime: "Tiempo de lectura",
       readingTimeOptions: {
+        less1min: "Menos de 1 minuto",
         less2mins: "Menos de 2 minutos",
-        less4mins: "Menos de 4 minutos"
+        less3mins: "Menos de 3 minutos",
+        less4mins: "Menos de 4 minutos",
+        less5mins: "Menos de 5 minutos"
       },
     },
     buttons: {
@@ -119,14 +118,10 @@ export const translations = {
     },
     step2: {
       badgeTitle: "Content",
-      title: "What do you want to propose?",
-      addAnother: "Add another service/idea",
-      titleLabel: "Title",
-      titlePlaceholder: "Ex: Monthly SEO services to increase traffic and leads",
-      descriptionLabel: "Description",
-      descriptionPlaceholder: "What's it about?",
-      detailsLabel: "Details",
-      detailsPlaceholder: "Optional details (benefits, deliverables, social proof)...",
+      content: "What do you want to propose?",
+      contentPlaceholder: "Ex: Monthly SEO services to increase traffic and leads",
+      objective: "What do you want to achieve with this proposal?",
+      objectivePlaceholder: "Example: Schedule a phone call to connect and explain my services in detail."
     },
     step3: {
       badgeTitle: "Format",
@@ -151,8 +146,11 @@ export const translations = {
       },
       readingTime: "Reading time",
       readingTimeOptions: {
+        less1min: "Less than 1 minute",
         less2mins: "Less than 2 minutes",
-        less4mins: "Less than 4 minutes"
+        less3mins: "Less than 3 minutes",
+        less4mins: "Less than 4 minutes",
+        less5mins: "Less than 5 minutes"
       },
     },
     buttons: {

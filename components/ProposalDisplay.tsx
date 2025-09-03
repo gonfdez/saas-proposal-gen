@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Copy, FileText } from "lucide-react"
+import { Copy, FileText, Mail, MessageSquareText } from "lucide-react"
 import { type Language } from "@/lib/translations"
 import { GeneratedProposal } from "@/lib/proposal-generator"
 
@@ -17,11 +17,19 @@ export default function ProposalDisplay({ result, language }: ProposalDisplayPro
     }
   };
 
+  const formatIcons = {
+    text_message: MessageSquareText,
+    email: Mail,
+    pdf: FileText
+  }
+
   const formatLabels = {
-    text_message: language === 'es' ? 'Texto' : 'Text',
+    text_message: language === 'es' ? 'Mensaje de texto' : 'Text',
     email: language === 'es' ? 'Email' : 'Email',
     pdf: 'PDF'
   };
+
+  const FormatIcon = formatIcons[result.format]
 
   return (
     <div className="space-y-4">
@@ -29,7 +37,7 @@ export default function ProposalDisplay({ result, language }: ProposalDisplayPro
       <div className="flex items-center justify-between">
         <div className="flex flex-col justify-center gap-2">
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-muted-foreground" />
+            <FormatIcon className="w-5 h-5 text-muted-foreground" />
             <Badge variant="secondary">
               {formatLabels[result.format]}
             </Badge>

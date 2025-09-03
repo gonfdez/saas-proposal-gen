@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -10,9 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
-import { Trash2, Plus } from "lucide-react"
 import { translations, type Language } from "@/lib/translations"
-import { type WizardData, type Proposal, defaultPreset } from "@/lib/wizard-config"
+import { type WizardData, defaultPreset } from "@/lib/wizard-config"
 import StepHelpDialog from "./StepHelpDialog"
 import WizardConfigButtons from "./WizardConfigButtons"
 import ProposalDisplay from "./ProposalDisplay"
@@ -28,12 +26,13 @@ export default function ProposalWizard() {
   const [formData, setFormData] = useState<WizardData>({
     presentation: "",
     audience: "",
-    proposals: [{ title: "", description: "", details: "" }],
-    format: "email",
+    content: "",
+    objective: "",
+    format: "text_message",
     language: "ES",
     tone: "Profesional",
     includeEmojis: true,
-    readingTime: 2,
+    readingTime: 1,
     meta: {
       createdAt: new Date().toISOString(),
       appVersion: "0.1.0",
@@ -63,17 +62,9 @@ export default function ProposalWizard() {
     }
 
     if (step === 1) {
-      if (formData.proposals.length === 0) {
-        newErrors.proposals = t.validation.required
+      if (formData.content.length === 0) {
+        newErrors.content = t.validation.required
       }
-      formData.proposals.forEach((proposal, index) => {
-        if (!proposal.title || proposal.title.length === 0) {
-          newErrors[`proposal-${index}-title`] = t.validation.required
-        }
-        if (!proposal.description || proposal.description.length === 0) {
-          newErrors[`proposal-${index}-description`] = t.validation.required
-        }
-      })
     }
 
     setErrors(newErrors)
@@ -91,39 +82,13 @@ export default function ProposalWizard() {
     setCurrentStep((prev) => Math.max(prev - 1, 0))
   }
 
-  const addProposal = () => {
-    setFormData((prev) => ({
-      ...prev,
-      proposals: [...prev.proposals, { title: "", description: "", details: "" }],
-    }))
-  }
-
-  const removeProposal = (index: number) => {
-    if (formData.proposals.length > 1) {
-      setFormData((prev) => ({
-        ...prev,
-        proposals: prev.proposals.filter((_, i) => i !== index),
-      }))
-    }
-  }
-
-  const updateProposal = (index: number, field: keyof Proposal, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      proposals: prev.proposals.map((proposal, i) => (i === index ? { ...proposal, [field]: value } : proposal)),
-    }))
-  }
-
   const trimFormData = () => {
-    const refinedFormData = {
+    const refinedFormData: WizardData = {
       ...formData,
       audience: formData.audience.trim(),
-      presentation: formData.presentation?.trim() || "",
-      proposals: formData.proposals.map((p) => ({
-        title: p.title.trim(),
-        description: p.description.trim(),
-        details: p.details?.trim()
-      }))
+      presentation: formData.presentation.trim() || "",
+      content: formData.content.trim(),
+      objective: formData.objective.trim()
     }
     setFormData(refinedFormData);
     return refinedFormData;
@@ -201,13 +166,13 @@ export default function ProposalWizard() {
             <div className="space-y-4">
               <Label htmlFor="presentation" className="text-lg font-semibold">
                 {t.step1.presentationLabel}
+                <StepHelpDialog language={language} stepIndex={0} />
               </Label>
               <Textarea
                 id="presentation"
                 value={formData.presentation || ""}
                 onChange={(e) => setFormData((prev) => ({ ...prev, presentation: e.target.value }))}
                 placeholder={t.step1.presentationPlaceholder}
-                rows={4}
                 className={errors.presentation ? "border-red-500" : ""}
               />
 
@@ -215,7 +180,7 @@ export default function ProposalWizard() {
                 {t.step1.title}
                 <StepHelpDialog language={language} stepIndex={0} />
               </Label>
-              <Input
+              <Textarea
                 id="audience"
                 value={formData.audience}
                 onChange={(e) => setFormData((prev) => ({ ...prev, audience: e.target.value }))}
@@ -228,65 +193,28 @@ export default function ProposalWizard() {
 
           {currentStep === 1 && (
             <div className="space-y-4">
-              <Label className="text-lg font-semibold">{t.step2.title}
+              <Label className="text-lg font-semibold">{t.step2.content}
                 <StepHelpDialog language={language} stepIndex={1} />
               </Label>
+              <Textarea
+                value={formData.content || ""}
+                onChange={(e) => setFormData((prev) => ({ ...prev, content: e.target.value }))}
+                placeholder={t.step2.contentPlaceholder}
+                className={errors["content"] ? "border-red-500" : ""}
+              />
+              {errors["content"] && (
+                <p className="text-sm text-red-500">{errors["content"]}</p>
+              )}
 
-              {formData.proposals.map((proposal, index) => (
-                <Card key={index} className="p-4">
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <Label className="font-medium">
-                        {t.step2.titleLabel}
-                      </Label>
-                      {formData.proposals.length > 1 && (
-                        <Button onClick={() => removeProposal(index)} variant="ghost" size="sm">
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
-                      )}
-                    </div>
-
-                    <Input
-                      value={proposal.title}
-                      onChange={(e) => updateProposal(index, "title", e.target.value)}
-                      placeholder={t.step2.titlePlaceholder}
-                      className={errors[`proposal-${index}-title`] ? "border-red-500" : ""}
-                    />
-                    {errors[`proposal-${index}-title`] && (
-                      <p className="text-sm text-red-500">{errors[`proposal-${index}-title`]}</p>
-                    )}
-
-                    <Label className="font-medium">
-                      {t.step2.descriptionLabel}
-                    </Label>
-                    <Textarea
-                      value={proposal.description || ""}
-                      onChange={(e) => updateProposal(index, "description", e.target.value)}
-                      placeholder={t.step2.descriptionPlaceholder}
-                      rows={3}
-                      className={errors[`proposal-${index}-description`] ? "border-red-500" : ""}
-                    />
-                    {errors[`proposal-${index}-description`] && (
-                      <p className="text-sm text-red-500">{errors[`proposal-${index}-description`]}</p>
-                    )}
-
-                    <Label className="font-medium">
-                      {t.step2.detailsLabel}
-                    </Label>
-                    <Textarea
-                      value={proposal.details || ""}
-                      onChange={(e) => updateProposal(index, "details", e.target.value)}
-                      placeholder={t.step2.detailsPlaceholder}
-                      rows={3}
-                    />
-                  </div>
-                </Card>
-              ))}
-
-              <Button onClick={addProposal} variant="outline" className="w-full bg-transparent">
-                <Plus className="w-4 h-4 mr-2" />
-                {t.step2.addAnother}
-              </Button>
+              <Label className="text-lg font-semibold">{t.step2.objective}
+                <StepHelpDialog language={language} stepIndex={1} />
+              </Label>
+              <Textarea
+                value={formData.objective || ""}
+                onChange={(e) => setFormData((prev) => ({ ...prev, objective: e.target.value }))}
+                placeholder={t.step2.objectivePlaceholder}
+                className={errors["content"] ? "border-red-500" : ""}
+              />
             </div>
           )}
 
@@ -387,8 +315,11 @@ export default function ProposalWizard() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
+                        <SelectItem value="1">{t.step3.readingTimeOptions.less1min}</SelectItem>
                         <SelectItem value="2">{t.step3.readingTimeOptions.less2mins}</SelectItem>
+                        <SelectItem value="3">{t.step3.readingTimeOptions.less3mins}</SelectItem>
                         <SelectItem value="4">{t.step3.readingTimeOptions.less4mins}</SelectItem>
+                        <SelectItem value="5">{t.step3.readingTimeOptions.less5mins}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

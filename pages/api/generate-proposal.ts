@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       audience: wizardData.audience,
       format: wizardData.format,
       language: wizardData.language,
-      proposalsCount: wizardData.proposals.length
+      contentLength: wizardData.content.length
     });
 
     // Generar la propuesta con IA
