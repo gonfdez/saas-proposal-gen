@@ -16,9 +16,13 @@ import WizardConfigButtons from "./WizardConfigButtons"
 import ProposalDisplay from "./ProposalDisplay"
 import { GeneratedProposal } from "@/lib/proposal-generator"
 
-export default function ProposalWizard() {
+interface ProposalWizardProps {
+  initialLanguage: Language
+}
+
+export default function ProposalWizard(props : ProposalWizardProps) {
   const [currentStep, setCurrentStep] = useState(0)
-  const [language, setLanguage] = useState<Language>("es")
+  const [language, setLanguage] = useState<Language>(props.initialLanguage)
   const [isGenerating, setIsGenerating] = useState(false)
   const [result, setResult] = useState<GeneratedProposal | null>(null)
   // const [editingResult, setEditingResult] = useState<WizardData | null>(null)
