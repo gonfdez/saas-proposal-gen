@@ -143,7 +143,7 @@ export default function ProposalWizard() {
   }
 
   return (<>
-    <div className="max-w-2xl mx-auto p-6 space-y-6">
+    <div className="max-w-4xl mx-auto p-6 space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">{t.wizard.title}</h1>
         <WizardConfigButtons language={language} loadPreset={loadPreset} setLanguage={setLanguage} />
@@ -151,9 +151,9 @@ export default function ProposalWizard() {
 
       <div className="space-y-4">
         <Progress value={progress} className="w-full" />
-        <div className="flex items-center justify-center gap-8">
+        <div className="flex items-center justify-center gap-4 md:gap-8">
           {stepBadgeTitles.map((step, index) => (
-            <Badge variant={index === currentStep ? "default" : index < currentStep ? "secondary" : "outline"} className="text-sm" key={index}>
+            <Badge variant={index === currentStep ? "default" : index < currentStep ? "secondary" : "outline"} className="text-md" key={index}>
               {index + 1}. {step}
             </Badge>
           ))}
@@ -248,7 +248,7 @@ export default function ProposalWizard() {
                 </RadioGroup>
 
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label className="font-medium">{t.step3.language}</Label>
                     <Select

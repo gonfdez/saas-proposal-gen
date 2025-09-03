@@ -22,7 +22,7 @@ export const defaultPreset: WizardData = {
   format: "text_message",
   language: "ES",
   tone: "Profesional",
-  includeEmojis: true,
+  includeEmojis: false,
   readingTime: 1,
   meta: {
     createdAt: "2025-09-02T12:00:00.000Z",
