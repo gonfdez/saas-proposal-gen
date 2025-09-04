@@ -11,7 +11,7 @@ export default async function Home() {
   const initialLang: Language = serverLang === "es" ? "es" : "en";
 
   return (
-    <div className="min-h-screen bg-background lg:mt-12">
+    <div className="min-vh-screen bg-background lg:mt-12">
       <ProposalWizard initialLanguage={initialLang} />
     </div>
   );
