@@ -15,6 +15,7 @@ import StepHelpDialog from "./StepHelpDialog"
 import WizardConfigButtons from "./WizardConfigButtons"
 import ProposalDisplay from "./ProposalDisplay"
 import { GeneratedProposal } from "@/lib/proposal-generator"
+import { FileText, Mail, MessageSquareText } from "lucide-react"
 
 interface ProposalWizardProps {
   initialLanguage: Language
@@ -238,15 +239,15 @@ export default function ProposalWizard(props: ProposalWizardProps) {
 
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="text_message" id="text_message" />
-                      <Label htmlFor="text_message">{t.step3.options.text}</Label>
+                      <Label htmlFor="text_message"><MessageSquareText className="w-5 h-5" />{t.step3.options.text}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="email" id="email" />
-                      <Label htmlFor="email">{t.step3.options.email}</Label>
+                      <Label htmlFor="email"><Mail className="w-5 h-5" />{t.step3.options.email}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="pdf" id="pdf" />
-                      <Label htmlFor="pdf">{t.step3.options.pdf}</Label>
+                      <Label htmlFor="pdf"><FileText className="w-5 h-5" />{t.step3.options.pdf}</Label>
                     </div>
                   </RadioGroup>
                 </div>
