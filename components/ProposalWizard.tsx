@@ -156,15 +156,13 @@ export default function ProposalWizard(props: ProposalWizardProps) {
         <WizardConfigButtons language={language} loadPreset={loadPreset} setLanguage={setLanguage} />
       </div>
 
-      <div className="space-y-4">
-        <Progress value={progress} className="w-full" />
-        <div className="flex items-center justify-center gap-4 md:gap-8">
-          {stepBadgeTitles.map((step, index) => (
-            <Badge variant={index === currentStep ? "default" : index < currentStep ? "secondary" : "outline"} className="text-md" key={index}>
-              {index + 1}. {step}
-            </Badge>
-          ))}
-        </div>
+      <Progress value={progress} className="w-full" />
+      <div className="flex items-center justify-center gap-4 md:gap-8">
+        {stepBadgeTitles.map((step, index) => (
+          <Badge variant={index === currentStep ? "default" : index < currentStep ? "secondary" : "outline"} className="text-md" key={index}>
+            {index + 1}. {step}
+          </Badge>
+        ))}
       </div>
 
       <Card>
