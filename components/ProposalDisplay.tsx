@@ -1,10 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Copy, FileText, Mail, MessageSquareText } from "lucide-react"
+import { Copy, Edit, FileText, Mail, MessageSquareText } from "lucide-react"
 import { type Language } from "@/lib/translations"
 import { GeneratedProposal } from "@/lib/proposal-generator"
 import { SetStateAction, useEffect, useRef } from "react"
+import { Button } from "./ui/button"
 
 interface ProposalDisplayProps {
   result: GeneratedProposal;
@@ -13,19 +13,14 @@ interface ProposalDisplayProps {
 }
 
 export default function ProposalDisplay({ result, setResult, language }: ProposalDisplayProps) {
-  const copyContent = () => {
-    if (result.content) {
-      navigator.clipboard.writeText(result.content);
-    }
-  };
 
-  const editContent = (newContent: string) => { 
-    setResult((prev) => { 
+  const editContent = (newContent: string) => {
+    setResult((prev) => {
       if (!prev) return prev;
       return {
-        ...prev, content: newContent 
+        ...prev, content: newContent
       }
-    }) 
+    })
   }
 
   const formatIcons = {
@@ -35,7 +30,7 @@ export default function ProposalDisplay({ result, setResult, language }: Proposa
   }
 
   const formatLabels = {
-    text_message: language === 'es' ? 'Mensaje de texto' : 'Text',
+    text_message: language === 'es' ? 'Mensaje de texto' : 'Text message',
     email: language === 'es' ? 'Email' : 'Email',
     pdf: 'PDF'
   };
@@ -46,24 +41,15 @@ export default function ProposalDisplay({ result, setResult, language }: Proposa
     <div className="space-y-4">
       {/* Header con información del formato */}
       <div className="flex items-center justify-between">
-        <div className="flex flex-col justify-center gap-2">
-          <div className="flex items-center gap-2">
-            <FormatIcon className="w-5 h-5 text-muted-foreground" />
-            <Badge variant="secondary">
-              {formatLabels[result.format]}
-            </Badge>
-          </div>
-          <span className="text-sm text-muted-foreground">
-            {new Date(result.generatedAt).toLocaleString()}
-          </span>
+        <div className="flex items-center gap-2">
+          <FormatIcon className="w-5 h-5 text-muted-foreground" />
+          <Badge variant="secondary">
+            {formatLabels[result.format]}
+          </Badge>
         </div>
-
-        {result.format === 'text_message' && (
-          <Button onClick={copyContent} variant="outline" size="sm">
-            <Copy className="w-4 h-4 mr-2" />
-            {language === 'es' ? 'Copiar texto' : 'Copy text'}
-          </Button>
-        )}
+        <span className="text-sm text-muted-foreground">
+          {new Date(result.generatedAt).toLocaleString()}
+        </span>
       </div>
 
       {/* Contenido según formato */}
@@ -87,7 +73,7 @@ function TextProposalDisplay({ content, editContent }: { content: string, editCo
     const textarea = textareaRef.current;
     if (!textarea) return;
     textarea.style.height = "auto"; // Reset para calcular bien
-    textarea.style.height = `${textarea.scrollHeight}px`; // Ajusta a contenido
+    textarea.style.height = `${textarea.scrollHeight + 10}px`; // Ajusta a contenido
   };
 
   useEffect(() => {
@@ -102,14 +88,28 @@ function TextProposalDisplay({ content, editContent }: { content: string, editCo
     };
   }, []);
 
+  const copyContent = () => {
+    navigator.clipboard.writeText(content);
+  };
+
   return (
-    <div className="prose prose-sm max-w-none">
+    <div className="space-y-2">
+
+      <div className="flex gap-4 justify-end">
+        <Button size={"sm"} onClick={copyContent} variant="outline">
+          <Edit className="w-4 h-4 mr-2" /> Edit content
+        </Button>
+        <Button size={"sm"} onClick={copyContent} variant="outline">
+          <Copy className="w-4 h-4 mr-2" /> Copy Text
+        </Button>
+      </div>
+
       <textarea
         ref={textareaRef}
         value={content}
         onChange={(e) => editContent(e.target.value)}
         onInput={autoResize}
-        className="bg-card border rounded-lg p-6 whitespace-pre-wrap text-foreground w-full overflow-hidden"
+        className="bg-card border rounded-lg p-6 whitespace-pre-wrap text-foreground w-full"
         placeholder="Escribe tu propuesta aquí..."
       />
     </div>

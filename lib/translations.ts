@@ -1,7 +1,7 @@
 export const translations = {
   es: {
     wizard: {
-      title: "Construye tu propuesta/post",
+      title: "Construye tu propuesta",
     },
     help: {
       step1: {
@@ -92,7 +92,7 @@ export const translations = {
   },
   en: {
     wizard: {
-      title: "Build your proposal/post",
+      title: "Build your proposal",
     },
     help: {
       step1: {
@@ -154,7 +154,7 @@ export const translations = {
         less4mins: "Less than 4 minutes",
         less5mins: "Less than 5 minutes"
       },
-      formatNote: "Do you want to add a note for the format?",
+      formatNote: "Do you want to add a note about the format?",
       formatNotePlaceholder: "Example: Make it original and funny"
     },
     buttons: {
