@@ -1,25 +1,58 @@
 import { JSX, useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { Copy } from "lucide-react";
+import { Editor } from "@/components/blocks/editor-00/editor"
+import { SerializedEditorState } from "lexical";
+
+export function bodyToSerializedState(body: string): SerializedEditorState {
+  return {
+    root: {
+      children: [
+        {
+          children: [
+            {
+              detail: 0,
+              format: 0,
+              mode: "normal",
+              style: "",
+              text: body,
+              type: "text",
+              version: 1,
+            },
+          ],
+          direction: "ltr",
+          format: "",
+          indent: 0,
+          type: "paragraph",
+          version: 1,
+        },
+      ],
+      direction: "ltr",
+      format: "",
+      indent: 0,
+      type: "root",
+      version: 1,
+    },
+  } as unknown as SerializedEditorState
+}
 
 interface EmailProposalDisplayProps {
   HeaderComponent: () => JSX.Element;
   content: string;
-  editContent: (newContent: string) => void;
 }
 
-export default function EmailProposalDisplay({ HeaderComponent, content, editContent }: EmailProposalDisplayProps) {
+export default function EmailProposalDisplay({ HeaderComponent, content }: EmailProposalDisplayProps) {
   const subjectRef = useRef<HTMLTextAreaElement>(null);
-  const bodyRef = useRef<HTMLTextAreaElement>(null);
 
-  const [subject, setSubject] = useState(()=>{
+  // Estado para asunto
+  const [subject, setSubject] = useState(() => {
     const lines = content.split("\n");
-    return lines[0].trim() ?? "";
+    return lines[0]?.trim() ?? "";
   });
-  const [body, setBody] = useState(()=>{
-    const lines = content.split("\n");
-    return lines.slice(1).join("\n").trim();
-  });
+
+  // Estado para el cuerpo
+  const [editorState, setEditorState] =
+    useState<SerializedEditorState>(bodyToSerializedState(content.split("\n").slice(1).join("\n").trim()));
 
   const autoResize = (ref: React.RefObject<HTMLTextAreaElement | null>) => {
     const textarea = ref.current;
@@ -27,27 +60,16 @@ export default function EmailProposalDisplay({ HeaderComponent, content, editCon
     textarea.style.height = "auto";
     textarea.style.height = `${textarea.scrollHeight + 5}px`;
   };
-  
+
   useEffect(() => {
-    const handleResize = () => {
-      autoResize(subjectRef);
-      autoResize(bodyRef);
-    };
+    const handleResize = () => autoResize(subjectRef);
     handleResize();
     window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleSubjectChange = (newSubject: string) => {
     setSubject(newSubject);
-    editContent(`${newSubject}\n${body}`);
-  };
-
-  const handleBodyChange = (newBody: string) => {
-    setBody(newBody);
-    editContent(`${subject}\n${newBody}`);
   };
 
   const copyToClipboard = (text: string) => {
@@ -56,22 +78,23 @@ export default function EmailProposalDisplay({ HeaderComponent, content, editCon
 
   return (
     <div className="space-y-4 w-full">
+      {/* Header y botones de copiar */}
       <div className="flex flex-col md:flex-row gap-y-2 md:justify-between md:items-center">
         <HeaderComponent />
         <div className="flex gap-2 flex-wrap">
           <Button size="sm" onClick={() => copyToClipboard(subject)} variant="outline">
             <Copy className="w-4 h-4 mr-2" /> Copy Subject
           </Button>
-          <Button size="sm" onClick={() => copyToClipboard(body)} variant="outline">
+          <Button size="sm" onClick={() => console.log("TODO")} variant="outline">
             <Copy className="w-4 h-4 mr-2" /> Copy Body
           </Button>
-          <Button size="sm" onClick={() => copyToClipboard(`${subject}\n${body}`)} variant="outline">
+          <Button size="sm" onClick={() => console.log("TODO")} variant="outline">
             <Copy className="w-4 h-4 mr-2" /> Copy All
           </Button>
         </div>
       </div>
 
-      {/* Asunto */}
+      {/* Campo para asunto */}
       <div className="space-y-1">
         <label className="text-sm font-medium text-muted-foreground">Asunto</label>
         <textarea
@@ -84,15 +107,12 @@ export default function EmailProposalDisplay({ HeaderComponent, content, editCon
         />
       </div>
 
-      {/* Cuerpo */}
+      {/* Editor enriquecido para el cuerpo */}
       <div className="space-y-1">
         <label className="text-sm font-medium text-muted-foreground">Cuerpo</label>
-        <textarea
-          ref={bodyRef}
-          value={body}
-          onChange={(e) => handleBodyChange(e.target.value)}
-          className="bg-card border rounded-lg p-6 whitespace-pre-wrap text-foreground w-full min-h-[200px] resize-none"
-          placeholder="Escribe el contenido del email aquí..."
+        <Editor
+          editorSerializedState={editorState}
+          onSerializedChange={(value) => setEditorState(value)}
         />
       </div>
     </div>

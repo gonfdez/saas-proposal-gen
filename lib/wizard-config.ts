@@ -25,7 +25,7 @@ export const defaultPreset: WizardData = {
   tone: "Profesional",
   includeEmojis: false,
   readingTime: 1,
-  formatNote: "Quiero que sea orginal, presuasiva y divertida",
+  formatNote: "Quiero que sea original, presuasiva y divertida",
   meta: {
     createdAt: "2025-09-02T12:00:00.000Z",
     appVersion: "0.1.0",

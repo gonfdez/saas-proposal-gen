@@ -67,7 +67,6 @@ export default function ProposalDisplay({ result, setResult, language }: Proposa
         <EmailProposalDisplay
           HeaderComponent={HeaderComponent}
           content={result.content}
-          editContent={editTextContent}
         />
       )}
 
