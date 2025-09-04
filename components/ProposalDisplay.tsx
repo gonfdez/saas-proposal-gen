@@ -5,6 +5,7 @@ import { type Language } from "@/lib/translations"
 import { GeneratedProposal } from "@/lib/proposal-generator"
 import { SetStateAction } from "react"
 import TextProposalDisplay from "./TextProposalDisplay"
+import EmailProposalDisplay from "./EmailProposalDisplay";
 
 interface ProposalDisplayProps {
   result: GeneratedProposal;
@@ -18,16 +19,17 @@ export default function ProposalDisplay({ result, setResult, language }: Proposa
     setResult((prev) => {
       if (!prev) return prev;
       return {
-        ...prev, content: newContent
+        ...prev,
+        content: newContent
       }
-    })
-  }
+    });
+  };
 
   const formatIcons = {
     text_message: MessageSquareText,
     email: Mail,
     pdf: FileText
-  }
+  };
 
   const formatLabels = {
     text_message: language === 'es' ? 'Mensaje de texto' : 'Text message',
@@ -35,7 +37,7 @@ export default function ProposalDisplay({ result, setResult, language }: Proposa
     pdf: 'PDF'
   };
 
-  const FormatIcon = formatIcons[result.format]
+  const FormatIcon = formatIcons[result.format];
 
   const HeaderComponent = () => (
     <div className="flex items-center gap-4">
@@ -53,13 +55,23 @@ export default function ProposalDisplay({ result, setResult, language }: Proposa
 
   return (
     <div className="space-y-4">
-      {result.format === 'text_message' ? (
+      {result.format === 'text_message' && (
         <TextProposalDisplay
           HeaderComponent={HeaderComponent}
           content={result.content}
           editContent={editTextContent}
         />
-      ) : (
+      )}
+
+      {result.format === 'email' && (
+        <EmailProposalDisplay
+          HeaderComponent={HeaderComponent}
+          content={result.content}
+          editContent={editTextContent}
+        />
+      )}
+
+      {result.format === 'pdf' && (
         <JSONFallbackDisplay result={result} language={language} />
       )}
     </div>

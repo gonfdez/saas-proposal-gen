@@ -15,15 +15,12 @@ export default function TextProposalDisplay({ HeaderComponent, content, editCont
     const textarea = textareaRef.current;
     if (!textarea) return;
     textarea.style.height = "auto"; // Reset para calcular bien
-    textarea.style.height = `${textarea.scrollHeight + 10}px`; // Ajusta a contenido
+    textarea.style.height = `${textarea.scrollHeight + 5}px`; // Ajusta a contenido
   };
-
-  useEffect(() => {
-    autoResize(); // Ajusta cuando se monte el componente
-  }, [content]);
-
+  
   useEffect(() => {
     const handleResize = () => autoResize();
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -36,7 +33,7 @@ export default function TextProposalDisplay({ HeaderComponent, content, editCont
 
   return (
     <div className="space-y-2">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col md:flex-row gap-y-2 md:justify-between md:items-center">
         <HeaderComponent />
         <div className="flex gap-4">
           <Button size={"sm"} onClick={copyContent} variant="outline">
@@ -51,7 +48,6 @@ export default function TextProposalDisplay({ HeaderComponent, content, editCont
         ref={textareaRef}
         value={content}
         onChange={(e) => editContent(e.target.value)}
-        onInput={autoResize}
         className="bg-card border rounded-lg p-6 whitespace-pre-wrap text-foreground w-full"
         placeholder="Escribe tu propuesta aquí..."
       />

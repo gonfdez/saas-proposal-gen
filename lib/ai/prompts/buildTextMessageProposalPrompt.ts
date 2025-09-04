@@ -1,4 +1,4 @@
-import { WizardData } from '../wizard-config';
+import { WizardData } from '../../wizard-config';
 
 export function buildTextMessageProposalPrompt(data: WizardData): string {
   const { presentation, audience, content, objective, language, tone, includeEmojis, readingTime, formatNote } = data;
