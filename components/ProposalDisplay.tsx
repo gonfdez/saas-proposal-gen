@@ -1,10 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Copy, Edit, FileText, Mail, MessageSquareText } from "lucide-react"
+import { FileText, Mail, MessageSquareText } from "lucide-react"
 import { type Language } from "@/lib/translations"
 import { GeneratedProposal } from "@/lib/proposal-generator"
-import { SetStateAction, useEffect, useRef } from "react"
-import { Button } from "./ui/button"
+import { SetStateAction } from "react"
+import TextProposalDisplay from "./TextProposalDisplay"
 
 interface ProposalDisplayProps {
   result: GeneratedProposal;
@@ -14,7 +14,7 @@ interface ProposalDisplayProps {
 
 export default function ProposalDisplay({ result, setResult, language }: ProposalDisplayProps) {
 
-  const editContent = (newContent: string) => {
+  const editTextContent = (newContent: string) => {
     setResult((prev) => {
       if (!prev) return prev;
       return {
@@ -37,81 +37,31 @@ export default function ProposalDisplay({ result, setResult, language }: Proposa
 
   const FormatIcon = formatIcons[result.format]
 
+  const HeaderComponent = () => (
+    <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
+        <FormatIcon className="w-5 h-5 text-muted-foreground" />
+        <Badge variant="secondary">
+          {formatLabels[result.format]}
+        </Badge>
+      </div>
+      <span className="text-sm text-muted-foreground">
+        {new Date(result.generatedAt).toLocaleString()}
+      </span>
+    </div>
+  );
+
   return (
     <div className="space-y-4">
-      {/* Header con información del formato */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <FormatIcon className="w-5 h-5 text-muted-foreground" />
-          <Badge variant="secondary">
-            {formatLabels[result.format]}
-          </Badge>
-        </div>
-        <span className="text-sm text-muted-foreground">
-          {new Date(result.generatedAt).toLocaleString()}
-        </span>
-      </div>
-
-      {/* Contenido según formato */}
       {result.format === 'text_message' ? (
         <TextProposalDisplay
+          HeaderComponent={HeaderComponent}
           content={result.content}
-          editContent={editContent}
+          editContent={editTextContent}
         />
       ) : (
         <JSONFallbackDisplay result={result} language={language} />
       )}
-    </div>
-  );
-}
-
-// Componente para mostrar propuestas de texto
-function TextProposalDisplay({ content, editContent }: { content: string, editContent: (newContent: string) => void }) {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  const autoResize = () => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
-    textarea.style.height = "auto"; // Reset para calcular bien
-    textarea.style.height = `${textarea.scrollHeight + 10}px`; // Ajusta a contenido
-  };
-
-  useEffect(() => {
-    autoResize(); // Ajusta cuando se monte el componente
-  }, [content]);
-
-  useEffect(() => {
-    const handleResize = () => autoResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const copyContent = () => {
-    navigator.clipboard.writeText(content);
-  };
-
-  return (
-    <div className="space-y-2">
-
-      <div className="flex gap-4 justify-end">
-        <Button size={"sm"} onClick={copyContent} variant="outline">
-          <Edit className="w-4 h-4 mr-2" /> Edit content
-        </Button>
-        <Button size={"sm"} onClick={copyContent} variant="outline">
-          <Copy className="w-4 h-4 mr-2" /> Copy Text
-        </Button>
-      </div>
-
-      <textarea
-        ref={textareaRef}
-        value={content}
-        onChange={(e) => editContent(e.target.value)}
-        onInput={autoResize}
-        className="bg-card border rounded-lg p-6 whitespace-pre-wrap text-foreground w-full"
-        placeholder="Escribe tu propuesta aquí..."
-      />
     </div>
   );
 }
