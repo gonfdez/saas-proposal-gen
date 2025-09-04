@@ -1,7 +1,7 @@
 import { WizardData } from '../wizard-config';
 
 export function buildTextMessageProposalPrompt(data: WizardData): string {
-  const { presentation, audience, content, objective, language, tone, includeEmojis, readingTime } = data;
+  const { presentation, audience, content, objective, language, tone, includeEmojis, readingTime, formatNote } = data;
 
   // Idioma y tono
   const languagePrompt = language === 'ES' ? 'español' : 'inglés';
@@ -33,6 +33,7 @@ ${content}
 FORMATO:
 - Salida en texto plano, sin numeraciones, sin etiquetas como "Título:" o "Descripción:", sin markdown.
 - Debe sonar natural y conversacional, adecuado para WhatsApp o mensajes directos.
+${formatNote.length > 0 && `- Ten encuenta esta nota adicional para el formato: ${formatNote}`}
 
 ESTRUCTURA PSICOLÓGICA:
 1. Inicio que capture la atención y genere cercanía.

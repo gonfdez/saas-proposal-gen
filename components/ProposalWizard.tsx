@@ -20,7 +20,7 @@ interface ProposalWizardProps {
   initialLanguage: Language
 }
 
-export default function ProposalWizard(props : ProposalWizardProps) {
+export default function ProposalWizard(props: ProposalWizardProps) {
   const [currentStep, setCurrentStep] = useState(0)
   const [language, setLanguage] = useState<Language>(props.initialLanguage)
   const [isGenerating, setIsGenerating] = useState(false)
@@ -37,6 +37,7 @@ export default function ProposalWizard(props : ProposalWizardProps) {
     tone: "Profesional",
     includeEmojis: true,
     readingTime: 1,
+    formatNote: "",
     meta: {
       createdAt: new Date().toISOString(),
       appVersion: "0.1.0",
@@ -90,9 +91,10 @@ export default function ProposalWizard(props : ProposalWizardProps) {
     const refinedFormData: WizardData = {
       ...formData,
       audience: formData.audience.trim(),
-      presentation: formData.presentation.trim() || "",
+      presentation: formData.presentation.trim(),
       content: formData.content.trim(),
-      objective: formData.objective.trim()
+      objective: formData.objective.trim(),
+      formatNote: formData.formatNote.trim(),
     }
     setFormData(refinedFormData);
     return refinedFormData;
@@ -217,118 +219,119 @@ export default function ProposalWizard(props : ProposalWizardProps) {
                 value={formData.objective || ""}
                 onChange={(e) => setFormData((prev) => ({ ...prev, objective: e.target.value }))}
                 placeholder={t.step2.objectivePlaceholder}
-                className={errors["content"] ? "border-red-500" : ""}
+                className={errors["objective"] ? "border-red-500" : ""}
               />
             </div>
           )}
 
           {currentStep === 2 && (
             <div className="space-y-4">
-              <Label className="text-lg font-semibold">{t.step3.title}
-                <StepHelpDialog language={language} stepIndex={2} />
-              </Label>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="space-y-4">
+                  <Label className="text-lg font-semibold">{t.step3.format}</Label>
+                  <RadioGroup
+                    value={formData.format}
+                    onValueChange={(value: "text_message" | "email" | "pdf") =>
+                      setFormData((prev) => ({ ...prev, format: value }))
+                    }
+                  >
 
-              <div className="space-y-6">
-
-                <Label className="font-medium mb-3 block">Formato</Label>
-                <RadioGroup
-                  value={formData.format}
-                  onValueChange={(value: "text_message" | "email" | "pdf") =>
-                    setFormData((prev) => ({ ...prev, format: value }))
-                  }
-                >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="text_message" id="text_message" />
-                    <Label htmlFor="text_message">{t.step3.options.text}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="email" id="email" />
-                    <Label htmlFor="email">{t.step3.options.email}</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="pdf" id="pdf" />
-                    <Label htmlFor="pdf">{t.step3.options.pdf}</Label>
-                  </div>
-                </RadioGroup>
-
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label className="font-medium">{t.step3.language}</Label>
-                    <Select
-                      value={formData.language}
-                      onValueChange={(value: "ES" | "EN") => setFormData((prev) => ({ ...prev, language: value }))}
-                    >
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="ES">Español</SelectItem>
-                        <SelectItem value="EN">English</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label className="font-medium">{t.step3.tone}</Label>
-                    <Select
-                      value={formData.tone}
-                      onValueChange={(value: "Profesional" | "Amigable" | "Persuasivo" | "Directo") =>
-                        setFormData((prev) => ({ ...prev, tone: value }))
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Profesional">{t.step3.toneOptions.Profesional}</SelectItem>
-                        <SelectItem value="Amigable">{t.step3.toneOptions.Amigable}</SelectItem>
-                        <SelectItem value="Persuasivo">{t.step3.toneOptions.Persuasivo}</SelectItem>
-                        <SelectItem value="Directo">{t.step3.toneOptions.Directo}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label className="font-medium">{t.step3.includeEmojis}</Label>
-                    <Select
-                      value={formData.includeEmojis ? "yes" : "no"}
-                      onValueChange={(value: "yes" | "no") =>
-                        setFormData((prev) => ({ ...prev, includeEmojis: value === "yes" ? true : false }))
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="yes">{t.step3.includeEmojisOptions.yes}</SelectItem>
-                        <SelectItem value="no">{t.step3.includeEmojisOptions.no}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label className="font-medium">{t.step3.readingTime}</Label>
-                    <Select
-                      value={String(formData.readingTime)}
-                      onValueChange={(value: string) =>
-                        setFormData((prev) => ({ ...prev, readingTime: Number(value) }))
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="1">{t.step3.readingTimeOptions.less1min}</SelectItem>
-                        <SelectItem value="2">{t.step3.readingTimeOptions.less2mins}</SelectItem>
-                        <SelectItem value="3">{t.step3.readingTimeOptions.less3mins}</SelectItem>
-                        <SelectItem value="4">{t.step3.readingTimeOptions.less4mins}</SelectItem>
-                        <SelectItem value="5">{t.step3.readingTimeOptions.less5mins}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="text_message" id="text_message" />
+                      <Label htmlFor="text_message">{t.step3.options.text}</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="email" id="email" />
+                      <Label htmlFor="email">{t.step3.options.email}</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="pdf" id="pdf" />
+                      <Label htmlFor="pdf">{t.step3.options.pdf}</Label>
+                    </div>
+                  </RadioGroup>
                 </div>
+                <div className="space-y-4">
+                  <Label className="text-lg font-semibold">{t.step3.language}</Label>
+                  <Select
+                    value={formData.language}
+                    onValueChange={(value: "ES" | "EN") => setFormData((prev) => ({ ...prev, language: value }))}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="ES">Español</SelectItem>
+                      <SelectItem value="EN">English</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-4">
+                  <Label className="text-lg font-semibold">{t.step3.tone}</Label>
+                  <Select
+                    value={formData.tone}
+                    onValueChange={(value: "Profesional" | "Amigable" | "Persuasivo" | "Directo") =>
+                      setFormData((prev) => ({ ...prev, tone: value }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Profesional">{t.step3.toneOptions.Profesional}</SelectItem>
+                      <SelectItem value="Amigable">{t.step3.toneOptions.Amigable}</SelectItem>
+                      <SelectItem value="Persuasivo">{t.step3.toneOptions.Persuasivo}</SelectItem>
+                      <SelectItem value="Directo">{t.step3.toneOptions.Directo}</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-4">
+                  <Label className="text-lg font-semibold">{t.step3.includeEmojis}</Label>
+                  <Select
+                    value={formData.includeEmojis ? "yes" : "no"}
+                    onValueChange={(value: "yes" | "no") =>
+                      setFormData((prev) => ({ ...prev, includeEmojis: value === "yes" ? true : false }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="yes">{t.step3.includeEmojisOptions.yes}</SelectItem>
+                      <SelectItem value="no">{t.step3.includeEmojisOptions.no}</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-4">
+                  <Label className="text-lg font-semibold">{t.step3.readingTime}</Label>
+                  <Select
+                    value={String(formData.readingTime)}
+                    onValueChange={(value: string) =>
+                      setFormData((prev) => ({ ...prev, readingTime: Number(value) }))
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="1">{t.step3.readingTimeOptions.less1min}</SelectItem>
+                      <SelectItem value="2">{t.step3.readingTimeOptions.less2mins}</SelectItem>
+                      <SelectItem value="3">{t.step3.readingTimeOptions.less3mins}</SelectItem>
+                      <SelectItem value="4">{t.step3.readingTimeOptions.less4mins}</SelectItem>
+                      <SelectItem value="5">{t.step3.readingTimeOptions.less5mins}</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <Label className="text-lg font-semibold">{t.step3.formatNote}
+                  <StepHelpDialog language={language} stepIndex={2} />
+                </Label>
+                <Textarea
+                  value={formData.formatNote || ""}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, formatNote: e.target.value }))}
+                  placeholder={t.step3.formatNotePlaceholder}
+                  className={errors["formatNote"] ? "border-red-500" : ""}
+                />
               </div>
             </div>
           )}

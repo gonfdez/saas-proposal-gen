@@ -36,7 +36,7 @@ export const translations = {
     },
     step3: {
       badgeTitle: "Formato",
-      title: "Formato de la propuesta",
+      format: "Formato de la propuesta",
       options: {
         text: "Mensaje de texto",
         email: "Correo electrónico",
@@ -63,6 +63,8 @@ export const translations = {
         less4mins: "Menos de 4 minutos",
         less5mins: "Menos de 5 minutos"
       },
+      formatNote: "¿Quieres añadir alguna nota adicional para el formato?",
+      formatNotePlaceholder: "Ejemplo: Quiero que sea original y divertida"
     },
     buttons: {
       next: "Siguiente",
@@ -125,7 +127,7 @@ export const translations = {
     },
     step3: {
       badgeTitle: "Format",
-      title: "Proposal format",
+      format: "Proposal format",
       options: {
         text: "Text message",
         email: "Email",
@@ -152,6 +154,8 @@ export const translations = {
         less4mins: "Less than 4 minutes",
         less5mins: "Less than 5 minutes"
       },
+      formatNote: "Do you want to add a note for the format?",
+      formatNotePlaceholder: "Example: Make it original and funny"
     },
     buttons: {
       next: "Next",
