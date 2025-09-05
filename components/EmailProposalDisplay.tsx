@@ -2,38 +2,47 @@ import { JSX, useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { Copy } from "lucide-react";
 import { Editor } from "@/components/blocks/editor-00/editor"
-import { SerializedEditorState } from "lexical";
 
-export function bodyToSerializedState(body: string): SerializedEditorState {
-  return {
-    root: {
-      children: [
-        {
-          children: [
-            {
-              detail: 0,
-              format: 0,
-              mode: "normal",
-              style: "",
-              text: body,
-              type: "text",
-              version: 1,
-            },
-          ],
-          direction: "ltr",
-          format: "",
-          indent: 0,
-          type: "paragraph",
-          version: 1,
-        },
-      ],
-      direction: "ltr",
-      format: "",
-      indent: 0,
-      type: "root",
-      version: 1,
+import { $getRoot, $insertNodes, SerializedEditorState } from "lexical";
+import { createHeadlessEditor } from '@lexical/headless';
+import { $generateNodesFromDOM } from '@lexical/html';
+import { nodes } from "./blocks/editor-00/nodes";
+
+function htmlToSerializedEditorState(htmlString: string): SerializedEditorState {
+  // Crea un editor temporal para la conversión
+  const tempEditor = createHeadlessEditor({
+    namespace: 'temp-conversion',
+    nodes: nodes, // Agrega aquí los nodos personalizados que uses en tu editor principal
+    onError: (error) => console.error('Temp editor error:', error),
+  });
+
+  let serializedState: SerializedEditorState;
+
+  tempEditor.update(
+    () => {
+      // Parse el HTML
+      const parser = new DOMParser();
+      const dom = parser.parseFromString(htmlString, 'text/html');
+
+      // Genera los nodos de Lexical desde el DOM
+      const nodes = $generateNodesFromDOM(tempEditor, dom);
+
+      // Limpia el root y selecciónalo
+      const root = $getRoot();
+      root.clear();
+      root.select();
+
+      // Inserta los nodos
+      $insertNodes(nodes);
     },
-  } as unknown as SerializedEditorState
+    {
+      discrete: true, // Para asegurar que la actualización sea síncrona
+    }
+  );
+
+  // Obtén el estado serializado
+  serializedState = tempEditor.getEditorState().toJSON();
+  return serializedState;
 }
 
 interface EmailProposalDisplayProps {
@@ -44,15 +53,18 @@ interface EmailProposalDisplayProps {
 export default function EmailProposalDisplay({ HeaderComponent, content }: EmailProposalDisplayProps) {
   const subjectRef = useRef<HTMLTextAreaElement>(null);
 
-  // Estado para asunto
-  const [subject, setSubject] = useState(() => {
-    const lines = content.split("\n");
-    return lines[0]?.trim() ?? "";
-  });
+  // Extraer <h2> como asunto y el resto como cuerpo
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(content, "text/html");
 
-  // Estado para el cuerpo
-  const [editorState, setEditorState] =
-    useState<SerializedEditorState>(bodyToSerializedState(content.split("\n").slice(1).join("\n").trim()));
+  const subjectFromHtml = doc.querySelector("h2")?.textContent?.trim() ?? "";
+  const bodyHtml = doc.body.innerHTML.replace(doc.querySelector("h2")?.outerHTML ?? "", "").trim();
+  const cleanHtml = bodyHtml.replace(/^\s+|\s+$/g, '');
+
+  const [subject, setSubject] = useState(subjectFromHtml);
+  const [editorState, setEditorState] = useState<SerializedEditorState>(() =>
+    htmlToSerializedEditorState(cleanHtml)
+  );
 
   const autoResize = (ref: React.RefObject<HTMLTextAreaElement | null>) => {
     const textarea = ref.current;

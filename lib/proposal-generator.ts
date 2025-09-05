@@ -43,6 +43,9 @@ async function generateTextProposal(data: WizardData): Promise<string> {
 
 async function generateEmailProposal(data: WizardData): Promise<string> {
   const prompt = buildEmailProposalPrompt(data)
-  return await generateWithGemini(prompt)
+  let html = await generateWithGemini(prompt)
+  // ⚡ Limpiar posibles backticks Markdown
+  html = html.replace(/^```html\s*/i, '').replace(/```$/, '').trim()
+  return html
 }
 
