@@ -16,8 +16,6 @@ function htmlToSerializedEditorState(htmlString: string): SerializedEditorState 
     onError: (error) => console.error('Temp editor error:', error),
   });
 
-  let serializedState: SerializedEditorState;
-
   tempEditor.update(
     () => {
       // Parse el HTML
@@ -41,8 +39,7 @@ function htmlToSerializedEditorState(htmlString: string): SerializedEditorState 
   );
 
   // Obtén el estado serializado
-  serializedState = tempEditor.getEditorState().toJSON();
-  return serializedState;
+  return tempEditor.getEditorState().toJSON();
 }
 
 interface EmailProposalDisplayProps {
