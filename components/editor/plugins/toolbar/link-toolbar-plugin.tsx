@@ -21,16 +21,16 @@ export function LinkToolbarPlugin() {
   const { activeEditor } = useToolbarContext()
   const { setIsLinkEditMode } = useFloatingLinkContext()
   const [isLink, setIsLink] = useState(false)
+  const [canInsertLink, setCanInsertLink] = useState(false)
 
   const $updateToolbar = (selection: BaseSelection) => {
     if ($isRangeSelection(selection)) {
+      const isCollapsed = selection.isCollapsed() // <- true si no hay texto seleccionado
+      setCanInsertLink(!isCollapsed) // habilitar solo si hay texto seleccionado
+
       const node = getSelectedNode(selection)
       const parent = node.getParent()
-      if ($isLinkNode(parent) || $isLinkNode(node)) {
-        setIsLink(true)
-      } else {
-        setIsLink(false)
-      }
+      setIsLink($isLinkNode(parent) || $isLinkNode(node))
     }
   }
 
@@ -78,6 +78,7 @@ export function LinkToolbarPlugin() {
       className="!h-8 !w-8 bg-transparent"
       aria-label="Toggle link"
       onClick={insertLink}
+      disabled={!canInsertLink}
     >
       <LinkIcon className="h-4 w-4" />
     </Button>
