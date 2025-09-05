@@ -56,11 +56,10 @@ export default function EmailProposalDisplay({ HeaderComponent, content }: Email
 
   const subjectFromHtml = doc.querySelector("h2")?.textContent?.trim() ?? "";
   const bodyHtml = doc.body.innerHTML.replace(doc.querySelector("h2")?.outerHTML ?? "", "").trim();
-  const cleanHtml = bodyHtml.replace(/^\s+|\s+$/g, '');
 
   const [subject, setSubject] = useState(subjectFromHtml);
   const [editorState, setEditorState] = useState<SerializedEditorState>(() =>
-    htmlToSerializedEditorState(cleanHtml)
+    htmlToSerializedEditorState(bodyHtml)
   );
 
   const autoResize = (ref: React.RefObject<HTMLTextAreaElement | null>) => {
