@@ -15,7 +15,7 @@ import { useToolbarContext } from "@/components/editor/context/toolbar-context"
 import { useUpdateToolbarHandler } from "@/components/editor/editor-hooks/use-update-toolbar"
 import { getSelectedNode } from "@/components/editor/utils/get-selected-node"
 import { sanitizeUrl } from "@/components/editor/utils/url"
-import { Toggle } from "@/components/ui/toggle"
+import { Button } from "@/components/ui/button"
 
 export function LinkToolbarPlugin() {
   const { activeEditor } = useToolbarContext()
@@ -72,14 +72,14 @@ export function LinkToolbarPlugin() {
   }, [activeEditor, isLink, setIsLinkEditMode])
 
   return (
-    <Toggle
+    <Button
       variant={"outline"}
       size="sm"
-      className="!h-8 !w-8"
+      className="!h-8 !w-8 bg-transparent"
       aria-label="Toggle link"
       onClick={insertLink}
     >
       <LinkIcon className="h-4 w-4" />
-    </Toggle>
+    </Button>
   )
 }
