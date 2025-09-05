@@ -38,7 +38,7 @@ export function Editor({
   onSerializedChange?: (editorSerializedState: SerializedEditorState) => void
 }) {
   return (
-    <div className="bg-card overflow-hidden rounded-lg border">
+    <div className="bg-card overflow-visible rounded-lg border">
       <LexicalComposer
         initialConfig={{
           ...editorConfig,
