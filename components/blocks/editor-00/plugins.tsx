@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary"
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin"
+import { ListPlugin } from "@lexical/react/LexicalListPlugin"
 
 import { ContentEditable } from "@/components/editor/editor-ui/content-editable"
 import { ToolbarPlugin } from "@/components/editor/plugins/toolbar/toolbar-plugin"
@@ -12,6 +13,12 @@ import { ClickableLinkPlugin } from "@lexical/react/LexicalClickableLinkPlugin"
 import { FloatingLinkEditorPlugin } from "@/components/editor/plugins/floating-link-editor-plugin"
 import { AutoLinkPlugin } from "@/components/editor/plugins/auto-link-plugin"
 import { LinkPlugin } from "@/components/editor/plugins/link-plugin"
+import { BlockFormatDropDown } from "@/components/editor/plugins/toolbar/block-format-toolbar-plugin"
+import { FormatParagraph } from "@/components/editor/plugins/toolbar/block-format/format-paragraph"
+import { FormatHeading } from "@/components/editor/plugins/toolbar/block-format/format-heading"
+import { FormatNumberedList } from "@/components/editor/plugins/toolbar/block-format/format-numbered-list"
+import { FormatBulletedList } from "@/components/editor/plugins/toolbar/block-format/format-bulleted-list"
+import { FormatQuote } from "@/components/editor/plugins/toolbar/block-format/format-quote"
 
 export function Plugins() {
   const [floatingAnchorElem, setFloatingAnchorElem] =
@@ -29,6 +36,13 @@ export function Plugins() {
       <ToolbarPlugin>
         {({ blockType }) => (
           <div className="vertical-align-middle sticky top-0 z-10 flex gap-2 overflow-auto border-b p-2 bg-card rounded-t-lg">
+            <BlockFormatDropDown>
+              <FormatParagraph />
+              <FormatHeading levels={["h1", "h2", "h3"]} />
+              <FormatNumberedList />
+              <FormatBulletedList />
+              <FormatQuote />
+            </BlockFormatDropDown>
             <FontFormatToolbarPlugin format="bold" />
             <FontFormatToolbarPlugin format="italic" />
             <FontFormatToolbarPlugin format="underline" />
@@ -54,9 +68,10 @@ export function Plugins() {
         <AutoLinkPlugin />
         <LinkPlugin />
         <FloatingLinkEditorPlugin anchorElem={floatingAnchorElem} />
+        <LinkPlugin />
+        <ListPlugin />
       </div>
       {/* actions plugins */}
-      
     </div>
   )
 }
