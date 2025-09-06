@@ -33,7 +33,9 @@ ${content}
 FORMATO:
 - Salida en texto plano, sin numeraciones, sin etiquetas como "Título:" o "Descripción:", sin markdown.
 - Debe sonar natural y conversacional, adecuado para WhatsApp o mensajes directos.
-${formatNote.length > 0 && `- Ten encuenta esta nota adicional para el formato: ${formatNote}`}
+
+${formatNote.length > 0 && `NOTA DEL USUARIO SOBRE EL CONTENIDO:
+  Intenta seguir esta indicación siempre que no interfiera con las pautas de "FORMATO" descritas anteriormente: ${formatNote}`}
 
 ESTRUCTURA PSICOLÓGICA:
 1. Inicio que capture la atención y genere cercanía.
@@ -48,7 +50,7 @@ Utiliza un estilo ${toneInstructions}.
 LONGITUD:
 Entre ${minWords} y ${maxWords} palabras.
 
-${includeEmojis ? 'EMOJIS: Integra hasta 3 emojis sutiles y relevantes para dar calidez al mensaje, sin exagerar.' : ''}
+${includeEmojis ? 'EMOJIS: Puedes incluir emojis sutiles y relevantes en el mensaje, pero sin exagerar.' : ''}
 
 REGLAS IMPORTANTES:
 - No repitas textualmente la información proporcionada por el usuario, úsala solo como guía.

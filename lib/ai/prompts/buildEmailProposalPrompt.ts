@@ -18,33 +18,34 @@ export function buildEmailProposalPrompt(data: WizardData): string {
   const maxWords = Math.max(300, readingTime * 250)
 
   return `
-Genera un correo electrónico comercial en ${languagePrompt} siguiendo estas instrucciones estrictamente:
+Genera un correo electrónico en ${languagePrompt} siguiendo estas instrucciones estrictamente:
 
 OBJETIVO PRINCIPAL:
-Crear un email persuasivo para un cliente potencial (${audience}).
+El correo va dirigido a: ${audience}.
 El objetivo final es lograr: "${objective}".
-El llamado a la acción debe reflejarlo, pero NO copiarlo textualmente.
+La llamada a la acción debe reflejarlo, pero NO copiarlo textualmente.
 
 CONTEXTO DE REFERENCIA:
-- Presentación de quién envía el correo: ${presentation}.
+- Quién envía el correo es: ${presentation}.
 - Información clave sobre el servicio o propuesta (usa esto solo como guía, nunca literalmente):
 ${content}
 
 FORMATO DE SALIDA:
-- Devuelve la respuesta en **HTML limpio y semántico**, sin estilos inline ni atributos innecesarios.
+- Devuelve la respuesta en HTML PURO y SEMÁNTICO, sin estilos inline ni atributos innecesarios, la salida debe ser HTML PURO.
 - Usa estas etiquetas de forma correcta:
-  - <strong> para **negritas**  
-  - <em> para *cursivas*  
-  - <u> para _subrayados_  
-  - <a href="URL"> para enlaces
+  - <strong> para negritas
+  - <em> para cursivas  
+  - <u> para subrayados 
+  - <a href="..."> para enlaces
   - <p> para párrafos
-  - <br> solo cuando sea estrictamente necesario
+  - <br> para saltos de línea cuando sea necesario
+  - <ul> o <ol> para listas
 - El HTML debe contener:
   1. La primera línea como <h2>Asunto del correo</h2>.
   2. El cuerpo en varios <p>, según corresponda.
 
-${formatNote.length > 0 && `NOTA DEL USUARIO SOBRE EL FORMATO DEL CONTENIDO DEL CORREO:
-  Intenta seguir esta indicación siempre que no interfiera con el "FORMATO DE SALIDA" descrito anteriormente: ${formatNote}`}
+${formatNote.length > 0 && `NOTA DEL USUARIO SOBRE EL CONTENIDO DEL CORREO:
+  Intenta seguir esta indicación siempre que no interfiera con las pautas de "FORMATO DE SALIDA" descritas anteriormente: ${formatNote}`}
 
 TONO:
 Utiliza un estilo ${toneInstructions}.
@@ -52,12 +53,11 @@ Utiliza un estilo ${toneInstructions}.
 LONGITUD:
 Entre ${minWords} y ${maxWords} palabras.
 
-${includeEmojis ? 'EMOJIS: Puedes incluir hasta 2 emojis sutiles y relevantes en el cuerpo del correo, nunca en el asunto.' : ''}
+${includeEmojis ? 'EMOJIS: Puedes incluir emojis sutiles y relevantes en el cuerpo del correo, pero sin exagerar y nunca en el asunto.' : ''}
 
 REGLAS IMPORTANTES:
-- NO añadas listas <ul> o <ol>.
 - NO uses etiquetas de estilo como <span> con CSS inline.
-- Devuelve **solo el HTML**, sin explicaciones adicionales.
+- Devuelve SOLO EL CÓDIGO HTML, sin explicaciones adicionales.
 
 Genera el correo ahora.
 `.trim()
