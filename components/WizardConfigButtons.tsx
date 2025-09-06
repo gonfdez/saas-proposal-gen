@@ -6,6 +6,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { Bolt } from "lucide-react";
+import { Label } from "./ui/label";
 
 interface WizardConfigButtonsProps {
   loadPreset: () => void,
@@ -37,9 +38,10 @@ export default function WizardConfigButtons(props: WizardConfigButtonsProps) {
           </SheetDescription>
         </SheetHeader>
         <div className="space-y-4 p-4">
-          <Button onClick={handleLoadPreset} variant="outline" size="sm">
-            Load Preset
+          <Button onClick={handleLoadPreset} variant="outline" size="sm" className="font-normal">
+            Load text proposal preset
           </Button>
+          <Label>{t.language.label}</Label>
           <Select value={language} onValueChange={(value: Language) => props.setLanguage(value)}>
             <SelectTrigger className="w-32">
               <SelectValue />

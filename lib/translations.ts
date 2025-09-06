@@ -74,6 +74,9 @@ export const translations = {
       download: "Descargar JSON",
       remove: "Eliminar",
       edit: "Editar",
+      copyContent: "Copiar contenido",
+      copySubject: "Copiar asunto",
+      copyBody: "Copiar cuerpo"
     },
     validation: {
       required: "Este campo es obligatorio",
@@ -89,6 +92,13 @@ export const translations = {
       es: "Español",
       en: "English",
     },
+    proposalEmailDisplay: {
+      subject: "Asunto",
+      body: "Cuerpo"
+    },
+    proposalTextDisplay: {
+      content: "Contenido"
+    }
   },
   en: {
     wizard: {
@@ -165,6 +175,9 @@ export const translations = {
       download: "Download JSON",
       remove: "Remove",
       edit: "Edit",
+      copyContent: "Copy content",
+      copySubject: "Copy subject",
+      copyBody: "Copy body"
     },
     validation: {
       required: "This field is required",
@@ -180,6 +193,13 @@ export const translations = {
       es: "Español",
       en: "English",
     },
+    proposalEmailDisplay: {
+      subject: "Subject",
+      body: "Body"
+    },
+    proposalTextDisplay: {
+      content: "Content"
+    }
   },
 } as const
 

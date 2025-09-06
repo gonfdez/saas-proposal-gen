@@ -1,14 +1,18 @@
 import { JSX, useEffect, useRef } from "react";
 import { Button } from "./ui/button";
-import { Copy, Edit } from "lucide-react";
+import { Copy } from "lucide-react";
+import { Language, translations } from "@/lib/translations";
 
 interface TextProposalDisplayProps {
+  language: Language
   HeaderComponent: () => JSX.Element
   content: string,
   editContent: (newContent: string) => void
 }
 
-export default function TextProposalDisplay({ HeaderComponent, content, editContent }: TextProposalDisplayProps) {
+export default function TextProposalDisplay({ language, HeaderComponent, content, editContent }: TextProposalDisplayProps) {
+  const t = translations[language]
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const autoResize = () => {
@@ -17,7 +21,7 @@ export default function TextProposalDisplay({ HeaderComponent, content, editCont
     textarea.style.height = "auto"; // Reset para calcular bien
     textarea.style.height = `${textarea.scrollHeight + 5}px`; // Ajusta a contenido
   };
-  
+
   useEffect(() => {
     const handleResize = () => autoResize();
     handleResize();
@@ -32,25 +36,22 @@ export default function TextProposalDisplay({ HeaderComponent, content, editCont
   };
 
   return (
-    <div className="space-y-2">
-      <div className="flex flex-col md:flex-row gap-y-2 md:justify-between md:items-center">
-        <HeaderComponent />
-        <div className="flex gap-4">
+    <div className="space-y-4">
+      <HeaderComponent />
+      <div className="space-y-2">
+        <div className="flex justify-between items-end">
+          <label className="text-sm font-medium text-muted-foreground">{t.proposalTextDisplay.content}</label>
           <Button size={"sm"} onClick={copyContent} variant="outline">
-            <Edit className="w-4 h-4 mr-2" /> Edit content
-          </Button>
-          <Button size={"sm"} onClick={copyContent} variant="outline">
-            <Copy className="w-4 h-4 mr-2" /> Copy Text
+            <Copy className="w-4 h-4 mr-2" /> {t.buttons.copyContent}
           </Button>
         </div>
+        <textarea
+          ref={textareaRef}
+          value={content}
+          onChange={(e) => editContent(e.target.value)}
+          className="bg-card border rounded-lg p-6 whitespace-pre-wrap text-foreground w-full"
+        />
       </div>
-      <textarea
-        ref={textareaRef}
-        value={content}
-        onChange={(e) => editContent(e.target.value)}
-        className="bg-card border rounded-lg p-6 whitespace-pre-wrap text-foreground w-full"
-        placeholder="Escribe tu propuesta aquí..."
-      />
     </div>
   );
 }

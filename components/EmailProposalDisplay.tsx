@@ -7,6 +7,7 @@ import { $getRoot, $insertNodes, SerializedEditorState } from "lexical";
 import { createHeadlessEditor } from '@lexical/headless';
 import { $generateNodesFromDOM } from '@lexical/html';
 import { nodes } from "./blocks/editor-00/nodes";
+import { Language, translations } from "@/lib/translations";
 
 function htmlToSerializedEditorState(htmlString: string): SerializedEditorState {
   // Crea un editor temporal para la conversión
@@ -43,11 +44,14 @@ function htmlToSerializedEditorState(htmlString: string): SerializedEditorState 
 }
 
 interface EmailProposalDisplayProps {
+  language: Language
   HeaderComponent: () => JSX.Element;
   content: string;
 }
 
-export default function EmailProposalDisplay({ HeaderComponent, content }: EmailProposalDisplayProps) {
+export default function EmailProposalDisplay({ language, HeaderComponent, content }: EmailProposalDisplayProps) {
+  const t = translations[language]
+  
   const subjectRef = useRef<HTMLTextAreaElement>(null);
 
   // Extraer <h2> como asunto y el resto como cuerpo
@@ -89,22 +93,16 @@ export default function EmailProposalDisplay({ HeaderComponent, content }: Email
       {/* Header y botones de copiar */}
       <div className="flex flex-col md:flex-row gap-y-2 md:justify-between md:items-center">
         <HeaderComponent />
-        <div className="flex gap-2 flex-wrap">
-          <Button size="sm" onClick={() => copyToClipboard(subject)} variant="outline">
-            <Copy className="w-4 h-4 mr-2" /> Copy Subject
-          </Button>
-          <Button size="sm" onClick={() => console.log("TODO")} variant="outline">
-            <Copy className="w-4 h-4 mr-2" /> Copy Body
-          </Button>
-          <Button size="sm" onClick={() => console.log("TODO")} variant="outline">
-            <Copy className="w-4 h-4 mr-2" /> Copy All
-          </Button>
-        </div>
       </div>
 
       {/* Campo para asunto */}
-      <div className="space-y-1">
-        <label className="text-sm font-medium text-muted-foreground">Asunto</label>
+      <div className="space-y-2">
+        <div className="flex justify-between items-end">
+          <label className="text-sm font-medium text-muted-foreground">{t.proposalEmailDisplay.subject}</label>
+          <Button size="sm" onClick={() => copyToClipboard(subject)} variant="outline">
+            <Copy className="w-4 h-4 mr-2" /> {t.buttons.copySubject}
+          </Button>
+        </div>
         <textarea
           ref={subjectRef}
           value={subject}
@@ -116,8 +114,13 @@ export default function EmailProposalDisplay({ HeaderComponent, content }: Email
       </div>
 
       {/* Editor enriquecido para el cuerpo */}
-      <div className="space-y-1">
-        <label className="text-sm font-medium text-muted-foreground">Cuerpo</label>
+      <div className="space-y-2">
+        <div className="flex justify-between items-end">
+          <label className="text-sm font-medium text-muted-foreground">{t.proposalEmailDisplay.body}</label>
+          <Button size="sm" onClick={() => console.log("TODO")} variant="outline">
+            <Copy className="w-4 h-4 mr-2" /> {t.buttons.copyBody}
+          </Button>
+        </div>
         <Editor
           editorSerializedState={editorState}
           onSerializedChange={(value) => setEditorState(value)}

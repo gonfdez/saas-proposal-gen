@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { FileText, Mail, MessageSquareText } from "lucide-react"
-import { type Language } from "@/lib/translations"
+import { translations, type Language } from "@/lib/translations"
 import { GeneratedProposal } from "@/lib/proposal-generator"
 import { SetStateAction } from "react"
 import TextProposalDisplay from "./TextProposalDisplay"
@@ -14,6 +14,7 @@ interface ProposalDisplayProps {
 }
 
 export default function ProposalDisplay({ result, setResult, language }: ProposalDisplayProps) {
+  const t = translations[language]
 
   const editTextContent = (newContent: string) => {
     setResult((prev) => {
@@ -32,9 +33,9 @@ export default function ProposalDisplay({ result, setResult, language }: Proposa
   };
 
   const formatLabels = {
-    text_message: language === 'es' ? 'Mensaje de texto' : 'Text message',
-    email: language === 'es' ? 'Email' : 'Email',
-    pdf: 'PDF'
+    text_message: t.step3.options.text,
+    email: t.step3.options.email,
+    pdf: t.step3.options.pdf
   };
 
   const FormatIcon = formatIcons[result.format];
@@ -57,6 +58,7 @@ export default function ProposalDisplay({ result, setResult, language }: Proposa
     <div className="space-y-4">
       {result.format === 'text_message' && (
         <TextProposalDisplay
+          language={language}
           HeaderComponent={HeaderComponent}
           content={result.content}
           editContent={editTextContent}
@@ -65,6 +67,7 @@ export default function ProposalDisplay({ result, setResult, language }: Proposa
 
       {result.format === 'email' && (
         <EmailProposalDisplay
+          language={language}
           HeaderComponent={HeaderComponent}
           content={result.content}
         />
