@@ -12,7 +12,6 @@ import { ClickableLinkPlugin } from "@lexical/react/LexicalClickableLinkPlugin"
 import { FloatingLinkEditorPlugin } from "@/components/editor/plugins/floating-link-editor-plugin"
 import { AutoLinkPlugin } from "@/components/editor/plugins/auto-link-plugin"
 import { LinkPlugin } from "@/components/editor/plugins/link-plugin"
-import { FloatingTextFormatToolbarPlugin } from "@/components/editor/plugins/floating-text-format-plugin"
 
 export function Plugins() {
   const [floatingAnchorElem, setFloatingAnchorElem] =
@@ -55,7 +54,6 @@ export function Plugins() {
         <AutoLinkPlugin />
         <LinkPlugin />
         <FloatingLinkEditorPlugin anchorElem={floatingAnchorElem} />
-        <FloatingTextFormatToolbarPlugin anchorElem={floatingAnchorElem} />
       </div>
       {/* actions plugins */}
       
