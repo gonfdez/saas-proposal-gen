@@ -4,6 +4,7 @@ import { useState } from "react"
 import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary"
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin"
 import { ListPlugin } from "@lexical/react/LexicalListPlugin"
+import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin"
 
 import { ContentEditable } from "@/components/editor/editor-ui/content-editable"
 import { ToolbarPlugin } from "@/components/editor/plugins/toolbar/toolbar-plugin"
@@ -19,6 +20,7 @@ import { FormatHeading } from "@/components/editor/plugins/toolbar/block-format/
 import { FormatNumberedList } from "@/components/editor/plugins/toolbar/block-format/format-numbered-list"
 import { FormatBulletedList } from "@/components/editor/plugins/toolbar/block-format/format-bulleted-list"
 import { FormatQuote } from "@/components/editor/plugins/toolbar/block-format/format-quote"
+import { HistoryToolbarPlugin } from "@/components/editor/plugins/toolbar/history-toolbar-plugin"
 
 export function Plugins() {
   const [floatingAnchorElem, setFloatingAnchorElem] =
@@ -36,6 +38,7 @@ export function Plugins() {
       <ToolbarPlugin>
         {({ blockType }) => (
           <div className="vertical-align-middle sticky top-0 z-10 flex gap-2 overflow-auto border-b p-2 bg-card rounded-t-lg">
+            <HistoryToolbarPlugin />
             <BlockFormatDropDown>
               <FormatParagraph />
               <FormatHeading levels={["h1", "h2", "h3"]} />
@@ -64,6 +67,7 @@ export function Plugins() {
           ErrorBoundary={LexicalErrorBoundary}
         />
         {/* editor plugins */}
+        <HistoryPlugin />
         <ClickableLinkPlugin />
         <AutoLinkPlugin />
         <LinkPlugin />
