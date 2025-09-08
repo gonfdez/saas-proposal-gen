@@ -244,7 +244,7 @@ export default function ProposalWizard(props: ProposalWizardProps) {
                       <Label htmlFor="email"><Mail className="w-5 h-5" />{t.step3.options.email}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="pdf" id="pdf" />
+                      <RadioGroupItem value="pdf" id="pdf" disabled />
                       <Label htmlFor="pdf"><FileText className="w-5 h-5" />{t.step3.options.pdf}</Label>
                     </div>
                   </RadioGroup>
