@@ -46,8 +46,8 @@ FORMATO DE SALIDA:
   1. La primera línea como <h2>Asunto del correo</h2>.
   2. El cuerpo en varios <p>, según corresponda.
 
-${formatNote.length > 0 && `NOTA DEL USUARIO SOBRE EL CONTENIDO DEL CORREO:
-  Intenta seguir esta indicación siempre que no interfiera con las pautas de "FORMATO DE SALIDA" descritas anteriormente: ${formatNote}`}
+${formatNote.length > 0 ? `NOTA DEL USUARIO SOBRE EL CONTENIDO DEL CORREO:
+  Intenta seguir esta indicación siempre que no interfiera con las pautas de "FORMATO DE SALIDA" descritas anteriormente: ${formatNote}` : ''}
 
 TONO:
 Utiliza un estilo ${toneInstructions}.
