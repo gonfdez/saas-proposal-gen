@@ -14,8 +14,8 @@ export function buildEmailProposalPrompt(data: WizardData): string {
   const toneInstructions = toneMap[tone as keyof typeof toneMap] || toneMap['Profesional']
 
   // Ajuste dinámico de longitud según tiempo de lectura
-  const minWords = Math.max(150, readingTime * 200)
-  const maxWords = Math.max(300, readingTime * 250)
+  const minWords = Math.max(80, readingTime * 120)
+  const maxWords = Math.max(150, readingTime * 180)
 
   return `
 Genera un correo electrónico en ${languagePrompt} siguiendo estas instrucciones estrictamente:
@@ -33,6 +33,8 @@ ${content}
 FORMATO DE SALIDA:
 - Devuelve la respuesta en HTML PURO y SEMÁNTICO, sin estilos inline ni atributos innecesarios, la salida debe ser HTML PURO.
 - Usa estas etiquetas de forma correcta:
+  - <h1>, <h2> o <h3> para títulos
+  - <blockquote> para citas
   - <strong> para negritas
   - <em> para cursivas  
   - <u> para subrayados 
@@ -57,6 +59,7 @@ ${includeEmojis ? 'EMOJIS: Puedes incluir emojis sutiles y relevantes en el cuer
 
 REGLAS IMPORTANTES:
 - NO uses etiquetas de estilo como <span> con CSS inline.
+- NO te inventes enlaces en el cuerpo del correo. Solo usa aquellos que te han dado en "OBJETIVO PRINCIPAL" o "CONTEXTO DE REFERENCIA" cuando sean necesarios.
 - Devuelve SOLO EL CÓDIGO HTML, sin explicaciones adicionales.
 
 Genera el correo ahora.
