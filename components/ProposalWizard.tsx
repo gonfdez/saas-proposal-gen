@@ -26,7 +26,6 @@ export default function ProposalWizard(props: ProposalWizardProps) {
   const [language, setLanguage] = useState<Language>(props.initialLanguage)
   const [isGenerating, setIsGenerating] = useState(false)
   const [result, setResult] = useState<GeneratedProposal | null>(null)
-  // const [editingResult, setEditingResult] = useState<WizardData | null>(null)
 
   const [formData, setFormData] = useState<WizardData>({
     presentation: "",
@@ -122,7 +121,6 @@ export default function ProposalWizard(props: ProposalWizardProps) {
 
       const data = await response.json()
       setResult(data)
-      // setEditingResult(data)
       console.info("Data returned from backend", data)
     } catch (error) {
       console.error("Error generating proposal:", error)
@@ -244,7 +242,7 @@ export default function ProposalWizard(props: ProposalWizardProps) {
                       <Label htmlFor="email"><Mail className="w-5 h-5" />{t.step3.options.email}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="pdf" id="pdf" disabled />
+                      <RadioGroupItem value="pdf" id="pdf" disabled/>
                       <Label htmlFor="pdf"><FileText className="w-5 h-5" />{t.step3.options.pdf}</Label>
                     </div>
                   </RadioGroup>
