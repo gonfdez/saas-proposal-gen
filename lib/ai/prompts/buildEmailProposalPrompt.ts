@@ -42,8 +42,8 @@ FORMATO DE SALIDA:
   - <p> para párrafos
   - <br> para saltos de línea cuando sea necesario
   - <ul> o <ol> para listas
-- El HTML debe contener:
-  1. La primera línea como <h2>Asunto del correo</h2>.
+- (MUY IMPORTANTE) El HTML debe contener:
+  1. La primera línea siempre debe ser un <h2> con el asunto para el correo.
   2. El cuerpo en varios <p>, según corresponda.
 
 ${formatNote.length > 0 ? `NOTA DEL USUARIO SOBRE EL CONTENIDO DEL CORREO:
