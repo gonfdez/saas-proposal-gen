@@ -1,0 +1,93 @@
+{
+  "navigation": {
+    "pricing": "Precios",
+    "login": "Iniciar Sesión"
+  },
+  "hero": {
+    "title": "Genera Propuestas que Convierten en Minutos, No en Horas",
+    "subtitle": "Transforma tu proceso de creación de propuestas con herramientas impulsadas por IA que crean emails, PDFs, posts de LinkedIn y contenido de Reddit convincentes que realmente convierten prospectos en clientes.",
+    "cta": "Prueba Gratuita",
+    "demo": "Ver Demo"
+  },
+  "stats": {
+    "time_saved": "Tiempo promedio ahorrado por propuesta",
+    "conversion_rate": "Mayor tasa de conversión",
+    "proposals_generated": "Propuestas generadas mensualmente"
+  },
+  "problem": {
+    "title": "El Costo Oculto de Escribir Propuestas Manualmente",
+    "subtitle": "Cada hora dedicada a crear propuestas manualmente es una hora que no dedicas a hacer crecer tu negocio",
+    "time_waste": {
+      "title": "Pérdida de Tiempo",
+      "description": "Los profesionales dedican el 23% de su tiempo a tareas repetitivas de redacción de propuestas"
+    },
+    "inconsistency": {
+      "title": "Calidad Inconsistente",
+      "description": "Las propuestas manuales carecen de disparadores psicológicos y marcos de conversión probados"
+    },
+    "missed_opportunities": {
+      "title": "Oportunidades Perdidas",
+      "description": "Los tiempos de respuesta lentos resultan en tasas de éxito 42% menores para nuevos negocios"
+    }
+  },
+  "solution": {
+    "title": "Generación de Propuestas con IA que Realmente Convierte",
+    "subtitle": "Nuestra IA especializada entiende la psicología de la persuasión y aplica marcos probados a cada propuesta",
+    "email": {
+      "title": "Propuestas de Email Inteligentes",
+      "description": "Crea propuestas de email convincentes con disparadores psicológicos y personalización"
+    },
+    "pdf": {
+      "title": "Documentos PDF Profesionales",
+      "description": "Genera propuestas PDF bellamente formateadas con tu marca"
+    },
+    "social": {
+      "title": "Contenido para Redes Sociales",
+      "description": "Crea posts atractivos para LinkedIn y Reddit que generen resultados comerciales"
+    },
+    "customization": {
+      "title": "Personalización Fácil",
+      "description": "Edita y personaliza cada propuesta para que coincida con tu voz y marca únicas"
+    }
+  },
+  "how_it_works": {
+    "title": "Proceso Simple de 3 Pasos",
+    "step1": {
+      "title": "Elige Formato",
+      "description": "Selecciona entre email, PDF, post de LinkedIn o post de Reddit"
+    },
+    "step2": {
+      "title": "Completa Detalles",
+      "description": "Proporciona información clave sobre tu cliente y objetivos"
+    },
+    "step3": {
+      "title": "Genera y Personaliza",
+      "description": "Obtén tu propuesta generada por IA y personalízala a la perfección"
+    }
+  },
+  "benefits": {
+    "title": "Por Qué los Profesionales Eligen Nuestra Plataforma",
+    "speed": {
+      "title": "10x Más Rápido",
+      "description": "Genera propuestas en minutos en lugar de horas"
+    },
+    "quality": {
+      "title": "Basado en Psicología",
+      "description": "Construido sobre marcos de persuasión y conversión probados"
+    },
+    "consistency": {
+      "title": "Excelencia Consistente",
+      "description": "Cada propuesta mantiene alta calidad y estándares profesionales"
+    },
+    "results": {
+      "title": "Mejores Resultados",
+      "description": "Mayores tasas de respuesta y conversión que las propuestas manuales"
+    }
+  },
+  "cta": {
+    "title": "¿Listo para Transformar tu Proceso de Propuestas?",
+    "subtitle": "Únete a miles de profesionales que ya han optimizado su creación de propuestas",
+    "button": "Inicia tu Prueba Gratuita",
+    "no_credit_card": "No se requiere tarjeta de crédito"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "navigation": {
+    "pricing": "Pricing",
+    "login": "Sign In"
+  },
+  "hero": {
+    "title": "Generate High-Converting Proposals in Minutes, Not Hours",
+    "subtitle": "Transform your proposal creation process with AI-powered tools that craft compelling emails, PDFs, LinkedIn posts, and Reddit content that actually convert prospects into clients.",
+    "cta": "Start Free Trial",
+    "demo": "Watch Demo"
+  },
+  "stats": {
+    "time_saved": "Average time saved per proposal",
+    "conversion_rate": "Higher conversion rate",
+    "proposals_generated": "Proposals generated monthly"
+  },
+  "problem": {
+    "title": "The Hidden Cost of Manual Proposal Writing",
+    "subtitle": "Every hour spent crafting proposals manually is an hour not spent growing your business",
+    "time_waste": {
+      "title": "Time Drain",
+      "description": "Professionals spend 23% of their time on repetitive proposal writing tasks"
+    },
+    "inconsistency": {
+      "title": "Inconsistent Quality",
+      "description": "Manual proposals lack psychological triggers and proven conversion frameworks"
+    },
+    "missed_opportunities": {
+      "title": "Missed Opportunities",
+      "description": "Slow response times result in 42% lower win rates for new business"
+    }
+  },
+  "solution": {
+    "title": "AI-Powered Proposal Generation That Actually Converts",
+    "subtitle": "Our specialized AI understands the psychology of persuasion and applies proven frameworks to every proposal",
+    "email": {
+      "title": "Smart Email Proposals",
+      "description": "Craft compelling email proposals with psychological triggers and personalization"
+    },
+    "pdf": {
+      "title": "Professional PDF Documents",
+      "description": "Generate beautifully formatted PDF proposals with your branding"
+    },
+    "social": {
+      "title": "Social Media Content",
+      "description": "Create engaging LinkedIn and Reddit posts that drive business results"
+    },
+    "customization": {
+      "title": "Easy Customization",
+      "description": "Edit and personalize every proposal to match your unique voice and brand"
+    }
+  },
+  "how_it_works": {
+    "title": "Simple 3-Step Process",
+    "step1": {
+      "title": "Choose Format",
+      "description": "Select from email, PDF, LinkedIn post, or Reddit post"
+    },
+    "step2": {
+      "title": "Fill Details",
+      "description": "Provide key information about your client and objectives"
+    },
+    "step3": {
+      "title": "Generate & Customize",
+      "description": "Get your AI-generated proposal and customize it to perfection"
+    }
+  },
+  "benefits": {
+    "title": "Why Professionals Choose Our Platform",
+    "speed": {
+      "title": "10x Faster Creation",
+      "description": "Generate proposals in minutes instead of hours"
+    },
+    "quality": {
+      "title": "Psychology-Based",
+      "description": "Built on proven persuasion and conversion frameworks"
+    },
+    "consistency": {
+      "title": "Consistent Excellence",
+      "description": "Every proposal maintains high quality and professional standards"
+    },
+    "results": {
+      "title": "Better Results",
+      "description": "Higher response rates and conversion rates than manual proposals"
+    }
+  },
+  "cta": {
+    "title": "Ready to Transform Your Proposal Process?",
+    "subtitle": "Join thousands of professionals who've already streamlined their proposal creation",
+    "button": "Start Your Free Trial",
+    "no_credit_card": "No credit card required"
+  }
+}

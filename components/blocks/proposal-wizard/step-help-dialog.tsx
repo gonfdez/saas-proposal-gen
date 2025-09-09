@@ -1,6 +1,6 @@
 import { HelpCircle } from "lucide-react";
-import { Button } from "./ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
+import { Button } from "../../ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../../ui/dialog";
 import { translations, type Language } from "@/lib/translations"
 
 interface StepHelpDialogProps {

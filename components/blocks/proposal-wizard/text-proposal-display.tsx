@@ -1,5 +1,5 @@
 import { JSX, useEffect, useRef } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../../ui/button";
 import { Copy } from "lucide-react";
 import { Language, translations } from "@/lib/translations";
 

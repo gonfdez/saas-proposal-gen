@@ -1,12 +1,12 @@
 "use client";
 
 import { translations, type Language } from "@/lib/translations"
-import { Button } from "./ui/button";
+import { Button } from "../../ui/button";
 import { Dispatch, SetStateAction, useState } from "react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../ui/select";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../../ui/sheet";
 import { Bolt } from "lucide-react";
-import { Label } from "./ui/label";
+import { Label } from "../../ui/label";
 
 interface WizardConfigButtonsProps {
   loadPreset: () => void,

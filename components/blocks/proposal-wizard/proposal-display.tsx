@@ -4,8 +4,8 @@ import { FileText, Mail, MessageSquareText } from "lucide-react"
 import { translations, type Language } from "@/lib/translations"
 import { GeneratedProposal } from "@/lib/proposal-generator"
 import { SetStateAction } from "react"
-import TextProposalDisplay from "./TextProposalDisplay"
-import EmailProposalDisplay from "./EmailProposalDisplay";
+import TextProposalDisplay from "./text-proposal-display"
+import EmailProposalDisplay from "./email-proposal-display";
 
 interface ProposalDisplayProps {
   result: GeneratedProposal;

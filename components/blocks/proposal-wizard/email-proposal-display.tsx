@@ -1,12 +1,12 @@
 import { JSX, useEffect, useRef, useState } from "react";
-import { Button } from "./ui/button";
+import { Button } from "../../ui/button";
 import { Copy } from "lucide-react";
 import { Editor } from "@/components/blocks/editor-00/editor"
 
 import { $getRoot, $insertNodes, SerializedEditorState } from "lexical";
 import { createHeadlessEditor } from '@lexical/headless';
 import { $generateNodesFromDOM } from '@lexical/html';
-import { nodes } from "./blocks/editor-00/nodes";
+import { nodes } from "../editor-00/nodes";
 import { Language, translations } from "@/lib/translations";
 
 function htmlToSerializedEditorState(htmlString: string): SerializedEditorState {
