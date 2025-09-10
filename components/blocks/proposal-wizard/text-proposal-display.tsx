@@ -1,16 +1,15 @@
-import { JSX, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Button } from "../../ui/button";
 import { Copy } from "lucide-react";
 import { Language, translations } from "@/lib/translations";
 
 interface TextProposalDisplayProps {
   language: Language
-  HeaderComponent: () => JSX.Element
   content: string,
   editContent: (newContent: string) => void
 }
 
-export default function TextProposalDisplay({ language, HeaderComponent, content, editContent }: TextProposalDisplayProps) {
+export default function TextProposalDisplay({ language, content, editContent }: TextProposalDisplayProps) {
   const t = translations[language]
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -37,7 +36,6 @@ export default function TextProposalDisplay({ language, HeaderComponent, content
 
   return (
     <div className="space-y-4">
-      <HeaderComponent />
       <div className="space-y-2">
         <div className="flex justify-between items-end">
           <label className="text-sm font-medium text-muted-foreground">{t.proposalTextDisplay.content}</label>

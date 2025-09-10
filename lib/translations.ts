@@ -21,48 +21,52 @@ export const translations = {
       },
     },
     step1: {
-      badgeTitle: "Contexto",
-      title: "¿A quién te diriges?",
-      placeholder: "Ej: Director de marketing de TechGrowth",
-      presentationLabel: "¿Quién eres?",
-      presentationPlaceholder: "Ej: Soy [nombre], fundador de [empresa]. Nos dedicamos a [actividad] y hemos logrado [logros relevantes]..."
-    },
-    step2: {
-      badgeTitle: "Contenido",
-      content: "¿Qué quieres proponer?",
-      contentPlaceholder: "Ej: Servicios de SEO mensual para mejorar tráfico y leads",
-      objective: "¿Cuál es tu objetivo con esta propuesta?",
-      objectivePlaceholder: "Ejemplo: Agendar una llamada telefónica para ponernos en contacto y detallarles mis servicios."
-    },
-    step3: {
-      badgeTitle: "Formato",
-      format: "Formato de la propuesta",
-      options: {
+      badgeTitle: "Elige el formato",
+      chooseFormatLabel: "¿Qué tipo de propuesta quieres?",
+      formatOptions: {
         text: "Mensaje de texto",
         email: "Correo electrónico",
         pdf: "PDF 1 página",
       },
-      language: "Idioma del output",
-      tone: "Tono",
+      language: "¿En qué idioma quieres el resultado?",
+      languageOptions: {
+        es: "Español",
+        en: "Inglés",
+      },
+      tone: "¿Qué tono quieres usar?",
       toneOptions: {
         Profesional: "Profesional",
         Amigable: "Amigable",
         Persuasivo: "Persuasivo",
         Directo: "Directo",
       },
-      includeEmojis: "Incluir emojis",
+      includeEmojis: "¿Quieres incluir emojis?",
       includeEmojisOptions: {
         yes: "Sí",
-        no: "No"
+        no: "No",
       },
-      readingTime: "Tiempo de lectura",
+      readingTime: "¿Qué tiempo de lectura prefieres?",
       readingTimeOptions: {
         less1min: "Menos de 1 minuto",
         less2mins: "Menos de 2 minutos",
         less3mins: "Menos de 3 minutos",
         less4mins: "Menos de 4 minutos",
-        less5mins: "Menos de 5 minutos"
+        less5mins: "Menos de 5 minutos",
       },
+    },
+    step2: {
+      badgeTitle: "Rellena los detalles",
+      audienceLabel: "¿A quién te diriges?",
+      audiencePlaceholder: "Ej: Director de marketing de TechGrowth",
+      presentationLabel: "¿Quién eres?",
+      presentationPlaceholder: "Ej: Soy [nombre], fundador de [empresa]. Nos dedicamos a [actividad] y hemos logrado [logros relevantes]...",
+      content: "¿Qué quieres proponer?",
+      contentPlaceholder: "Ej: Servicios de SEO mensual para mejorar tráfico y leads",
+      objective: "¿Cuál es tu objetivo con esta propuesta?",
+      objectivePlaceholder: "Ejemplo: Agendar una llamada telefónica para ponernos en contacto y detallarles mis servicios."
+    },
+    step3: {
+      badgeTitle: "Personaliza el resultado",
       formatNote: "¿Quieres añadir alguna nota adicional para el formato?",
       formatNotePlaceholder: "Ejemplo: Quiero que sea original y divertida"
     },
@@ -122,48 +126,52 @@ export const translations = {
       },
     },
     step1: {
-      badgeTitle: "Context",
-      title: "Who is your proposal for?",
-      placeholder: "Ex: Marketing Director at TechGrowth",
-      presentationLabel: "Who are you?",
-      presentationPlaceholder: "Ex: I'm [name], founder of [company]. We specialize in [activity] and have achieved [relevant achievements]..."
-    },
-    step2: {
-      badgeTitle: "Content",
-      content: "What do you want to propose?",
-      contentPlaceholder: "Ex: Monthly SEO services to increase traffic and leads",
-      objective: "What do you want to achieve with this proposal?",
-      objectivePlaceholder: "Example: Schedule a phone call to connect and explain my services in detail."
-    },
-    step3: {
-      badgeTitle: "Format",
-      format: "Proposal format",
-      options: {
+      badgeTitle: "Choose format",
+      chooseFormatLabel: "What kind of proposal do you want?",
+      formatOptions: {
         text: "Text message",
         email: "Email",
         pdf: "1-page PDF",
       },
-      language: "Output language",
-      tone: "Tone",
+      language: "What output language do you want?",
+      languageOptions: {
+        es: "Spanish",
+        en: "English",
+      },
+      tone: "What tone do you want?",
       toneOptions: {
         Profesional: "Professional",
         Amigable: "Friendly",
         Persuasivo: "Persuasive",
         Directo: "Direct",
       },
-      includeEmojis: "Include emojis",
+      includeEmojis: "Do you want to include emojis?",
       includeEmojisOptions: {
         yes: "Yes",
-        no: "No"
+        no: "No",
       },
-      readingTime: "Reading time",
+      readingTime: "What reading time do you prefer?",
       readingTimeOptions: {
         less1min: "Less than 1 minute",
         less2mins: "Less than 2 minutes",
         less3mins: "Less than 3 minutes",
         less4mins: "Less than 4 minutes",
-        less5mins: "Less than 5 minutes"
+        less5mins: "Less than 5 minutes",
       },
+    },
+    step2: {
+      badgeTitle: "Fill Details",
+      audienceLabel: "Who is your proposal for?",
+      audiencePlaceholder: "Ex: Marketing Director at TechGrowth",
+      presentationLabel: "Who are you?",
+      presentationPlaceholder: "Ex: I'm [name], founder of [company]. We specialize in [activity] and have achieved [relevant achievements]...",
+      content: "What do you want to propose?",
+      contentPlaceholder: "Ex: Monthly SEO services to increase traffic and leads",
+      objective: "What do you want to achieve with this proposal?",
+      objectivePlaceholder: "Example: Schedule a phone call to connect and explain my services in detail."
+    },
+    step3: {
+      badgeTitle: "Customize",
       formatNote: "Do you want to add a note about the format?",
       formatNotePlaceholder: "Example: Make it original and funny"
     },

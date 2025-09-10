@@ -33,15 +33,15 @@ export default function ProposalDisplay({ result, setResult, language }: Proposa
   };
 
   const formatLabels = {
-    text_message: t.step3.options.text,
-    email: t.step3.options.email,
-    pdf: t.step3.options.pdf
+    text_message: t.step1.formatOptions.text,
+    email: t.step1.formatOptions.email,
+    pdf: t.step1.formatOptions.pdf
   };
 
   const FormatIcon = formatIcons[result.format];
 
   const HeaderComponent = () => (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center justify-between gap-4">
       <div className="flex items-center gap-2">
         <FormatIcon className="w-5 h-5 text-muted-foreground" />
         <Badge variant="secondary">
@@ -56,10 +56,11 @@ export default function ProposalDisplay({ result, setResult, language }: Proposa
 
   return (
     <div className="space-y-4">
+      <HeaderComponent />
+
       {result.format === 'text_message' && (
         <TextProposalDisplay
           language={language}
-          HeaderComponent={HeaderComponent}
           content={result.content}
           editContent={editTextContent}
         />
@@ -68,7 +69,6 @@ export default function ProposalDisplay({ result, setResult, language }: Proposa
       {result.format === 'email' && (
         <EmailProposalDisplay
           language={language}
-          HeaderComponent={HeaderComponent}
           content={result.content}
         />
       )}

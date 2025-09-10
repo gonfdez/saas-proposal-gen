@@ -1,4 +1,4 @@
-import { JSX, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "../../ui/button";
 import { Copy } from "lucide-react";
 import { Editor } from "@/components/blocks/editor-00/editor"
@@ -45,11 +45,10 @@ function htmlToSerializedEditorState(htmlString: string): SerializedEditorState 
 
 interface EmailProposalDisplayProps {
   language: Language
-  HeaderComponent: () => JSX.Element;
   content: string;
 }
 
-export default function EmailProposalDisplay({ language, HeaderComponent, content }: EmailProposalDisplayProps) {
+export default function EmailProposalDisplay({ language, content }: EmailProposalDisplayProps) {
   const t = translations[language]
   
   const subjectRef = useRef<HTMLTextAreaElement>(null);
@@ -90,11 +89,6 @@ export default function EmailProposalDisplay({ language, HeaderComponent, conten
 
   return (
     <div className="space-y-4 w-full">
-      {/* Header y botones de copiar */}
-      <div className="flex flex-col md:flex-row gap-y-2 md:justify-between md:items-center">
-        <HeaderComponent />
-      </div>
-
       {/* Campo para asunto */}
       <div className="space-y-2">
         <div className="flex justify-between items-end">
