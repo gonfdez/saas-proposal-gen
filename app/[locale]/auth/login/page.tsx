@@ -32,7 +32,7 @@ export default function LoginPage() {
       //   password,
       // })
 
-      // if (error) throw error
+      if (error) throw error
 
       console.log("Login attempt:", { email, password })
       // Simular delay
@@ -40,8 +40,8 @@ export default function LoginPage() {
 
       // Redirigir al dashboard después del login exitoso
       // router.push('/dashboard')
-    } catch (error: any) {
-      setError(error.message || t("loginError"))
+    } catch {
+      setError(t("loginError"))
     } finally {
       setLoading(false)
     }

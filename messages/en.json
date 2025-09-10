@@ -128,5 +128,72 @@
     "resetError": "Failed to send reset link. Please try again.",
     "backToLogin": "Back to login",
     "rememberPassword": "Remember your password?"
+  },
+  "pricing": {
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "Choose the plan that fits your proposal generation needs",
+    "monthly": "Monthly",
+    "annually": "Annually",
+    "save": "Save 20%",
+    "free": {
+      "name": "Free",
+      "price": "$0",
+      "period": "/month",
+      "description": "Perfect for getting started with AI-powered proposals",
+      "features": [
+        "10 proposals per month",
+        "All proposal formats (Email, PDF, LinkedIn, Reddit)",
+        "Basic customization",
+        "Email support",
+        "Access to template library"
+      ],
+      "cta": "Get Started Free",
+      "popular": false
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "$9",
+      "period": "/month",
+      "description": "For professionals who need unlimited proposal generation",
+      "features": [
+        "100 proposals per month",
+        "All proposal formats (Email, PDF, LinkedIn, Reddit)",
+        "Advanced customization & branding",
+        "Priority support",
+        "Access to premium templates",
+        "Analytics & performance tracking",
+        "Team collaboration features",
+        "Custom AI training on your data"
+      ],
+      "cta": "Start Premium Trial",
+      "popular": true
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "questions": [
+        {
+          "question": "What counts as a proposal?",
+          "answer": "Each generated content piece (email, PDF, LinkedIn post, or Reddit post) counts as one proposal, regardless of length or complexity."
+        },
+        {
+          "question": "Can I upgrade or downgrade anytime?",
+          "answer": "Yes, you can change your plan at any time. Changes take effect immediately, and we'll prorate any charges."
+        },
+        {
+          "question": "What happens if I exceed my proposal limit?",
+          "answer": "Free users will be prompted to upgrade. Premium users can purchase additional proposals or upgrade to a higher tier."
+        },
+        {
+          "question": "Do you offer refunds?",
+          "answer": "Yes, we offer a 30-day money-back guarantee for all paid plans. No questions asked."
+        },
+        {
+          "question": "Is my data secure?",
+          "answer": "Absolutely. We use enterprise-grade security and never share your data with third parties. All data is encrypted in transit and at rest."
+        }
+      ]
+    },
+    "guarantee": "30-day money-back guarantee",
+    "no_credit_card": "No credit card required for free plan"
   }
 }

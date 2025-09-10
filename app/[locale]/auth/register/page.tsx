@@ -76,8 +76,8 @@ export default function RegisterPage() {
 
       // Mostrar mensaje de confirmación de email
       // setSuccess(true)
-    } catch (error: any) {
-      setError(error.message || t("registerError"))
+    } catch {
+      setError(t("registerError"))
     } finally {
       setLoading(false)
     }

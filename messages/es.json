@@ -128,5 +128,72 @@
     "resetError": "Error al enviar el enlace. Por favor intenta de nuevo.",
     "backToLogin": "Volver al login",
     "rememberPassword": "¿Recuerdas tu contraseña?"
+  },
+  "pricing": {
+    "title": "Precios Simples y Transparentes",
+    "subtitle": "Elige el plan que se adapte a tus necesidades de generación de propuestas",
+    "monthly": "Mensual",
+    "annually": "Anual",
+    "save": "Ahorra 20%",
+    "free": {
+      "name": "Gratuito",
+      "price": "0€",
+      "period": "/mes",
+      "description": "Perfecto para comenzar con propuestas impulsadas por IA",
+      "features": [
+        "10 propuestas por mes",
+        "Todos los formatos (Email, PDF, LinkedIn, Reddit)",
+        "Personalización básica",
+        "Soporte por email",
+        "Acceso a biblioteca de plantillas"
+      ],
+      "cta": "Comenzar Gratis",
+      "popular": false
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "9€",
+      "period": "/mes",
+      "description": "Para profesionales que necesitan generación ilimitada de propuestas",
+      "features": [
+        "100 propuestas por mes",
+        "Todos los formatos (Email, PDF, LinkedIn, Reddit)",
+        "Personalización avanzada y branding",
+        "Soporte prioritario",
+        "Acceso a plantillas premium",
+        "Análisis y seguimiento de rendimiento",
+        "Funciones de colaboración en equipo",
+        "Entrenamiento de IA personalizado con tus datos"
+      ],
+      "cta": "Iniciar Prueba Premium",
+      "popular": true
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "questions": [
+        {
+          "question": "¿Qué cuenta como una propuesta?",
+          "answer": "Cada contenido generado (email, PDF, post de LinkedIn o Reddit) cuenta como una propuesta, independientemente de su longitud o complejidad."
+        },
+        {
+          "question": "¿Puedo cambiar de plan en cualquier momento?",
+          "answer": "Sí, puedes cambiar tu plan en cualquier momento. Los cambios toman efecto inmediatamente y prorrateamos cualquier cargo."
+        },
+        {
+          "question": "¿Qué pasa si excedo mi límite de propuestas?",
+          "answer": "Los usuarios gratuitos serán invitados a actualizar. Los usuarios premium pueden comprar propuestas adicionales o actualizar a un nivel superior."
+        },
+        {
+          "question": "¿Ofrecen reembolsos?",
+          "answer": "Sí, ofrecemos una garantía de devolución de dinero de 30 días para todos los planes pagos. Sin preguntas."
+        },
+        {
+          "question": "¿Están seguros mis datos?",
+          "answer": "Absolutamente. Usamos seguridad de nivel empresarial y nunca compartimos tus datos con terceros. Todos los datos están encriptados en tránsito y en reposo."
+        }
+      ]
+    },
+    "guarantee": "Garantía de devolución de dinero de 30 días",
+    "no_credit_card": "No se requiere tarjeta de crédito para el plan gratuito"
   }
 }

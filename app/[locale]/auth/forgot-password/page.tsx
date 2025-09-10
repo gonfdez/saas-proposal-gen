@@ -40,7 +40,7 @@ export default function ForgotPasswordPage() {
       } else {
         setMessage(t("resetLinkSent"))
       }
-    } catch (err) {
+    } catch {
       setError(t("resetError"))
     } finally {
       setIsLoading(false)

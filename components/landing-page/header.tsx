@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { Zap, Menu } from "lucide-react"
-import { Link } from "@/i18n/navigation" 
+import { Link } from "@/i18n/navigation"
 
 export function Header() {
   const t = useTranslations("navigation")
@@ -15,17 +15,19 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex justify-center">
       <div className="container flex h-16 items-center justify-between px-4">
-        <div className="flex items-center space-x-2">
-          <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-lg">
-            <Zap className="h-5 w-5 text-primary-foreground" />
+        <Link href={"/"}>
+          <div className="flex items-center space-x-2">
+            <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-lg">
+              <Zap className="h-5 w-5 text-primary-foreground" />
+            </div>
+            <span className="text-xl font-bold text-foreground">ProposalAI</span>
           </div>
-          <span className="text-xl font-bold text-foreground">ProposalAI</span>
-        </div>
+        </Link>
 
         <nav className="hidden md:flex items-center space-x-6">
           <LanguageSwitcher />
-          <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
-            {t("pricing")}
+          <Button variant="ghost" className="hover:text-foreground">
+            <Link href={"/pricing"}>{t("pricing")}</Link>
           </Button>
           <Button variant="outline"><Link href={"/auth/login"}>{t("login")}</Link></Button>
         </nav>
