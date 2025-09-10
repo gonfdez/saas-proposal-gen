@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
@@ -11,7 +10,8 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Checkbox } from "@/components/ui/checkbox"
-import { Eye, EyeOff, ArrowLeft } from "lucide-react"
+import { Eye, EyeOff, ArrowLeft, Mail } from "lucide-react"
+import { supabase } from "@/lib/supabase"
 
 export default function RegisterPage() {
   const t = useTranslations("auth")
@@ -26,6 +26,7 @@ export default function RegisterPage() {
   const [acceptTerms, setAcceptTerms] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [success, setSuccess] = useState(false)
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -35,6 +36,7 @@ export default function RegisterPage() {
     e.preventDefault()
     setLoading(true)
     setError("")
+    setSuccess(false)
 
     // Validaciones básicas
     if (formData.password !== formData.confirmPassword) {
@@ -56,26 +58,25 @@ export default function RegisterPage() {
     }
 
     try {
-      // TODO: Implementar registro con Supabase
-      // const { data, error } = await supabase.auth.signUp({
-      //   email: formData.email,
-      //   password: formData.password,
-      //   options: {
-      //     data: {
-      //       name: formData.name,
-      //     },
-      //     emailRedirectTo: process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL || `${window.location.origin}/dashboard`,
-      //   },
-      // })
+      const { error } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          data: {
+            name: formData.name,
+          },
+          emailRedirectTo:
+            `${window.location.origin}/dashboard`,
+        },
+      })
 
-      // if (error) throw error
-
-      console.log("Register attempt:", formData)
-      // Simular delay
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      if (error) {
+        console.error(error.message)
+        throw error
+      }
 
       // Mostrar mensaje de confirmación de email
-      // setSuccess(true)
+      setSuccess(true)
     } catch {
       setError(t("registerError"))
     } finally {
@@ -102,121 +103,136 @@ export default function RegisterPage() {
             <CardDescription className="text-center">{t("registerDescription")}</CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleRegister} className="space-y-4">
-              {error && (
-                <Alert variant="destructive">
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
-              )}
+            {/* Si el registro fue exitoso, mostrar mensaje de confirmación */}
+            {success ? (
+              <div className="space-y-4 text-center">
+                <Mail className="w-12 h-12 mx-auto text-primary" />
+                <h2 className="text-xl font-semibold">{t("checkYourEmail")}</h2>
+                <p className="text-muted-foreground">{t("emailConfirmationMessage", { email: formData.email })}</p>
 
-              <div className="space-y-2">
-                <Label htmlFor="name">{t("fullName")}</Label>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder={t("namePlaceholder")}
-                  value={formData.name}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
-                  required
-                  disabled={loading}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="email">{t("email")}</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder={t("emailPlaceholder")}
-                  value={formData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
-                  required
-                  disabled={loading}
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="password">{t("password")}</Label>
-                <div className="relative">
-                  <Input
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    placeholder={t("passwordPlaceholder")}
-                    value={formData.password}
-                    onChange={(e) => handleInputChange("password", e.target.value)}
-                    required
-                    disabled={loading}
-                  />
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                    onClick={() => setShowPassword(!showPassword)}
-                    disabled={loading}
-                  >
-                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </Button>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="confirmPassword">{t("confirmPassword")}</Label>
-                <div className="relative">
-                  <Input
-                    id="confirmPassword"
-                    type={showConfirmPassword ? "text" : "password"}
-                    placeholder={t("confirmPasswordPlaceholder")}
-                    value={formData.confirmPassword}
-                    onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
-                    required
-                    disabled={loading}
-                  />
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    disabled={loading}
-                  >
-                    {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  </Button>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="terms"
-                  checked={acceptTerms}
-                  onCheckedChange={(checked) => setAcceptTerms(checked as boolean)}
-                  disabled={loading}
-                />
-                <Label htmlFor="terms" className="text-sm">
-                  {t("acceptTerms")}{" "}
-                  <Link href="/terms" className="text-primary hover:underline">
-                    {t("termsOfService")}
-                  </Link>{" "}
-                  {t("and")}{" "}
-                  <Link href="/privacy" className="text-primary hover:underline">
-                    {t("privacyPolicy")}
-                  </Link>
-                </Label>
-              </div>
-
-              <Button type="submit" className="w-full" disabled={loading || !acceptTerms}>
-                {loading ? t("creatingAccount") : t("createAccount")}
-              </Button>
-            </form>
-
-            <div className="mt-6 text-center">
-              <p className="text-sm text-muted-foreground">
-                {t("alreadyHaveAccount")}{" "}
-                <Link href="/auth/login" className="text-primary hover:underline">
-                  {t("signIn")}
+                <Link href="/auth/login">
+                  <Button className="mt-4 w-full">{t("signIn")}</Button>
                 </Link>
-              </p>
-            </div>
+              </div>
+            ) : (
+              <form onSubmit={handleRegister} className="space-y-4">
+                {error && (
+                  <Alert variant="destructive">
+                    <AlertDescription>{error}</AlertDescription>
+                  </Alert>
+                )}
+
+                <div className="space-y-2">
+                  <Label htmlFor="name">{t("fullName")}</Label>
+                  <Input
+                    id="name"
+                    type="text"
+                    placeholder={t("namePlaceholder")}
+                    value={formData.name}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
+                    required
+                    disabled={loading}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="email">{t("email")}</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder={t("emailPlaceholder")}
+                    value={formData.email}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    required
+                    disabled={loading}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="password">{t("password")}</Label>
+                  <div className="relative">
+                    <Input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      placeholder={t("passwordPlaceholder")}
+                      value={formData.password}
+                      onChange={(e) => handleInputChange("password", e.target.value)}
+                      required
+                      disabled={loading}
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                      onClick={() => setShowPassword(!showPassword)}
+                      disabled={loading}
+                    >
+                      {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="confirmPassword">{t("confirmPassword")}</Label>
+                  <div className="relative">
+                    <Input
+                      id="confirmPassword"
+                      type={showConfirmPassword ? "text" : "password"}
+                      placeholder={t("confirmPasswordPlaceholder")}
+                      value={formData.confirmPassword}
+                      onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
+                      required
+                      disabled={loading}
+                    />
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      disabled={loading}
+                    >
+                      {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="terms"
+                    checked={acceptTerms}
+                    onCheckedChange={(checked) => setAcceptTerms(checked as boolean)}
+                    disabled={loading}
+                  />
+                  <Label htmlFor="terms" className="text-sm">
+                    {t("acceptTerms")}{" "}
+                    <Link href="/terms" className="text-primary hover:underline">
+                      {t("termsOfService")}
+                    </Link>{" "}
+                    {t("and")}{" "}
+                    <Link href="/privacy" className="text-primary hover:underline">
+                      {t("privacyPolicy")}
+                    </Link>
+                  </Label>
+                </div>
+
+                <Button type="submit" className="w-full" disabled={loading || !acceptTerms}>
+                  {loading ? t("creatingAccount") : t("createAccount")}
+                </Button>
+              </form>
+            )}
+
+            {!success && (
+              <div className="mt-6 text-center">
+                <p className="text-sm text-muted-foreground">
+                  {t("alreadyHaveAccount")}{" "}
+                  <Link href="/auth/login" className="text-primary hover:underline">
+                    {t("signIn")}
+                  </Link>
+                </p>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>

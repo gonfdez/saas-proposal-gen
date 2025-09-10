@@ -4,16 +4,18 @@ import type React from "react"
 
 import { useState } from "react"
 import { useTranslations } from "next-intl"
-import { Link } from "@/i18n/navigation"
+import { Link, useRouter } from "@/i18n/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Eye, EyeOff, ArrowLeft } from "lucide-react"
+import { supabase } from "@/lib/supabase"
 
 export default function LoginPage() {
   const t = useTranslations("auth")
+  const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
@@ -24,22 +26,18 @@ export default function LoginPage() {
     e.preventDefault()
     setLoading(true)
     setError("")
-
     try {
-      // TODO: Implementar autenticación con Supabase
-      // const { data, error } = await supabase.auth.signInWithPassword({
-      //   email,
-      //   password,
-      // })
-
-      if (error) throw error
-
-      console.log("Login attempt:", { email, password })
-      // Simular delay
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+      if (error) {
+        console.error(error.message);
+        throw error;
+      }
+      console.info("Login succeed:", { email, password })
       // Redirigir al dashboard después del login exitoso
-      // router.push('/dashboard')
+      router.push('/dashboard')
     } catch {
       setError(t("loginError"))
     } finally {

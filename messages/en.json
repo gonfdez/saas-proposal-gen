@@ -127,7 +127,20 @@
     "resetLinkSent": "Reset link sent! Check your email for instructions.",
     "resetError": "Failed to send reset link. Please try again.",
     "backToLogin": "Back to login",
-    "rememberPassword": "Remember your password?"
+    "rememberPassword": "Remember your password?",
+    "checkYourEmail": "Check your email!",
+    "emailConfirmationMessage": "We've sent a confirmation link to {email}. Please check your inbox to activate your account.",
+    "newPassword": "New Password",
+    "newPasswordPlaceholder": "Enter your new password",
+    "confirmNewPassword": "Confirm New Password",
+    "confirmNewPasswordPlaceholder": "Confirm your new password",
+    "updatePassword": "Update Password",
+    "updatingPassword": "Updating password...",
+    "passwordUpdated": "Password updated successfully! You can now sign in with your new password.",
+    "updatePasswordError": "Failed to update password. Please try again.",
+    "invalidResetLink": "Invalid or expired reset link. Please request a new one.",
+    "updatePasswordTitle": "Update Your Password",
+    "updatePasswordDescription": "Enter your new password below"
   },
   "pricing": {
     "title": "Simple, Transparent Pricing",

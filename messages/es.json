@@ -127,7 +127,20 @@
     "resetLinkSent": "¡Enlace enviado! Revisa tu email para obtener instrucciones.",
     "resetError": "Error al enviar el enlace. Por favor intenta de nuevo.",
     "backToLogin": "Volver al login",
-    "rememberPassword": "¿Recuerdas tu contraseña?"
+    "rememberPassword": "¿Recuerdas tu contraseña?",
+    "checkYourEmail": "¡Revisa tu correo!",
+    "emailConfirmationMessage": "Te hemos enviado un enlace de confirmación a {email}. Por favor revisa tu bandeja de entrada para activar tu cuenta.",
+    "newPassword": "Nueva Contraseña",
+    "newPasswordPlaceholder": "Ingresa tu nueva contraseña",
+    "confirmNewPassword": "Confirmar Nueva Contraseña",
+    "confirmNewPasswordPlaceholder": "Confirma tu nueva contraseña",
+    "updatePassword": "Actualizar Contraseña",
+    "updatingPassword": "Actualizando contraseña...",
+    "passwordUpdated": "¡Contraseña actualizada exitosamente! Ahora puedes iniciar sesión con tu nueva contraseña.",
+    "updatePasswordError": "Error al actualizar la contraseña. Por favor intenta de nuevo.",
+    "invalidResetLink": "Enlace de restablecimiento inválido o expirado. Por favor solicita uno nuevo.",
+    "updatePasswordTitle": "Actualiza tu Contraseña",
+    "updatePasswordDescription": "Ingresa tu nueva contraseña a continuación"
   },
   "pricing": {
     "title": "Precios Simples y Transparentes",
