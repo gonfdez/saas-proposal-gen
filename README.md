@@ -1,82 +1,35 @@
-# Proposal Wizard MVP
+# 🚀 Herramienta para crear propuestas de alto impacto con poco esfuerzo
 
-A multi-step wizard for generating business proposals with internationalization support (Spanish/English).
+Una plataforma impulsada por Inteligencia Artificial que ayuda a **equipos de ventas, marketing y freelancers** a crear **propuestas comerciales persuasivas y profesionales** en cuestión de minutos.
 
-## Features
+## 🌟 El problema
+Redactar propuestas para clientes suele ser:
+- ⏳ **Lento y repetitivo**: se invierten horas en crear documentos similares una y otra vez.  
+- 😵 **Agotador**: desgasta a los equipos de ventas y a los freelancers, que deberían enfocarse en vender, no en escribir.  
+- 📉 **Ineficaz**: muchas propuestas no están optimizadas para persuadir y cerrar clientes.
 
-- 3-step wizard: Audience → Proposal Content → Format & Parameters
-- Internationalization (ES/EN) for UI elements
-- JSON-driven configuration with presets
-- Mock backend that echoes input data
-- Responsive design with shadcn/ui components
-- Form validation and error handling
-- Copy/Download JSON functionality
+Esto genera **pérdida de tiempo, menor productividad y bajas tasas de conversión**.
 
-## Getting Started
+## 💡 La solución
+Con esta herramienta puedes:
+- Generar propuestas **profesionales y optimizadas para la conversión**, basadas en principios de ventas y psicología.  
+- Ahorrar horas de trabajo automatizando la redacción repetitiva.  
+- Personalizar fácilmente cada propuesta con la información clave de tu cliente.  
+- Mantener un **estándar alto y consistente** en todo tu equipo.
 
-1. Install dependencies:
-```bash
-npm install
-```
+## 🚀 Beneficios clave
+- ✍️ Redacción automática basada en IA.
+- ⚡ Creación de propuestas en **minutos**, no en horas.
+- 🎯 Contenido diseñado para **persuadir y cerrar más ventas**.
+- 🗂️ Plantillas inteligentes adaptables a distintas industrias.
+- 🔗 Integraciones futuras con herramientas de ventas y CRM.
 
-2. Run the development server:
-```bash
-npm run dev
-```
+## 🧑‍💻 ¿Para quién es ideal?
+- Equipos de ventas B2B y B2C.  
+- Agencias de marketing y publicidad.  
+- Freelancers que trabajan con clientes recurrentes.  
+- Startups que necesitan crecer rápido y cerrar más tratos.
 
-3. Open [http://localhost:3000/mvp-proposal](http://localhost:3000/mvp-proposal) in your browser.
+---
 
-## Testing the Wizard
-
-### Manual Test Steps
-
-1. **Load Preset**: Click "Load Preset" to populate the form with example data
-2. **Step 1 - Audience**: Enter target audience (minimum 3 characters required)
-3. **Step 2 - Proposals**: Add/edit proposal items with title, description, and details
-4. **Step 3 - Format**: Select format (Text/Email/PDF), language (ES/EN), and tone
-5. **Generate**: Click "Generate Proposal" to submit to mock API
-6. **Result**: View JSON preview, copy to clipboard, or download as file
-
-### Example Preset Data
-
-```json
-{
-  "audience": "Director de marketing de TechGrowth",
-  "proposals": [
-    {
-      "title": "Servicios de SEO mensual",
-      "description": "Optimización de contenido y linkbuilding",
-      "details": "Auditoría técnica, mapa de keywords, optimización on-page, linkbuilding. Caso similar: +120% tráfico en 4 meses."
-    }
-  ],
-  "format": "email",
-  "language": "ES",
-  "tone": "Profesional",
-  "meta": {
-    "createdAt": "2025-09-02T12:00:00.000Z",
-    "appVersion": "0.1.0"
-  }
-}
-```
-
-## API Endpoints
-
-- `POST /api/mock-echo`: Mock endpoint that echoes the input JSON with additional metadata
-
-## File Structure
-
-- `components/ProposalWizard.tsx`: Main wizard component
-- `lib/translations.ts`: Internationalization strings
-- `lib/wizard-config.ts`: Configuration and types
-- `app/mvp-proposal/page.tsx`: Main page
-- `pages/api/mock-echo.ts`: Mock API endpoint
-
-## Validation Rules
-
-- Audience: Required, minimum 3 characters
-- Proposals: At least one proposal with title required
-- All other fields have sensible defaults
-
-## Language Support
-
-Switch between Spanish (ES) and English (EN) using the language selector in the top right corner. All UI elements are translated while maintaining the same functionality.
+Hecho para que puedas **vender más rápido, mejor y con menos esfuerzo**.
