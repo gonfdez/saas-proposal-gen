@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge"
 import { Check, Star } from "lucide-react"
 import { Link } from "@/i18n/navigation"
-import { Header } from "@/components/landing-page/header"
+import { Header } from "@/components/header"
 
 export default function PricingPage() {
   const t = useTranslations("pricing")
