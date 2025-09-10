@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -15,6 +15,8 @@ import ProposalDisplay from "./proposal-display"
 import { GeneratedProposal } from "@/lib/proposal-generator"
 import { Edit, FileText, Mail, MessageSquareText, MousePointer, Sparkles } from "lucide-react"
 import { Toggle } from "@/components/ui/toggle"
+import confetti from "canvas-confetti"
+
 
 interface ProposalWizardProps {
   initialLanguage: Language
@@ -129,6 +131,20 @@ export default function ProposalWizard(props: ProposalWizardProps) {
     }
   }
 
+  useEffect(() => {
+    if (currentStep === 2 && result) {
+      confetti({
+        particleCount: 300,  // más confeti
+        spread: 160,         // más dispersión
+        startVelocity: 45,   // velocidad inicial
+        origin: { x: 0.5, y: 0.5 }, // centro de la pantalla
+        zIndex: 9999,        // encima de todo
+      });
+    }
+  }, [currentStep, result]);
+
+
+
   return (<>
     <div className="max-w-4xl mx-auto p-6 space-y-6">
       <div className="flex items-center justify-between">
@@ -138,7 +154,7 @@ export default function ProposalWizard(props: ProposalWizardProps) {
 
       <Progress value={progress} className="w-full" />
       <div className="flex items-center justify-center gap-4 md:gap-8">
-        <div className="flex w-full justify-between gap-4">
+        <div className="flex w-full flex-col gap-3 sm:flex-row sm:gap-4">
           {stepBadgeTitles.map((step, index) => {
             const isActive = index === currentStep
             const isCompleted = index < currentStep
@@ -152,15 +168,14 @@ export default function ProposalWizard(props: ProposalWizardProps) {
             return (
               <div
                 key={index}
-                className={`flex flex-1 items-center justify-center gap-3 px-3 py-2 rounded-xl text-lg font-medium transition-colors ${variantClasses}`}
+                className={`flex flex-1 items-center justify-center gap-2 px-3 py-2 rounded-lg text-sm sm:text-lg font-medium text-center transition-colors ${variantClasses}`}
               >
-                <step.icon className="h-5 w-5" />
-                {step.title}
+                <step.icon className="h-5 w-5 shrink-0" />
+                <span className="truncate">{step.title}</span>
               </div>
             )
           })}
         </div>
-
       </div>
 
       <Card>
@@ -172,7 +187,7 @@ export default function ProposalWizard(props: ProposalWizardProps) {
                   {t.step1.chooseFormatLabel}
                   <StepHelpDialog language={language} stepIndex={0} />
                 </Label>
-                <div className="flex gap-4">
+                <div className="flex flex-col md:flex-row gap-4">
                   <Toggle
                     aria-label="Toggle text message"
                     variant="outline"
@@ -184,6 +199,7 @@ export default function ProposalWizard(props: ProposalWizardProps) {
                           format: "text_message", // Si se presiona, asigna; si no, limpia
                         }))
                     }}
+                    className="w-fit"
                   >
                     <MessageSquareText className="w-5 h-5" />{t.step1.formatOptions.text}
                   </Toggle>
@@ -198,6 +214,7 @@ export default function ProposalWizard(props: ProposalWizardProps) {
                           format: "email",
                         }))
                     }}
+                    className="w-fit"
                   >
                     <Mail className="w-5 h-5" />{t.step1.formatOptions.email}
                   </Toggle>
@@ -212,6 +229,7 @@ export default function ProposalWizard(props: ProposalWizardProps) {
                           format: "pdf",
                         }))
                     }}
+                    className="w-fit"
                   >
                     <FileText className="w-5 h-5" />{t.step1.formatOptions.pdf}
                   </Toggle>
