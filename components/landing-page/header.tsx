@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { Zap, Menu } from "lucide-react"
+import { Link } from "@/i18n/navigation" 
 
 export function Header() {
   const t = useTranslations("navigation")
@@ -26,7 +27,7 @@ export function Header() {
           <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
             {t("pricing")}
           </Button>
-          <Button variant="outline">{t("login")}</Button>
+          <Button variant="outline"><Link href={"/auth/login"}>{t("login")}</Link></Button>
         </nav>
 
         <div className="md:hidden">
@@ -56,7 +57,7 @@ export function Header() {
                     {t("pricing")}
                   </Button>
                   <Button variant="outline" className="justify-start bg-transparent" onClick={() => setIsOpen(false)}>
-                    {t("login")}
+                    <Link href={"/auth/login"}>{t("login")}</Link>
                   </Button>
                 </div>
               </div>
