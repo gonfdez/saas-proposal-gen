@@ -8,11 +8,12 @@ import { LanguageSwitcher } from "@/components/language-switcher"
 import { Zap, Menu } from "lucide-react"
 import { Link } from "@/i18n/navigation"
 import { supabase } from "@/lib/supabase"
+import { Session } from "@supabase/supabase-js"
 
 export function Header() {
   const t = useTranslations("navigation")
   const [isOpen, setIsOpen] = useState(false)
-  const [session, setSession] = useState<any>(null)
+  const [session, setSession] = useState<Session | null>(null)
 
   // Revisar la sesión al cargar el header
   useEffect(() => {

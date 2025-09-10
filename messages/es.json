@@ -209,5 +209,11 @@
     },
     "guarantee": "Garantía de devolución de dinero de 30 días",
     "no_credit_card": "No se requiere tarjeta de crédito para el plan gratuito"
+  },
+  "dashboard": {
+    "tools": "Herramientas",
+    "proposalGenerator": "Generador de Propuestas",
+    "logout": "Cerrar sesión",
+    "helloUser": "Hola, {name}"
   }
 }
