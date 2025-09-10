@@ -1,7 +1,8 @@
 {
   "navigation": {
     "pricing": "Pricing",
-    "login": "Sign In"
+    "login": "Sign In",
+    "dashboard": "Dashboard"
   },
   "hero": {
     "title": "Generate High-Converting Proposals in Minutes, Not Hours",

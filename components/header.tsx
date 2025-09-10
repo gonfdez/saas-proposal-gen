@@ -1,16 +1,37 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { Zap, Menu } from "lucide-react"
 import { Link } from "@/i18n/navigation"
+import { supabase } from "@/lib/supabase"
 
 export function Header() {
   const t = useTranslations("navigation")
   const [isOpen, setIsOpen] = useState(false)
+  const [session, setSession] = useState<any>(null)
+
+  // Revisar la sesión al cargar el header
+  useEffect(() => {
+    const getSession = async () => {
+      const { data } = await supabase.auth.getSession()
+      setSession(data.session)
+    }
+
+    getSession()
+
+    // Listener para cambios en la sesión (login/logout)
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+
+    return () => {
+      listener.subscription.unsubscribe()
+    }
+  }, [])
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex justify-center">
@@ -29,9 +50,19 @@ export function Header() {
           <Button variant="ghost" className="hover:text-foreground">
             <Link href={"/pricing"}>{t("pricing")}</Link>
           </Button>
-          <Button variant="outline"><Link href={"/auth/login"}>{t("login")}</Link></Button>
+
+          {session ? (
+            <Button variant="outline">
+              <Link href={"/dashboard"}>{t("dashboard")}</Link>
+            </Button>
+          ) : (
+            <Button variant="outline">
+              <Link href={"/auth/login"}>{t("login")}</Link>
+            </Button>
+          )}
         </nav>
 
+        {/* Mobile menu */}
         <div className="md:hidden">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
@@ -58,9 +89,24 @@ export function Header() {
                   >
                     {t("pricing")}
                   </Button>
-                  <Button variant="outline" className="justify-start bg-transparent" onClick={() => setIsOpen(false)}>
-                    <Link href={"/auth/login"}>{t("login")}</Link>
-                  </Button>
+
+                  {session ? (
+                    <Button
+                      variant="outline"
+                      className="justify-start bg-transparent"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Link href={"/dashboard"}>{t("dashboard")}</Link>
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="outline"
+                      className="justify-start bg-transparent"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <Link href={"/auth/login"}>{t("login")}</Link>
+                    </Button>
+                  )}
                 </div>
               </div>
             </SheetContent>

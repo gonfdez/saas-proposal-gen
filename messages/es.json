@@ -1,7 +1,8 @@
 {
   "navigation": {
     "pricing": "Precios",
-    "login": "Iniciar Sesión"
+    "login": "Iniciar Sesión",
+    "dashboard": "Dashboard"
   },
   "hero": {
     "title": "Genera Propuestas que Convierten en Minutos, No en Horas",
