@@ -91,7 +91,7 @@
     "button": "Inicia tu Prueba Gratuita",
     "no_credit_card": "No se requiere tarjeta de crédito"
   },
- "auth": {
+  "auth": {
     "welcomeBack": "Bienvenido de Nuevo",
     "loginDescription": "Inicia sesión en tu cuenta para continuar",
     "createAccount": "Crear Cuenta",
@@ -102,8 +102,10 @@
     "passwordPlaceholder": "Ingresa tu contraseña",
     "confirmPassword": "Confirmar Contraseña",
     "confirmPasswordPlaceholder": "Confirma tu contraseña",
-    "fullName": "Nombre Completo",
-    "namePlaceholder": "Ingresa tu nombre completo",
+    "name": "Nombre",
+    "namePlaceholder": "Ingresa tu nombre",
+    "lastName": "Apellidos",
+    "lastNamePlaceholder": "Ingresa tus apellidos",
     "signIn": "Iniciar Sesión",
     "signUp": "Registrarse",
     "signingIn": "Iniciando sesión...",

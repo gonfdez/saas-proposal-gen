@@ -12,11 +12,13 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Eye, EyeOff, ArrowLeft, Mail } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
+import { Logo } from "@/components/logo"
 
 export default function RegisterPage() {
   const t = useTranslations("auth")
   const [formData, setFormData] = useState({
     name: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -66,6 +68,7 @@ export default function RegisterPage() {
         options: {
           data: {
             name: formData.name,
+            lastName: formData.lastName
           },
           emailRedirectTo:
             `${process.env.NEXT_PUBLIC_URL || window.location.origin}/dashboard`,
@@ -87,7 +90,8 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4 space-y-6">
+      <Logo />
       <div className="w-full max-w-md">
         <div className="mb-8">
           <Link
@@ -125,13 +129,26 @@ export default function RegisterPage() {
                 )}
 
                 <div className="space-y-2">
-                  <Label htmlFor="name">{t("fullName")}</Label>
+                  <Label htmlFor="name">{t("name")}</Label>
                   <Input
                     id="name"
                     type="text"
                     placeholder={t("namePlaceholder")}
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
+                    required
+                    disabled={loading}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="lastname">{t("lastName")}</Label>
+                  <Input
+                    id="lastname"
+                    type="text"
+                    placeholder={t("lastNamePlaceholder")}
+                    value={formData.lastName}
+                    onChange={(e) => handleInputChange("lastName", e.target.value)}
                     required
                     disabled={loading}
                   />

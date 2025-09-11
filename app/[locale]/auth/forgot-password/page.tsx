@@ -12,6 +12,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { ArrowLeft, Mail } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
+import { Logo } from "@/components/logo"
 
 export default function ForgotPasswordPage() {
 
@@ -48,7 +49,8 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4 space-y-6">
+      <Logo />
       <div className="w-full max-w-md">
         <Link
           href={"/auth/login"}

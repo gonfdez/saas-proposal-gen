@@ -12,6 +12,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { ArrowLeft, Eye, EyeOff, CheckCircle, AlertCircle } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
+import { Logo } from "@/components/logo"
 
 export default function ResetPasswordPage() {
   const t = useTranslations("auth")
@@ -39,7 +40,6 @@ export default function ResetPasswordPage() {
         setError(t("invalidResetLink"))
       }
     }
-
     checkSession()
   }, [supabase.auth, t])
 
@@ -74,10 +74,10 @@ export default function ResetPasswordPage() {
         setError(t("updatePasswordError"))
       } else {
         setSuccess(true)
-        // Redirect to login after 3 seconds
+        // Redirect to login after 5 seconds
         setTimeout(() => {
           router.push("/auth/login")
-        }, 3000)
+        }, 5000)
       }
     } catch {
       setError(t("updatePasswordError"))
@@ -88,7 +88,8 @@ export default function ResetPasswordPage() {
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4 space-y-6">
+        <Logo />
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
@@ -108,100 +109,104 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <div className="flex items-center gap-2 mb-4">
-            <Link href={"auth/login"} className="text-gray-500 hover:text-gray-700 transition-colors">
-              <ArrowLeft className="w-4 h-4" />
-            </Link>
-            <span className="text-sm text-gray-500">{t("backToLogin")}</span>
-          </div>
-          <CardTitle className="text-2xl font-bold text-center text-gray-900">{t("updatePasswordTitle")}</CardTitle>
-          <CardDescription className="text-center text-gray-600">{t("updatePasswordDescription")}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          {error && !isValidSession && (
-            <Alert className="mb-6 border-red-200 bg-red-50">
-              <AlertCircle className="h-4 w-4 text-red-600" />
-              <AlertDescription className="text-red-700">{error}</AlertDescription>
-            </Alert>
-          )}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4 space-y-6">
+      <Logo />
+      <div className="w-full max-w-md">
+        <Link
+          href={"/auth/login"}
+          className="inline-flex items-center text-sm text-slate-600 hover:text-slate-900 mb-6 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          {t("backToLogin")}
+        </Link>
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold text-center text-gray-900">{t("updatePasswordTitle")}</CardTitle>
+            <CardDescription className="text-center text-gray-600">{t("updatePasswordDescription")}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {error && !isValidSession && (
+              <Alert className="mb-6 border-red-200 bg-red-50">
+                <AlertCircle className="h-4 w-4 text-red-600" />
+                <AlertDescription className="text-red-700">{error}</AlertDescription>
+              </Alert>
+            )}
 
-          {isValidSession && (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {error && (
-                <Alert className="border-red-200 bg-red-50">
-                  <AlertCircle className="h-4 w-4 text-red-600" />
-                  <AlertDescription className="text-red-700">{error}</AlertDescription>
-                </Alert>
-              )}
+            {isValidSession && (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {error && (
+                  <Alert className="border-red-200 bg-red-50">
+                    <AlertCircle className="h-4 w-4 text-red-600" />
+                    <AlertDescription className="text-red-700">{error}</AlertDescription>
+                  </Alert>
+                )}
 
-              <div className="space-y-2">
-                <Label htmlFor="password" className="text-sm font-medium text-gray-700">
-                  {t("newPassword")}
-                </Label>
-                <div className="relative">
-                  <Input
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder={t("newPasswordPlaceholder")}
-                    required
-                    className="pr-10"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </button>
+                <div className="space-y-2">
+                  <Label htmlFor="password" className="text-sm font-medium text-gray-700">
+                    {t("newPassword")}
+                  </Label>
+                  <div className="relative">
+                    <Input
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder={t("newPasswordPlaceholder")}
+                      required
+                      className="pr-10"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    >
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
                 </div>
-              </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700">
-                  {t("confirmNewPassword")}
-                </Label>
-                <div className="relative">
-                  <Input
-                    id="confirmPassword"
-                    type={showConfirmPassword ? "text" : "password"}
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder={t("confirmNewPasswordPlaceholder")}
-                    required
-                    className="pr-10"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  >
-                    {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </button>
+                <div className="space-y-2">
+                  <Label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700">
+                    {t("confirmNewPassword")}
+                  </Label>
+                  <div className="relative">
+                    <Input
+                      id="confirmPassword"
+                      type={showConfirmPassword ? "text" : "password"}
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder={t("confirmNewPasswordPlaceholder")}
+                      required
+                      className="pr-10"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    >
+                      {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
                 </div>
-              </div>
 
-              <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white" disabled={isLoading}>
-                {isLoading ? t("updatingPassword") : t("updatePassword")}
-              </Button>
-            </form>
-          )}
-
-          {!isValidSession && (
-            <div className="text-center">
-              <Link href={"/auth/forgot-password"}>
-                <Button variant="outline" className="w-full bg-transparent">
-                  {t("sendResetLink")}
+                <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white" disabled={isLoading}>
+                  {isLoading ? t("updatingPassword") : t("updatePassword")}
                 </Button>
-              </Link>
-            </div>
-          )}
-        </CardContent>
-      </Card>
+              </form>
+            )}
+
+            {!isValidSession && (
+              <div className="text-center">
+                <Link href={"/auth/forgot-password"}>
+                  <Button variant="outline" className="w-full bg-transparent">
+                    {t("sendResetLink")}
+                  </Button>
+                </Link>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }

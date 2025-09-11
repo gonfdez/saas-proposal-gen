@@ -12,6 +12,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Eye, EyeOff, ArrowLeft } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
+import { Logo } from "@/components/logo"
 
 export default function LoginPage() {
   const t = useTranslations("auth")
@@ -48,7 +49,8 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4 space-y-6">
+      <Logo />
       <div className="w-full max-w-md">
         <div className="mb-8">
           <Link
