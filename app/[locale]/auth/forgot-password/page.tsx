@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { useLocale, useTranslations } from "next-intl"
+import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -15,7 +15,6 @@ import { createClient } from "@/lib/supabase/client"
 
 export default function ForgotPasswordPage() {
 
-  const locale = useLocale();
   const t = useTranslations("auth")
   const [email, setEmail] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -33,7 +32,7 @@ export default function ForgotPasswordPage() {
 
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/${locale}/auth/reset-password`,
+        redirectTo: `${process.env.NEXT_PUBLIC_URL || window.location.origin}/auth/reset-password`,
       })
       if (error) {
         console.error(error.message)

@@ -68,7 +68,7 @@ export default function RegisterPage() {
             name: formData.name,
           },
           emailRedirectTo:
-            `${window.location.origin}/dashboard`,
+            `${process.env.NEXT_PUBLIC_URL || window.location.origin}/dashboard`,
         },
       })
 
