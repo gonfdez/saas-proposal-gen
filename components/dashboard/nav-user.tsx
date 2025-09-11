@@ -4,7 +4,6 @@ import {
   CreditCard,
   EllipsisVertical,
   LogOutIcon,
-  Bell,
   UserCircle,
 } from "lucide-react"
 import { useRouter } from "@/i18n/navigation"
@@ -91,10 +90,6 @@ export function NavUser({ user }: { user: User }) {
               <DropdownMenuItem>
                 <CreditCard />
                 Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

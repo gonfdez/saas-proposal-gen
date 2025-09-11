@@ -3,10 +3,13 @@
 import * as React from "react"
 import {
   LayoutDashboard,
-  FileType,
   Folder,
   MessageCircleQuestionMark,
-  Settings,
+  DollarSign,
+  MessageSquareText,
+  FileText,
+  Linkedin,
+  StickyNote,
 } from "lucide-react"
 
 import { NavTools } from "@/components/dashboard/nav-tools"
@@ -37,13 +40,13 @@ const data = {
       url: "#",
       icon: Folder,
     },
+    {
+      title: "Pricing and Plans",
+      url: "#",
+      icon: DollarSign
+    }
   ],
   navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings,
-    },
     {
       title: "Get help",
       url: "#",
@@ -52,9 +55,24 @@ const data = {
   ],
   tools: [
     {
-      name: "Proposal Generator",
+      name: "Message Generator",
       url: "#",
-      icon: FileType,
+      icon: MessageSquareText,
+    },
+     {
+      name: "PDF Generator",
+      url: "#",
+      icon: FileText,
+    },
+    {
+      name: "LinkedIn Post Generator",
+      url: "#",
+      icon: Linkedin,
+    },
+    {
+      name: "Reddit Post Generator",
+      url: "#",
+      icon: StickyNote,
     },
   ],
 }

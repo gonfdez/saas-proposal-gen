@@ -35,7 +35,7 @@ export default async function Page({ params }: Props) {
       }
     >
       <AppSidebar variant="inset" user={user} />
-      <SidebarInset className="bg-card/60">
+      <SidebarInset className="bg-white/60">
         <SiteHeader />
         <div className="@container/main py-8 px-3">
           <ProposalWizard initialLanguage={locale as Language} />
