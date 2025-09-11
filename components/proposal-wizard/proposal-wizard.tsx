@@ -15,18 +15,17 @@ import { GeneratedProposal } from "@/lib/proposal-generator"
 import { Edit, FileText, Mail, MessageSquareText, MousePointer, Sparkles } from "lucide-react"
 import { Toggle } from "@/components/ui/toggle"
 import confetti from "canvas-confetti"
+import { useLocale } from "next-intl"
 
+export default function ProposalWizard() {
 
-interface ProposalWizardProps {
-  initialLanguage: Language
-}
-
-export default function ProposalWizard(props: ProposalWizardProps) {
+  const locale = useLocale()
+  const [language, setLanguage] = useState<Language>(locale as Language)
+  
   const [currentStep, setCurrentStep] = useState(0)
-  const [language, setLanguage] = useState<Language>(props.initialLanguage)
   const [isGenerating, setIsGenerating] = useState(false)
   const [result, setResult] = useState<GeneratedProposal | null>(null)
-
+  
   const [formData, setFormData] = useState<WizardData>({
     presentation: "",
     audience: "",

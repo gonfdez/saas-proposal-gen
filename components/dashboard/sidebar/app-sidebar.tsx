@@ -1,17 +1,6 @@
 "use client"
 
 import * as React from "react"
-import {
-  LayoutDashboard,
-  MessageCircleQuestionMark,
-  DollarSign,
-  MessageSquareText,
-  FileText,
-  Linkedin,
-  StickyNote,
-  Files,
-  Mail,
-} from "lucide-react"
 
 import { NavTools } from "@/components/dashboard/sidebar/nav-tools"
 import { NavMain } from "@/components/dashboard/sidebar/nav-main"
@@ -27,68 +16,10 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Logo } from "../../logo"
-import { User } from "@supabase/supabase-js"
+import useDashboard from "../context/useDashboard"
 
-const data = {
-  navMain: [
-    {
-      title: "Overview",
-      url: "#",
-      icon: LayoutDashboard,
-    },
-    {
-      title: "Saved Files",
-      url: "#",
-      icon: Files,
-    },
-    {
-      title: "Pricing and Plans",
-      url: "#",
-      icon: DollarSign
-    }
-  ],
-  navSecondary: [
-    {
-      title: "Get help",
-      url: "#",
-      icon: MessageCircleQuestionMark,
-    }
-  ],
-  tools: [
-    {
-      name: "Message Generator",
-      url: "#",
-      icon: MessageSquareText,
-    },
-     {
-      name: "PDF Generator",
-      url: "#",
-      icon: FileText,
-    },
-    {
-      name: "LinkedIn Post Generator",
-      url: "#",
-      icon: Linkedin,
-    },
-    {
-      name: "Reddit Post Generator",
-      url: "#",
-      icon: StickyNote,
-    },
-    {
-      name: "Mail Generator",
-      url: "#",
-      icon: Mail,
-    },
-  ],
-}
-
-interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
-  user: User;
-}
-
-
-export function AppSidebar({ ...props }: AppSidebarProps) {
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { data } = useDashboard()
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -109,7 +40,7 @@ export function AppSidebar({ ...props }: AppSidebarProps) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={props.user} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   )

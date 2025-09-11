@@ -1,4 +1,3 @@
-import ProposalWizard from "@/components/proposal-wizard/proposal-wizard"
 import { AppSidebar } from "@/components/dashboard/sidebar/app-sidebar"
 import { SiteHeader } from "@/components/dashboard/sidebar/site-header"
 import {
@@ -6,15 +5,11 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar"
 import { createClient } from "@/lib/supabase/server";
-import { Language } from "@/lib/translations";
 import { redirect } from "next/navigation";
+import { DashboardProvider } from "@/components/dashboard/context/dashboard-context";
+import DashboardRenderer from "@/components/dashboard/dashboard-renderer";
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
-
-export default async function Page({ params }: Props) {
-  const locale = await (await params).locale
+export default async function Page() {
 
   const supabase = await createClient();
   const {
@@ -26,21 +21,21 @@ export default async function Page({ params }: Props) {
   }
 
   return (
-    <SidebarProvider
-      style={
-        {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
-          "--header-height": "calc(var(--spacing) * 12)",
-        } as React.CSSProperties
-      }
-    >
-      <AppSidebar variant="inset" user={user} />
-      <SidebarInset className="bg-white/60">
-        <SiteHeader />
-        <div className="@container/main py-8 px-3">
-          <ProposalWizard initialLanguage={locale as Language} />
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
+    <DashboardProvider user={user}>
+      <SidebarProvider
+        style={
+          {
+            "--sidebar-width": "calc(var(--spacing) * 72)",
+            "--header-height": "calc(var(--spacing) * 12)",
+          } as React.CSSProperties
+        }
+      >
+        <AppSidebar variant="inset" />
+        <SidebarInset className="bg-white/60">
+          <SiteHeader />
+          <DashboardRenderer />
+        </SidebarInset>
+      </SidebarProvider>
+    </DashboardProvider>
   )
 }

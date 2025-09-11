@@ -28,17 +28,18 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import { User } from "@supabase/supabase-js"
+import useDashboard from "../context/useDashboard"
 
-export function NavUser({ user }: { user: User }) {
+export function NavUser() {
   const { isMobile } = useSidebar()
   const router = useRouter()
   const supabase = createClient()
+  const { user } = useDashboard()
 
   // Función para cerrar sesión
   const handleLogout = async () => {
     await supabase.auth.signOut()
-    router.push("/") // Redirigir a home
+    router.push("/")
   }
 
   return (
