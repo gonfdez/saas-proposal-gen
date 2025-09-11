@@ -5,14 +5,14 @@ import { Button } from "@/components/ui/button"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { Link } from "@/i18n/navigation"
 import { Logo } from "./logo"
-import { Zap, Menu } from "lucide-react"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Menu } from "lucide-react"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { getTranslations } from "next-intl/server"
 
 export default async function Header() {
   const t = await getTranslations("navigation")
 
-  const supabase = await  createClient()
+  const supabase = await createClient()
   const {
     data: { session },
   } = await supabase.auth.getSession()
@@ -48,34 +48,26 @@ export default async function Header() {
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <div className="flex flex-col space-y-4 mt-8">
-                <div className="flex items-center space-x-2 mb-6">
-                  <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-lg">
-                    <Zap className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <span className="text-xl font-bold text-foreground">ProposalAI</span>
-                </div>
-
-                <div className="flex flex-col space-y-4">
-                  <LanguageSwitcher />
-                  <Button
-                    variant="ghost"
-                    className="justify-start text-muted-foreground hover:text-foreground"
-                  >
-                    <Link href="/pricing">{t("pricing")}</Link>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px] py-10 px-6">
+              <SheetHeader>
+                <SheetTitle className="flex justify-center">
+                  <Logo />
+                </SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col space-y-4">
+                <LanguageSwitcher withLabel buttonVariant={"outline"} className="justify-start w-fit" />
+                <Button variant="outline" className="w-fit">
+                  <Link href="/pricing">{t("pricing")}</Link>
+                </Button>
+                {session ? (
+                  <Button variant="outline" className="w-fit">
+                    <Link href={"/dashboard"}>{t("dashboard")}</Link>
                   </Button>
-
-                  {session ? (
-                    <Button variant="outline" className="justify-start bg-transparent">
-                      <Link href={"/dashboard"}>{t("dashboard")}</Link>
-                    </Button>
-                  ) : (
-                    <Button variant="outline" className="justify-start bg-transparent">
-                      <Link href={"/auth/login"}>{t("login")}</Link>
-                    </Button>
-                  )}
-                </div>
+                ) : (
+                  <Button variant="outline" className="w-fit">
+                    <Link href={"/auth/login"}>{t("login")}</Link>
+                  </Button>
+                )}
               </div>
             </SheetContent>
           </Sheet>

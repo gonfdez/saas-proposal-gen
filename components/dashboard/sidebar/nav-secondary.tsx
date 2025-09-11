@@ -11,44 +11,18 @@ import {
 } from "@/components/ui/sidebar"
 import { secondaryDashboardSections } from "../context/dashboard-sections"
 import useDashboard from "../context/useDashboard"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Globe } from "lucide-react"
-import { usePathname, useRouter } from "next/navigation"
-import { useTranslations } from "next-intl"
+import { LanguageSwitcher } from "@/components/language-switcher"
 
 export function NavSecondary(props: React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
   const { setActiveSection } = useDashboard()
-  const router = useRouter()
-  const pathname = usePathname()
-  const t = useTranslations("languageSwitcher")
-
-  const switchLanguage = (locale: string) => {
-    if (!pathname) return
-    const segments = pathname.split("/")
-    segments[1] = locale
-    router.push(segments.join("/"))
-  }
 
   return (
     <SidebarGroup {...props}>
       <SidebarGroupContent>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton>
-              <DropdownMenu>
-                <SidebarMenuButton asChild className="p-0">
-                  <DropdownMenuTrigger asChild>
-                    <div>
-                      <Globe />
-                      <span>{t("language")}</span>
-                    </div>
-                  </DropdownMenuTrigger>
-                </SidebarMenuButton>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={() => switchLanguage("en")}>{t("english")}</DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => switchLanguage("es")}>{t("spanish")}</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+            <SidebarMenuButton asChild>
+              <LanguageSwitcher withLabel className="justify-start p-2! font-normal!" buttonSize={"sm"} />
             </SidebarMenuButton>
           </SidebarMenuItem>
           {secondaryDashboardSections.map((item) => (

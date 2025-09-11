@@ -3,7 +3,6 @@
 import React from "react";
 import useDashboard from "./context/useDashboard";
 import ProposalWizard from "../proposal-wizard/proposal-wizard";
-import PricingPage from "@/app/[locale]/pricing/page";
 import { DashboardSectionKey } from "./context/dashboard-sections";
 
 const DashboardRenderer: React.FC = () => {
