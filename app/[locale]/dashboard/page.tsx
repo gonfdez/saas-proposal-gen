@@ -1,4 +1,4 @@
-import ProposalWizard from "@/components/blocks/proposal-wizard/proposal-wizard"
+import ProposalWizard from "@/components/proposal-wizard/proposal-wizard"
 import { AppSidebar } from "@/components/dashboard/app-sidebar"
 import { SiteHeader } from "@/components/dashboard/site-header"
 import {
