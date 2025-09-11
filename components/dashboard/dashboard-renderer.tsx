@@ -19,8 +19,6 @@ const DashboardRenderer: React.FC = () => {
     switch (activeSection) {
       case DashboardSectionKey.MAIL_GENERATOR:
         return <ProposalWizard />;
-      case DashboardSectionKey.PRICIND_AND_PLANS:
-        return <PricingPage />;
       default:
         return notFoundSection(activeSection);
     }
