@@ -5,7 +5,9 @@ import {
   SidebarInset,
   SidebarProvider,
 } from "@/components/ui/sidebar"
+import { createClient } from "@/lib/supabase/server";
 import { Language } from "@/lib/translations";
+import { redirect } from "next/navigation";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -13,6 +15,16 @@ type Props = {
 
 export default async function Page({ params }: Props) {
   const locale = await (await params).locale
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  if (!user) {
+    redirect('/auth/login');
+  }
+
   return (
     <SidebarProvider
       style={
@@ -22,7 +34,7 @@ export default async function Page({ params }: Props) {
         } as React.CSSProperties
       }
     >
-      <AppSidebar variant="inset" />
+      <AppSidebar variant="inset" user={user} />
       <SidebarInset className="bg-card/60">
         <SiteHeader />
         <div className="@container/main py-8 px-3">
