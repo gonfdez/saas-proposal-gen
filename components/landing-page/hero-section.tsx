@@ -8,7 +8,7 @@ export function HeroSection() {
   const t = useTranslations("hero")
 
   return (
-    <section className="relative py-20 lg:py-32 flex justify-center">
+    <section className="relative py-20 lg:py-32 flex justify-center px-6">
       <div className="container">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="text-4xl font-bold tracking-tight text-balance sm:text-6xl lg:text-7xl">{t("title")}</h1>

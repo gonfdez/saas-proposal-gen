@@ -6,7 +6,7 @@ export function StatsSection() {
   const t = useTranslations("stats")
 
   return (
-    <section className="py-16 bg-muted/50 flex justify-center">
+    <section className="py-16 bg-muted/50 flex justify-center px-6">
       <div className="container">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
           <div className="text-center">
