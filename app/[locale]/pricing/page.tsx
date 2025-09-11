@@ -74,7 +74,7 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header */}
-      <div className="container mx-auto px-4 pt-10 pb-16">
+      <div className="container mx-auto px-4 pt-10 pb-16 px-6">
         <div className="text-center max-w-3xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 text-balance">{t("title")}</h1>
           <p className="text-xl text-slate-600 text-pretty">{t("subtitle")}</p>
@@ -82,8 +82,8 @@ export default function PricingPage() {
       </div>
 
       {/* Pricing Cards */}
-      <div className="container mx-auto px-4 pb-20">
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div className="container mx-auto pb-20 px-6">
+        <div className="grid md:grid-cols-2 gap-14 max-w-4xl mx-auto">
           {plans.map((plan, index) => (
             <Card
               key={index}
@@ -133,7 +133,7 @@ export default function PricingPage() {
       </div>
 
       {/* FAQ Section */}
-      <div className="bg-white py-20">
+      <div className="bg-white py-20 px-6">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">{t("faq.title")}</h2>
