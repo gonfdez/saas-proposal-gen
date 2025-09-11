@@ -1,15 +1,14 @@
-"use server"
+"use client"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Check, Star } from "lucide-react"
 import { Link } from "@/i18n/navigation"
-import Header from "@/components/header"
-import { getTranslations } from "next-intl/server"
+import { useTranslations } from "next-intl"
 
-export default async function PricingPage() {
-  const t = await getTranslations("pricing")
+export default function PricingPage() {
+  const t = useTranslations("pricing")
 
   const plans = [
     {
@@ -74,7 +73,6 @@ export default async function PricingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <Header />
       {/* Header */}
       <div className="container mx-auto px-4 pt-10 pb-16">
         <div className="text-center max-w-3xl mx-auto">

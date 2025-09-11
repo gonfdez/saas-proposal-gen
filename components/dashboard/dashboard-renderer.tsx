@@ -3,6 +3,7 @@
 import React from "react";
 import useDashboard from "./context/useDashboard";
 import ProposalWizard from "../proposal-wizard/proposal-wizard";
+import PricingPage from "@/app/[locale]/pricing/page";
 
 const DashboardRenderer: React.FC = () => {
   const { activeSection } = useDashboard();
@@ -17,6 +18,8 @@ const DashboardRenderer: React.FC = () => {
         );
       case "Mail Generator":
         return <ProposalWizard />;
+      case "Pricing and Plans":
+        return <PricingPage />;
       default:
         return (
           <div className="flex justify-center items-center h-full">
@@ -27,7 +30,7 @@ const DashboardRenderer: React.FC = () => {
   };
 
   return (
-    <div className="@container/main py-8 px-3 h-full">
+    <div className="@container/main h-full">
       {renderSection()}
     </div>
   );

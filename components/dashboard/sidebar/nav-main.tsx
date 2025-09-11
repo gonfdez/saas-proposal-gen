@@ -8,6 +8,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import React from "react"
+import useDashboard from "../context/useDashboard"
 
 export function NavMain({
   items,
@@ -18,13 +19,15 @@ export function NavMain({
     icon?: React.ElementType
   }[]
 }) {
+  const {setActiveSection} = useDashboard()
+
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title}>
+              <SidebarMenuButton tooltip={item.title} onClick={()=> setActiveSection(item.title)}>
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>
               </SidebarMenuButton>
