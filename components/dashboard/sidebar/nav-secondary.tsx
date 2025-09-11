@@ -14,11 +14,13 @@ import useDashboard from "../context/useDashboard"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Globe } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
 
 export function NavSecondary(props: React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
   const { setActiveSection } = useDashboard()
   const router = useRouter()
   const pathname = usePathname()
+  const t = useTranslations("languageSwitcher")
 
   const switchLanguage = (locale: string) => {
     if (!pathname) return
@@ -38,13 +40,13 @@ export function NavSecondary(props: React.ComponentPropsWithoutRef<typeof Sideba
                   <DropdownMenuTrigger asChild>
                     <div>
                       <Globe />
-                      <span>language</span>
+                      <span>{t("language")}</span>
                     </div>
                   </DropdownMenuTrigger>
                 </SidebarMenuButton>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={() => switchLanguage("en")}>english</DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => switchLanguage("es")}>spanish</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => switchLanguage("en")}>{t("english")}</DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => switchLanguage("es")}>{t("spanish")}</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </SidebarMenuButton>

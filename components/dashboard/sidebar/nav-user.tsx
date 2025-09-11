@@ -28,12 +28,14 @@ import {
 } from "@/components/ui/sidebar"
 import useDashboard from "../context/useDashboard"
 import { userDashboardSections } from "../context/dashboard-sections"
+import { useTranslations } from "next-intl"
 
 export function NavUser() {
   const { isMobile } = useSidebar()
   const router = useRouter()
   const supabase = createClient()
   const { user, setActiveSection } = useDashboard()
+  const t = useTranslations("dashboard")
 
   // Función para cerrar sesión
   const handleLogout = async () => {
@@ -96,7 +98,7 @@ export function NavUser() {
               className="cursor-pointer text-red-600 focus:text-red-600"
             >
               <LogOutIcon className="text-red-600 focus:text-red-600" />
-              Log out
+              {t("logout")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

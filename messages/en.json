@@ -212,10 +212,13 @@
     "guarantee": "30-day money-back guarantee",
     "no_credit_card": "No credit card required for free plan"
   },
+  "languageSwitcher": {
+    "language": "Language",
+    "english": "English",
+    "spanish": "Spanish"
+  },
   "dashboard": {
     "tools": "Tools",
-    "proposalGenerator": "Proposal Generator",
-    "logout": "Logout",
-    "helloUser": "Hello, {name}"
+    "logout": "Log out"
   }
 }

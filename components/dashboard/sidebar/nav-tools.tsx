@@ -10,19 +10,21 @@ import {
 import React from "react"
 import { toolDashboardSections } from "../context/dashboard-sections"
 import useDashboard from "../context/useDashboard"
+import { useTranslations } from "next-intl"
 
 export function NavTools() {
   const { setActiveSection } = useDashboard()
+  const t = useTranslations("dashboard")
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Tools</SidebarGroupLabel>
+      <SidebarGroupLabel>{t("tools")}</SidebarGroupLabel>
       <SidebarMenu>
         {toolDashboardSections.map((item) => (
           <SidebarMenuItem key={item.sectionKey}>
             <SidebarMenuButton onClick={() => setActiveSection(item.sectionKey)}>
-                <item.icon />
-                <span>{item.sectionKey}</span>
+              <item.icon />
+              <span>{item.sectionKey}</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         ))}
