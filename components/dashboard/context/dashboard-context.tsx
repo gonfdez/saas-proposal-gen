@@ -2,13 +2,12 @@
 
 import { User } from '@supabase/supabase-js';
 import React, { createContext, useState } from 'react';
-import { dashboardData, DashboardData } from './data';
+import { DashboardSectionKey } from './dashboard-sections';
 
 export interface DashboardContextValue {
-  activeSection: string;
-  setActiveSection: (newSection: string) => void;
+  activeSection: DashboardSectionKey;
+  setActiveSection: (newSection: DashboardSectionKey) => void;
   user: User;
-  data: DashboardData
 }
 
 export const DashboardContext = createContext<DashboardContextValue | undefined>(undefined);
@@ -19,13 +18,12 @@ interface DashboardProviderProps {
 }
 
 export const DashboardProvider = (props: DashboardProviderProps) => {
-  const [activeSection, setActiveSection] = useState<string>('Overview');
+  const [activeSection, setActiveSection] = useState<DashboardSectionKey>(DashboardSectionKey.OVERVIEW);
 
   const value = {
     activeSection,
     setActiveSection,
     user: props.user,
-    data: dashboardData
   };
 
   return (

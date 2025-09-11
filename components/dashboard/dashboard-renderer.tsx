@@ -4,26 +4,27 @@ import React from "react";
 import useDashboard from "./context/useDashboard";
 import ProposalWizard from "../proposal-wizard/proposal-wizard";
 import PricingPage from "@/app/[locale]/pricing/page";
+import { DashboardSectionKey } from "./context/dashboard-sections";
 
 const DashboardRenderer: React.FC = () => {
   const { activeSection } = useDashboard();
 
   const renderSection = () => {
     switch (activeSection) {
-      case "Overview":
+      case DashboardSectionKey.OVERVIEW:
         return (
           <div className="flex justify-center items-center h-full">
             Overview
           </div>
         );
-      case "Mail Generator":
+      case DashboardSectionKey.MAIL_GENERATOR:
         return <ProposalWizard />;
-      case "Pricing and Plans":
+      case DashboardSectionKey.PRICIND_AND_PLANS:
         return <PricingPage />;
       default:
         return (
           <div className="flex justify-center items-center h-full">
-            Section not found
+            Section {`"${activeSection}"`} not found
           </div>
         );
     }

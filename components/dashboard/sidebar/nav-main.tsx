@@ -9,27 +9,20 @@ import {
 } from "@/components/ui/sidebar"
 import React from "react"
 import useDashboard from "../context/useDashboard"
+import { mainDashboardSections } from "../context/dashboard-sections"
 
-export function NavMain({
-  items,
-}: {
-  items: {
-    title: string
-    url: string
-    icon?: React.ElementType
-  }[]
-}) {
-  const {setActiveSection} = useDashboard()
+export function NavMain() {
+  const { setActiveSection } = useDashboard()
 
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
         <SidebarMenu>
-          {items.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton tooltip={item.title} onClick={()=> setActiveSection(item.title)}>
-                {item.icon && <item.icon />}
-                <span>{item.title}</span>
+          {mainDashboardSections.map((item) => (
+            <SidebarMenuItem key={item.sectionKey}>
+              <SidebarMenuButton onClick={() => setActiveSection(item.sectionKey)}>
+                <item.icon />
+                <span>{item.sectionKey}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}

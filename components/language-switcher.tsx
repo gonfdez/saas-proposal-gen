@@ -24,8 +24,8 @@ export function LanguageSwitcher() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => switchLanguage("en")}>English</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => switchLanguage("es")}>Español</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => switchLanguage("en")}>english</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => switchLanguage("es")}>spanish</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

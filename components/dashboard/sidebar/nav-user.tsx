@@ -1,10 +1,8 @@
 "use client"
 
 import {
-  CreditCard,
   EllipsisVertical,
   LogOutIcon,
-  UserCircle,
 } from "lucide-react"
 import { useRouter } from "@/i18n/navigation"
 import { createClient } from "@/lib/supabase/client"
@@ -29,12 +27,13 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import useDashboard from "../context/useDashboard"
+import { userDashboardSections } from "../context/dashboard-sections"
 
 export function NavUser() {
   const { isMobile } = useSidebar()
   const router = useRouter()
   const supabase = createClient()
-  const { user } = useDashboard()
+  const { user, setActiveSection } = useDashboard()
 
   // Función para cerrar sesión
   const handleLogout = async () => {
@@ -84,21 +83,19 @@ export function NavUser() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <UserCircle />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCard />
-                Billing
-              </DropdownMenuItem>
+              {userDashboardSections.map((item) => (
+                <DropdownMenuItem key={item.sectionKey} onClick={() => setActiveSection(item.sectionKey)}>
+                  <item.icon />
+                  <span>{item.sectionKey}</span>
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={handleLogout}
               className="cursor-pointer text-red-600 focus:text-red-600"
             >
-              <LogOutIcon className="text-red-600 focus:text-red-600"/>
+              <LogOutIcon className="text-red-600 focus:text-red-600" />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

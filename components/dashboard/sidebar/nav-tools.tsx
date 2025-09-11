@@ -8,27 +8,21 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import React from "react"
+import { toolDashboardSections } from "../context/dashboard-sections"
+import useDashboard from "../context/useDashboard"
 
-export function NavTools({
-  items,
-}: {
-  items: {
-    name: string
-    url: string
-    icon: React.ElementType
-  }[]
-}) {
+export function NavTools() {
+  const { setActiveSection } = useDashboard()
+
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel>Tools</SidebarGroupLabel>
       <SidebarMenu>
-        {items.map((item) => (
-          <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
-              <a href={item.url}>
+        {toolDashboardSections.map((item) => (
+          <SidebarMenuItem key={item.sectionKey}>
+            <SidebarMenuButton onClick={() => setActiveSection(item.sectionKey)}>
                 <item.icon />
-                <span>{item.name}</span>
-              </a>
+                <span>{item.sectionKey}</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         ))}
