@@ -178,197 +178,193 @@ export default function ProposalWizard(props: ProposalWizardProps) {
         </div>
       </div>
 
-      <Card>
-        <CardContent className="space-y-6">
-          {currentStep === 0 && (
-            <div className="space-y-4">
-              <div className="space-y-4">
-                <Label htmlFor="presentation" className="text-lg font-semibold">
-                  {t.step1.chooseFormatLabel}
-                  <StepHelpDialog language={language} stepIndex={0} />
-                </Label>
-                <div className="flex flex-col md:flex-row gap-4">
-                  <Toggle
-                    aria-label="Toggle text message"
-                    variant="outline"
-                    pressed={formData.format === "text_message"} // <- Aquí controlamos el estado visual
-                    onPressedChange={(pressed) => {
-                      if (pressed)
-                        setFormData((prev) => ({
-                          ...prev,
-                          format: "text_message", // Si se presiona, asigna; si no, limpia
-                        }))
-                    }}
-                    className="w-fit"
-                  >
-                    <MessageSquareText className="w-5 h-5" />{t.step1.formatOptions.text}
-                  </Toggle>
-                  <Toggle
-                    aria-label="Toggle email"
-                    variant="outline"
-                    pressed={formData.format === "email"}
-                    onPressedChange={(pressed) => {
-                      if (pressed)
-                        setFormData((prev) => ({
-                          ...prev,
-                          format: "email",
-                        }))
-                    }}
-                    className="w-fit"
-                  >
-                    <Mail className="w-5 h-5" />{t.step1.formatOptions.email}
-                  </Toggle>
-                  <Toggle
-                    aria-label="Toggle PDF"
-                    variant="outline"
-                    pressed={formData.format === "pdf"}
-                    onPressedChange={(pressed) => {
-                      if (pressed)
-                        setFormData((prev) => ({
-                          ...prev,
-                          format: "pdf",
-                        }))
-                    }}
-                    className="w-fit"
-                  >
-                    <FileText className="w-5 h-5" />{t.step1.formatOptions.pdf}
-                  </Toggle>
-                </div>
-              </div>
-              <div className="space-y-4">
-                <Label className="text-lg font-semibold">{t.step1.language}</Label>
-                <Select
-                  value={formData.language}
-                  onValueChange={(value: "ES" | "EN") => setFormData((prev) => ({ ...prev, language: value }))}
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="ES">{t.step1.languageOptions.es}</SelectItem>
-                    <SelectItem value="EN">{t.step1.languageOptions.en}</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-4">
-                <Label className="text-lg font-semibold">{t.step1.tone}</Label>
-                <Select
-                  value={formData.tone}
-                  onValueChange={(value: "Profesional" | "Amigable" | "Persuasivo" | "Directo") =>
-                    setFormData((prev) => ({ ...prev, tone: value }))
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Profesional">{t.step1.toneOptions.Profesional}</SelectItem>
-                    <SelectItem value="Amigable">{t.step1.toneOptions.Amigable}</SelectItem>
-                    <SelectItem value="Persuasivo">{t.step1.toneOptions.Persuasivo}</SelectItem>
-                    <SelectItem value="Directo">{t.step1.toneOptions.Directo}</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-4">
-                <Label className="text-lg font-semibold">{t.step1.includeEmojis}</Label>
-                <Select
-                  value={formData.includeEmojis ? "yes" : "no"}
-                  onValueChange={(value: "yes" | "no") =>
-                    setFormData((prev) => ({ ...prev, includeEmojis: value === "yes" ? true : false }))
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="yes">{t.step1.includeEmojisOptions.yes}</SelectItem>
-                    <SelectItem value="no">{t.step1.includeEmojisOptions.no}</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-4">
-                <Label className="text-lg font-semibold">{t.step1.readingTime}</Label>
-                <Select
-                  value={String(formData.readingTime)}
-                  onValueChange={(value: string) =>
-                    setFormData((prev) => ({ ...prev, readingTime: Number(value) }))
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="1">{t.step1.readingTimeOptions.less1min}</SelectItem>
-                    <SelectItem value="2">{t.step1.readingTimeOptions.less2mins}</SelectItem>
-                    <SelectItem value="3">{t.step1.readingTimeOptions.less3mins}</SelectItem>
-                    <SelectItem value="4">{t.step1.readingTimeOptions.less4mins}</SelectItem>
-                    <SelectItem value="5">{t.step1.readingTimeOptions.less5mins}</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
+      {currentStep === 0 && (
+        <div className="space-y-4">
+          <div className="space-y-4">
+            <Label htmlFor="presentation" className="text-lg font-semibold">
+              {t.step1.chooseFormatLabel}
+              <StepHelpDialog language={language} stepIndex={0} />
+            </Label>
+            <div className="flex flex-col md:flex-row gap-4">
+              <Toggle
+                aria-label="Toggle text message"
+                variant="outline"
+                pressed={formData.format === "text_message"} // <- Aquí controlamos el estado visual
+                onPressedChange={(pressed) => {
+                  if (pressed)
+                    setFormData((prev) => ({
+                      ...prev,
+                      format: "text_message", // Si se presiona, asigna; si no, limpia
+                    }))
+                }}
+                className="w-fit"
+              >
+                <MessageSquareText className="w-5 h-5" />{t.step1.formatOptions.text}
+              </Toggle>
+              <Toggle
+                aria-label="Toggle email"
+                variant="outline"
+                pressed={formData.format === "email"}
+                onPressedChange={(pressed) => {
+                  if (pressed)
+                    setFormData((prev) => ({
+                      ...prev,
+                      format: "email",
+                    }))
+                }}
+                className="w-fit"
+              >
+                <Mail className="w-5 h-5" />{t.step1.formatOptions.email}
+              </Toggle>
+              <Toggle
+                aria-label="Toggle PDF"
+                variant="outline"
+                pressed={formData.format === "pdf"}
+                onPressedChange={(pressed) => {
+                  if (pressed)
+                    setFormData((prev) => ({
+                      ...prev,
+                      format: "pdf",
+                    }))
+                }}
+                className="w-fit"
+              >
+                <FileText className="w-5 h-5" />{t.step1.formatOptions.pdf}
+              </Toggle>
             </div>
+          </div>
+          <div className="space-y-4">
+            <Label className="text-lg font-semibold">{t.step1.language}</Label>
+            <Select
+              value={formData.language}
+              onValueChange={(value: "ES" | "EN") => setFormData((prev) => ({ ...prev, language: value }))}
+            >
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="ES">{t.step1.languageOptions.es}</SelectItem>
+                <SelectItem value="EN">{t.step1.languageOptions.en}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-4">
+            <Label className="text-lg font-semibold">{t.step1.tone}</Label>
+            <Select
+              value={formData.tone}
+              onValueChange={(value: "Profesional" | "Amigable" | "Persuasivo" | "Directo") =>
+                setFormData((prev) => ({ ...prev, tone: value }))
+              }
+            >
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Profesional">{t.step1.toneOptions.Profesional}</SelectItem>
+                <SelectItem value="Amigable">{t.step1.toneOptions.Amigable}</SelectItem>
+                <SelectItem value="Persuasivo">{t.step1.toneOptions.Persuasivo}</SelectItem>
+                <SelectItem value="Directo">{t.step1.toneOptions.Directo}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-4">
+            <Label className="text-lg font-semibold">{t.step1.includeEmojis}</Label>
+            <Select
+              value={formData.includeEmojis ? "yes" : "no"}
+              onValueChange={(value: "yes" | "no") =>
+                setFormData((prev) => ({ ...prev, includeEmojis: value === "yes" ? true : false }))
+              }
+            >
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="yes">{t.step1.includeEmojisOptions.yes}</SelectItem>
+                <SelectItem value="no">{t.step1.includeEmojisOptions.no}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-4">
+            <Label className="text-lg font-semibold">{t.step1.readingTime}</Label>
+            <Select
+              value={String(formData.readingTime)}
+              onValueChange={(value: string) =>
+                setFormData((prev) => ({ ...prev, readingTime: Number(value) }))
+              }
+            >
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1">{t.step1.readingTimeOptions.less1min}</SelectItem>
+                <SelectItem value="2">{t.step1.readingTimeOptions.less2mins}</SelectItem>
+                <SelectItem value="3">{t.step1.readingTimeOptions.less3mins}</SelectItem>
+                <SelectItem value="4">{t.step1.readingTimeOptions.less4mins}</SelectItem>
+                <SelectItem value="5">{t.step1.readingTimeOptions.less5mins}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+        </div>
+      )}
+
+      {currentStep === 1 && (
+        <div className="space-y-4">
+          <Label htmlFor="presentation" className="text-lg font-semibold">
+            {t.step2.presentationLabel}
+            <StepHelpDialog language={language} stepIndex={0} />
+          </Label>
+          <Textarea
+            id="presentation"
+            value={formData.presentation || ""}
+            onChange={(e) => setFormData((prev) => ({ ...prev, presentation: e.target.value }))}
+            placeholder={t.step2.presentationPlaceholder}
+            className={errors.presentation ? "border-red-500" : ""}
+          />
+
+          <Label htmlFor="audience" className="text-lg font-semibold">
+            {t.step2.audienceLabel}
+            <StepHelpDialog language={language} stepIndex={0} />
+          </Label>
+          <Textarea
+            id="audience"
+            value={formData.audience}
+            onChange={(e) => setFormData((prev) => ({ ...prev, audience: e.target.value }))}
+            placeholder={t.step2.audiencePlaceholder}
+            className={errors.audience ? "border-red-500" : ""}
+          />
+          {errors.audience && <p className="text-sm text-red-500 mt-1">{errors.audience}</p>}
+
+          <Label className="text-lg font-semibold">{t.step2.content}
+            <StepHelpDialog language={language} stepIndex={1} />
+          </Label>
+          <Textarea
+            value={formData.content || ""}
+            onChange={(e) => setFormData((prev) => ({ ...prev, content: e.target.value }))}
+            placeholder={t.step2.contentPlaceholder}
+            className={errors["content"] ? "border-red-500" : ""}
+          />
+          {errors["content"] && (
+            <p className="text-sm text-red-500">{errors["content"]}</p>
           )}
 
-          {currentStep === 1 && (
-            <div className="space-y-4">
-              <Label htmlFor="presentation" className="text-lg font-semibold">
-                {t.step2.presentationLabel}
-                <StepHelpDialog language={language} stepIndex={0} />
-              </Label>
-              <Textarea
-                id="presentation"
-                value={formData.presentation || ""}
-                onChange={(e) => setFormData((prev) => ({ ...prev, presentation: e.target.value }))}
-                placeholder={t.step2.presentationPlaceholder}
-                className={errors.presentation ? "border-red-500" : ""}
-              />
+          <Label className="text-lg font-semibold">{t.step2.objective}
+            <StepHelpDialog language={language} stepIndex={1} />
+          </Label>
+          <Textarea
+            value={formData.objective || ""}
+            onChange={(e) => setFormData((prev) => ({ ...prev, objective: e.target.value }))}
+            placeholder={t.step2.objectivePlaceholder}
+            className={errors["objective"] ? "border-red-500" : ""}
+          />
+        </div>
+      )}
 
-              <Label htmlFor="audience" className="text-lg font-semibold">
-                {t.step2.audienceLabel}
-                <StepHelpDialog language={language} stepIndex={0} />
-              </Label>
-              <Textarea
-                id="audience"
-                value={formData.audience}
-                onChange={(e) => setFormData((prev) => ({ ...prev, audience: e.target.value }))}
-                placeholder={t.step2.audiencePlaceholder}
-                className={errors.audience ? "border-red-500" : ""}
-              />
-              {errors.audience && <p className="text-sm text-red-500 mt-1">{errors.audience}</p>}
-
-              <Label className="text-lg font-semibold">{t.step2.content}
-                <StepHelpDialog language={language} stepIndex={1} />
-              </Label>
-              <Textarea
-                value={formData.content || ""}
-                onChange={(e) => setFormData((prev) => ({ ...prev, content: e.target.value }))}
-                placeholder={t.step2.contentPlaceholder}
-                className={errors["content"] ? "border-red-500" : ""}
-              />
-              {errors["content"] && (
-                <p className="text-sm text-red-500">{errors["content"]}</p>
-              )}
-
-              <Label className="text-lg font-semibold">{t.step2.objective}
-                <StepHelpDialog language={language} stepIndex={1} />
-              </Label>
-              <Textarea
-                value={formData.objective || ""}
-                onChange={(e) => setFormData((prev) => ({ ...prev, objective: e.target.value }))}
-                placeholder={t.step2.objectivePlaceholder}
-                className={errors["objective"] ? "border-red-500" : ""}
-              />
-            </div>
-          )}
-
-          {(currentStep === 2 && result) && (
-            <div className="space-y-4">
-              <ProposalDisplay result={result} setResult={setResult} language={language} />
-            </div>
-          )}
-        </CardContent>
-      </Card>
+      {(currentStep === 2 && result) && (
+        <div className="space-y-4">
+          <ProposalDisplay result={result} setResult={setResult} language={language} />
+        </div>
+      )}
 
       <div className="flex justify-between">
         {currentStep !== 0 ?

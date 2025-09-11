@@ -10,6 +10,7 @@ import {
   FileText,
   Linkedin,
   StickyNote,
+  Files,
 } from "lucide-react"
 
 import { NavTools } from "@/components/dashboard/nav-tools"
@@ -36,9 +37,9 @@ const data = {
       icon: LayoutDashboard,
     },
     {
-      title: "Projects",
+      title: "Saved Files",
       url: "#",
-      icon: Folder,
+      icon: Files,
     },
     {
       title: "Pricing and Plans",
