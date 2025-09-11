@@ -9,6 +9,7 @@ import { Zap, Menu } from "lucide-react"
 import { Link } from "@/i18n/navigation"
 import { supabase } from "@/lib/supabase"
 import { Session } from "@supabase/supabase-js"
+import { Logo } from "./logo"
 
 export function Header() {
   const t = useTranslations("navigation")
@@ -37,14 +38,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 flex justify-center">
       <div className="container flex h-16 items-center justify-between px-4">
-        <Link href={"/"}>
-          <div className="flex items-center space-x-2">
-            <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-lg">
-              <Zap className="h-5 w-5 text-primary-foreground" />
-            </div>
-            <span className="text-xl font-bold text-foreground">ProposalAI</span>
-          </div>
-        </Link>
+        <Logo />
 
         <nav className="hidden md:flex items-center space-x-6">
           <LanguageSwitcher />

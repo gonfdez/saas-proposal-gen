@@ -1,42 +1,34 @@
-"use client"
-
-import { useEffect, useState } from "react"
-import { supabase } from "@/lib/supabase"
 import ProposalWizard from "@/components/blocks/proposal-wizard/proposal-wizard"
-import { useLocale } from "next-intl"
-import { Language } from "@/lib/translations"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { useRouter } from "@/i18n/navigation"
-import { User } from "@supabase/supabase-js"
+import { AppSidebar } from "@/components/dashboard/app-sidebar"
+import { SiteHeader } from "@/components/dashboard/site-header"
+import {
+  SidebarInset,
+  SidebarProvider,
+} from "@/components/ui/sidebar"
+import { Language } from "@/lib/translations";
 
-export default function DashboardPage() {
-  const currentLang = useLocale() as Language
-  const [user, setUser] = useState<User | null>(null)
-  const router = useRouter()
+type Props = {
+  params: Promise<{ locale: string }>;
+};
 
-  useEffect(() => {
-    const getUser = async () => {
-      const { data } = await supabase.auth.getUser()
-      setUser(data.user)
-    }
-
-    getUser()
-
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user || null)
-      if (!session) router.push("/auth/login")
-    })
-
-    return () => {
-      listener.subscription.unsubscribe()
-    }
-  }, [router])
-
-  if (!user) return null // O puedes poner un spinner
-
+export default async function Page({ params }: Props) {
+  const locale = await (await params).locale
   return (
-    <ScrollArea className="h-full w-full">
-      <ProposalWizard initialLanguage={currentLang} />
-    </ScrollArea>
+    <SidebarProvider
+      style={
+        {
+          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--header-height": "calc(var(--spacing) * 12)",
+        } as React.CSSProperties
+      }
+    >
+      <AppSidebar variant="inset" />
+      <SidebarInset className="bg-card/60">
+        <SiteHeader />
+        <div className="@container/main py-8 px-3">
+          <ProposalWizard initialLanguage={locale as Language} />
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
   )
 }
