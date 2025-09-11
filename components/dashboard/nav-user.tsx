@@ -97,7 +97,7 @@ export function NavUser({ user }: { user: User }) {
               onClick={handleLogout}
               className="cursor-pointer text-red-600 focus:text-red-600"
             >
-              <LogOutIcon />
+              <LogOutIcon className="text-red-600 focus:text-red-600"/>
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

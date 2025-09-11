@@ -10,6 +10,7 @@ import {
   Linkedin,
   StickyNote,
   Files,
+  Mail,
 } from "lucide-react"
 
 import { NavTools } from "@/components/dashboard/nav-tools"
@@ -73,6 +74,11 @@ const data = {
       name: "Reddit Post Generator",
       url: "#",
       icon: StickyNote,
+    },
+    {
+      name: "Mail Generator",
+      url: "#",
+      icon: Mail,
     },
   ],
 }
