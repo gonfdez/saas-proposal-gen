@@ -9,24 +9,20 @@ import { DashboardSectionKey } from "./context/dashboard-sections";
 const DashboardRenderer: React.FC = () => {
   const { activeSection } = useDashboard();
 
+  const notFoundSection = (sectionKey: DashboardSectionKey) => (
+    <div className="flex justify-center items-center h-full">
+      Section {`"${sectionKey}"`} not found
+    </div>
+  );
+
   const renderSection = () => {
     switch (activeSection) {
-      case DashboardSectionKey.OVERVIEW:
-        return (
-          <div className="flex justify-center items-center h-full">
-            Overview
-          </div>
-        );
       case DashboardSectionKey.MAIL_GENERATOR:
         return <ProposalWizard />;
       case DashboardSectionKey.PRICIND_AND_PLANS:
         return <PricingPage />;
       default:
-        return (
-          <div className="flex justify-center items-center h-full">
-            Section {`"${activeSection}"`} not found
-          </div>
-        );
+        return notFoundSection(activeSection);
     }
   };
 
