@@ -13,10 +13,10 @@ import {
   Mail,
 } from "lucide-react"
 
-import { NavTools } from "@/components/dashboard/nav-tools"
-import { NavMain } from "@/components/dashboard/nav-main"
-import { NavSecondary } from "@/components/dashboard/nav-secondary"
-import { NavUser } from "@/components/dashboard/nav-user"
+import { NavTools } from "@/components/dashboard/sidebar/nav-tools"
+import { NavMain } from "@/components/dashboard/sidebar/nav-main"
+import { NavSecondary } from "@/components/dashboard/sidebar/nav-secondary"
+import { NavUser } from "@/components/dashboard/sidebar/nav-user"
 import {
   Sidebar,
   SidebarContent,
@@ -26,7 +26,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Logo } from "../logo"
+import { Logo } from "../../logo"
 import { User } from "@supabase/supabase-js"
 
 const data = {
