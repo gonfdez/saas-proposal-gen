@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { ArrowLeft, Eye, EyeOff, CheckCircle, AlertCircle } from "lucide-react"
-import { supabase } from "@/lib/supabase"
+import { createClient } from "@/lib/supabase/client"
 
 export default function ResetPasswordPage() {
   const t = useTranslations("auth")
@@ -24,6 +24,8 @@ export default function ResetPasswordPage() {
   const [error, setError] = useState("")
   const [success, setSuccess] = useState(false)
   const [isValidSession, setIsValidSession] = useState(false)
+
+  const supabase = createClient()
 
   useEffect(() => {
     // Check if we have a valid session from the reset link
@@ -39,7 +41,7 @@ export default function ResetPasswordPage() {
     }
 
     checkSession()
-  }, [t])
+  }, [supabase.auth, t])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

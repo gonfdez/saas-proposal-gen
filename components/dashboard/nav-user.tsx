@@ -7,6 +7,8 @@ import {
   Bell,
   UserCircle,
 } from "lucide-react"
+import { useRouter } from "@/i18n/navigation"
+import { createClient } from "@/lib/supabase/client"
 
 import {
   Avatar,
@@ -39,6 +41,14 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const router = useRouter()
+  const supabase = createClient()
+  
+  // Función para cerrar sesión
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
+    router.push("/") // Redirigir a home
+  }
 
   return (
     <SidebarMenu>
@@ -98,7 +108,10 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={handleLogout}
+              className="cursor-pointer text-red-600 focus:text-red-600"
+            >
               <LogOutIcon />
               Log out
             </DropdownMenuItem>

@@ -1,15 +1,15 @@
-"use client"
+"use server"
 
-import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Check, Star } from "lucide-react"
 import { Link } from "@/i18n/navigation"
-import { Header } from "@/components/header"
+import Header from "@/components/header"
+import { getTranslations } from "next-intl/server"
 
-export default function PricingPage() {
-  const t = useTranslations("pricing")
+export default async function PricingPage() {
+  const t = await getTranslations("pricing")
 
   const plans = [
     {
