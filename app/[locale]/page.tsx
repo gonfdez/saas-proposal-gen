@@ -6,20 +6,22 @@ import { SolutionSection } from "@/components/landing-page/solution-section"
 import { HowItWorksSection } from "@/components/landing-page/how-it-works-section"
 import { BenefitsSection } from "@/components/landing-page/benefits-section"
 import { CTASection } from "@/components/landing-page/cta-section"
+import { AuroraBackground } from "@/components/ui/shadcn-io/aurora-background"
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main>
+      <AuroraBackground className="h-full">
         <HeroSection />
-        <StatsSection />
-        <ProblemSection />
-        <SolutionSection />
-        <HowItWorksSection />
-        <BenefitsSection />
-        <CTASection />
-      </main>
+      </AuroraBackground>
+      <StatsSection />
+      <ProblemSection />
+      <SolutionSection />
+      <HowItWorksSection />
+      <BenefitsSection />
+      <CTASection />
+
     </div>
   )
 }
