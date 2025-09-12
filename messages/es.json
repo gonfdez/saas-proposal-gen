@@ -151,38 +151,30 @@
     "monthly": "Mensual",
     "annually": "Anual",
     "save": "Ahorra 20%",
-    "free": {
-      "name": "Gratuito",
-      "price": "0€",
-      "period": "/mes",
+    "hobby": {
+      "name": "Hobby",
+      "price": "Gratis para siempre",
       "description": "Perfecto para comenzar con propuestas impulsadas por IA",
       "features": [
         "10 propuestas por mes",
-        "Todos los formatos (Email, PDF, LinkedIn, Reddit)",
+        "Todos los formatos",
         "Personalización básica",
         "Soporte por email",
         "Acceso a biblioteca de plantillas"
       ],
-      "cta": "Comenzar Gratis",
-      "popular": false
+      "cta": "Comenzar Gratis"
     },
-    "premium": {
-      "name": "Premium",
-      "price": "9€",
-      "period": "/mes",
+    "pro": {
+      "name": "Pro",
       "description": "Para profesionales que necesitan generación ilimitada de propuestas",
       "features": [
         "100 propuestas por mes",
-        "Todos los formatos (Email, PDF, LinkedIn, Reddit)",
-        "Personalización avanzada y branding",
+        "Todos los formatos",
+        "Personalización avanzada",
         "Soporte prioritario",
-        "Acceso a plantillas premium",
-        "Análisis y seguimiento de rendimiento",
-        "Funciones de colaboración en equipo",
-        "Entrenamiento de IA personalizado con tus datos"
+        "Acceso a plantillas premium"
       ],
-      "cta": "Iniciar Prueba Premium",
-      "popular": true
+      "cta": "Iniciar Prueba Premium"
     },
     "faq": {
       "title": "Preguntas Frecuentes",
@@ -198,10 +190,6 @@
         {
           "question": "¿Qué pasa si excedo mi límite de propuestas?",
           "answer": "Los usuarios gratuitos serán invitados a actualizar. Los usuarios premium pueden comprar propuestas adicionales o actualizar a un nivel superior."
-        },
-        {
-          "question": "¿Ofrecen reembolsos?",
-          "answer": "Sí, ofrecemos una garantía de devolución de dinero de 30 días para todos los planes pagos. Sin preguntas."
         },
         {
           "question": "¿Están seguros mis datos?",

@@ -151,38 +151,30 @@
     "monthly": "Monthly",
     "annually": "Annually",
     "save": "Save 20%",
-    "free": {
-      "name": "Free",
-      "price": "$0",
-      "period": "/month",
+    "hobby": {
+      "name": "Hobby",
+      "price": "Free forever",
       "description": "Perfect for getting started with AI-powered proposals",
       "features": [
         "10 proposals per month",
-        "All proposal formats (Email, PDF, LinkedIn, Reddit)",
+        "All proposal formats",
         "Basic customization",
         "Email support",
         "Access to template library"
       ],
-      "cta": "Get Started Free",
-      "popular": false
+      "cta": "Get Started Free"
     },
-    "premium": {
+    "pro": {
       "name": "Premium",
-      "price": "$9",
-      "period": "/month",
       "description": "For professionals who need unlimited proposal generation",
       "features": [
         "100 proposals per month",
-        "All proposal formats (Email, PDF, LinkedIn, Reddit)",
-        "Advanced customization & branding",
+        "All proposal formats",
+        "Advanced customization",
         "Priority support",
-        "Access to premium templates",
-        "Analytics & performance tracking",
-        "Team collaboration features",
-        "Custom AI training on your data"
+        "Access to premium templates"
       ],
-      "cta": "Start Premium Trial",
-      "popular": true
+      "cta": "Start Premium Trial"
     },
     "faq": {
       "title": "Frequently Asked Questions",
@@ -198,10 +190,6 @@
         {
           "question": "What happens if I exceed my proposal limit?",
           "answer": "Free users will be prompted to upgrade. Premium users can purchase additional proposals or upgrade to a higher tier."
-        },
-        {
-          "question": "Do you offer refunds?",
-          "answer": "Yes, we offer a 30-day money-back guarantee for all paid plans. No questions asked."
         },
         {
           "question": "Is my data secure?",
