@@ -2,7 +2,7 @@
 
 import { User } from '@supabase/supabase-js';
 import React, { createContext, useState } from 'react';
-import { DashboardSectionKey } from './dashboard-sections';
+import { DashboardSectionKey } from '../dashboard-sections';
 
 export interface DashboardContextValue {
   activeSection: DashboardSectionKey;

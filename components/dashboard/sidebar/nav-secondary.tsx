@@ -9,7 +9,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { secondaryDashboardSections } from "../context/dashboard-sections"
+import { secondaryDashboardSections } from "../dashboard-sections"
 import useDashboard from "../context/useDashboard"
 import { LanguageSwitcher } from "@/components/language-switcher"
 

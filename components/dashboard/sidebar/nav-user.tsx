@@ -27,7 +27,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 import useDashboard from "../context/useDashboard"
-import { userDashboardSections } from "../context/dashboard-sections"
+import { userDashboardSections } from "../dashboard-sections"
 import { useTranslations } from "next-intl"
 
 export function NavUser() {

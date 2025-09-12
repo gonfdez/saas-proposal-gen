@@ -3,7 +3,7 @@
 import React from "react";
 import useDashboard from "./context/useDashboard";
 import ProposalWizard from "../proposal-wizard/proposal-wizard";
-import { DashboardSectionKey } from "./context/dashboard-sections";
+import { DashboardSectionKey } from "./dashboard-sections";
 
 const DashboardRenderer: React.FC = () => {
   const { activeSection } = useDashboard();

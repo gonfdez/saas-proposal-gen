@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/sidebar"
 import React from "react"
 import useDashboard from "../context/useDashboard"
-import { mainDashboardSections } from "../context/dashboard-sections"
+import { mainDashboardSections } from "../dashboard-sections"
 
 export function NavMain() {
   const { setActiveSection } = useDashboard()
