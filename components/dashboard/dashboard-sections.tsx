@@ -49,13 +49,13 @@ export const mainDashboardSections: DashboardSection[] = [
     sectionKey: DashboardSectionKey.SAVED_FILES,
     icon: Files
   },
+]
+
+export const secondaryDashboardSections: DashboardSection[] = [
   {
     sectionKey: DashboardSectionKey.PRICIND_AND_PLANS,
     icon: DollarSign
   },
-]
-
-export const secondaryDashboardSections: DashboardSection[] = [
   {
     sectionKey: DashboardSectionKey.GET_HELP,
     icon: MessageCircleQuestionMark
