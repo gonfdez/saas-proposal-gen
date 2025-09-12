@@ -6,10 +6,10 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Globe } from "lucide-react"
 import { useTranslations } from "next-intl"
 
-export function LanguageSwitcher({ className, withLabel, buttonVariant, buttonSize }: { 
-  className?: string, 
-  withLabel?: boolean, 
-  buttonVariant?: "link" | "default" | "destructive" | "outline" | "secondary" | "ghost" | null | undefined ,
+export function LanguageSwitcher({ className, withLabel, buttonVariant, buttonSize }: {
+  className?: string,
+  withLabel?: boolean,
+  buttonVariant?: "link" | "default" | "destructive" | "outline" | "secondary" | "ghost" | null | undefined,
   buttonSize?: "default" | "sm" | "lg" | "icon" | null | undefined
 }) {
   const router = useRouter()
@@ -26,7 +26,11 @@ export function LanguageSwitcher({ className, withLabel, buttonVariant, buttonSi
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant={buttonVariant || "ghost"} className={className} size={buttonSize}>
+        <Button
+          variant={buttonVariant || "ghost"}
+          className={`${className || ""} focus:outline-none focus-visible:ring-0`}
+          size={buttonSize}
+        >
           <Globe />
           {withLabel && t("language")}
         </Button>
