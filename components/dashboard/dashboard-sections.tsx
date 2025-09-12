@@ -10,12 +10,14 @@ import {
   MessageSquareText,
   StickyNote,
   Twitter,
-  UserCircle
+  UserCircle,
+  UsersRound
 } from 'lucide-react';
 import React from 'react';
 
 export enum DashboardSectionKey {
   OVERVIEW = "overview",
+  USER_OR_BRAND_PROFILES = "userOrBrandProfiles",
   SAVED_FILES = "savedFiles",
   PRICIND_AND_PLANS = "princingAndPlans",
   GET_HELP = "getHelp",
@@ -38,6 +40,10 @@ export const mainDashboardSections: DashboardSection[] = [
   {
     sectionKey: DashboardSectionKey.OVERVIEW,
     icon: LayoutDashboard
+  },
+  {
+    sectionKey: DashboardSectionKey.USER_OR_BRAND_PROFILES,
+    icon: UsersRound
   },
   {
     sectionKey: DashboardSectionKey.SAVED_FILES,
