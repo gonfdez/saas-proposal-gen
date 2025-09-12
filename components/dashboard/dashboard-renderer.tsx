@@ -6,6 +6,7 @@ import ProposalWizard from "../proposal-wizard/proposal-wizard";
 import { DashboardSectionKey } from "./dashboard-sections";
 import UserOrBrandProfilesSection from "./sections/user-or-brand-profiles/user-or-brand-profiles-section";
 import OverviewSection from "./sections/overview/overview-section";
+import PricingSection from "../pricing-section";
 
 const DashboardRenderer: React.FC = () => {
   const { activeSection } = useDashboard();
@@ -24,6 +25,8 @@ const DashboardRenderer: React.FC = () => {
         return <UserOrBrandProfilesSection />;
       case DashboardSectionKey.MAIL_GENERATOR:
         return <ProposalWizard />;
+      case DashboardSectionKey.PRICIND_AND_PLANS:
+        return <PricingSection />
       default:
         return notFoundSection(activeSection);
     }
