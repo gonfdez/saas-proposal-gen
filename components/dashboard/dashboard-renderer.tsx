@@ -7,17 +7,22 @@ import { DashboardSectionKey } from "./dashboard-sections";
 import UserOrBrandProfilesSection from "./sections/user-or-brand-profiles/user-or-brand-profiles-section";
 import OverviewSection from "./sections/overview/overview-section";
 import PricingSection from "../pricing-section";
+import { Spinner } from "../ui/shadcn-io/spinner";
 
 const DashboardRenderer: React.FC = () => {
-  const { activeSection } = useDashboard();
+  const { activeSection, isLoading } = useDashboard();
 
   const notFoundSection = (sectionKey: DashboardSectionKey) => (
     <div className="flex justify-center items-center h-full">
       Section {`"${sectionKey}"`} not found
     </div>
   );
+  const loadingSection = () => (<div className="flex justify-center items-center h-full"><Spinner size={30} /></div>)
 
   const renderSection = () => {
+    if (isLoading)
+      return loadingSection()
+
     switch (activeSection) {
       case DashboardSectionKey.OVERVIEW:
         return <OverviewSection />;

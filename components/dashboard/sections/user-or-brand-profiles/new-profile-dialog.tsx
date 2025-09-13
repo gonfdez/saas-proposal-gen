@@ -80,12 +80,12 @@ export const NewProfileDialog: React.FC<ProfileDialogProps> = ({ onProfileCreate
   }
 
   const triggerButton = isFirstProfile ? (
-    <Button>
+    <Button className="w-full lg:w-fit">
       <PlusCircle className="mr-2 h-4 w-4" />
       Crear Primer Perfil
     </Button>
   ) : (
-    <Button variant="outline">
+    <Button variant="outline" className="w-full lg:w-fit">
       <PlusCircle className="mr-2 h-4 w-4" />
       Crear Nuevo Perfil
     </Button>

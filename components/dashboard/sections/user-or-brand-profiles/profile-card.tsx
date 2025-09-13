@@ -13,16 +13,24 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Building, MoreHorizontal, Pencil, Trash2, User } from "lucide-react";
-import { Profile } from "./user-or-brand-profiles-section";
+import { Badge } from "@/components/ui/badge";
+import { Profile } from "../../context/dashboard-context";
 
 interface ProfileCardProps {
   profile: Profile;
+  isSelected?: boolean,
+  onSelect: () => void,
   onDelete: (id: string) => void;
   onEdit: (profile: Profile) => void;
 }
 
-export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, onDelete, onEdit }) => (
-  <Card>
+export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, isSelected = false, onSelect, onDelete, onEdit }) => (
+  <Card className={`relative ${isSelected && 'ring-2 ring-primary'}`} onClick={() => onSelect()}>
+    {isSelected && (
+      <Badge className="-translate-x-1/2 -translate-y-1/2 absolute top-0 left-1/2 rounded-full">
+        Selected
+      </Badge>
+    )}
     <CardHeader className="flex flex-row items-start justify-between">
       <div className="space-y-1.5">
         <CardTitle className="flex items-center gap-2">
