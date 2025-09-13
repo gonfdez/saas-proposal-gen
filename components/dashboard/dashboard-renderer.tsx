@@ -26,7 +26,7 @@ const DashboardRenderer: React.FC = () => {
       case DashboardSectionKey.MAIL_GENERATOR:
         return <ProposalWizard />;
       case DashboardSectionKey.PRICIND_AND_PLANS:
-        return <PricingSection className="h-full" />
+        return <PricingSection className="h-full bg-white/60" />
       default:
         return notFoundSection(activeSection);
     }
