@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { NewProfileDialog } from "./new-profile-dialog";
 import { ProfileCard } from "./profile-card";
-import Spinner from "@/components/spinner";
+import { Spinner } from "@/components/ui/shadcn-io/spinner";
 
 export type Profile = {
   id: string;
@@ -56,7 +56,7 @@ export default function UserOrBrandProfilesSection() {
   };
 
   if (isLoading) {
-    return <div className="flex justify-center items-center h-full"><Spinner size={50} /></div>;
+    return <div className="flex justify-center items-center h-full"><Spinner size={30} /></div>;
   }
 
   return (

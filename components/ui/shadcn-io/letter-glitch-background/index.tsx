@@ -248,7 +248,7 @@ export const LetterGlitchBackground = forwardRef<HTMLDivElement, LetterGlitchBac
       }
       window.removeEventListener("resize", handleResize);
     };
-  }, [animate, resizeCanvas, glitchSpeed, smooth, fontSize, charWidth, charHeight]);
+  }, [glitchSpeed, smooth, fontSize, charWidth, charHeight]);
 
   return (
     <div
