@@ -15,9 +15,9 @@ import { ArrowRight, BadgeCheck } from 'lucide-react';
 import { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useTranslations } from 'next-intl';
-import { AuroraBackground } from './ui/shadcn-io/aurora-background';
+import { BackgroundPaths } from './ui/shadcn-io/background-paths';
 
-export default function PricingSection() {
+export default function PricingSection({ className }: { className?: string }) {
   const t = useTranslations("pricing")
 
   const [frequency, setFrequency] = useState<string>('monthly');
@@ -79,8 +79,11 @@ export default function PricingSection() {
   ];
 
   return (
-    <AuroraBackground className="h-full">
-      <div className="not-prose flex flex-col gap-16 px-8 py-24 text-center z-40">
+    <section className={`relative flex justify-center ${className || ""}`}>
+      <div className="absolute inset-0 z-9">
+        <BackgroundPaths />
+      </div>
+      <div className="not-prose flex flex-col gap-16 px-8 py-24 text-center z-10">
         <div className="flex flex-col items-center justify-center gap-8">
           <h1 className="mb-0 text-balance font-medium text-5xl tracking-tighter!">
             {t('title')}
@@ -97,7 +100,7 @@ export default function PricingSection() {
               </TabsTrigger>
             </TabsList>
           </Tabs>
-          <div className="mt-8 grid w-full max-w-4xl gap-4 lg:grid-cols-3">
+          <div className="mt-8 grid w-full max-w-4xl gap-8 lg:grid-cols-3">
             {plans.map((plan) => (
               <Card
                 className={cn(
@@ -165,6 +168,6 @@ export default function PricingSection() {
           </div>
         </div>
       </div>
-    </AuroraBackground>
+    </section >
   );
 };
