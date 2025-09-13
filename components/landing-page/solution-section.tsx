@@ -40,9 +40,9 @@ export function SolutionSection() {
           centerVignette={false}
           outerVignette={false}
           smooth={true}
-          fontSize={30}
-          charWidth={30}
-          charHeight={40}
+          fontSize={60}
+          charWidth={70}
+          charHeight={80}
         />
       </div>
       <div className="w-full z-10">

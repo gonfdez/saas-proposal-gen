@@ -4,17 +4,19 @@ import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Play } from "lucide-react"
 import { Link } from "@/i18n/navigation"
+import { BackgroundBeams } from "../ui/shadcn-io/background-beams"
 
 export function HeroSection() {
   const t = useTranslations("hero")
 
   return (
-    <section className="flex flex-col gap-16 px-8 p-12 lg:py-24 text-center items-center z-40">
-      <div className="flex flex-col items-center justify-center gap-8  max-w-[1500px]">
-        <h1 className="mb-0 text-balance font-medium text-6xl md:text-7xl xl:text-[5.25rem]">
+    <section className="relative flex flex-col gap-16 px-8 p-12 lg:py-24 text-center items-center z-40 min-h-[calc(100dvh-4rem)]">
+      <BackgroundBeams className="absolute inset-0" />
+      <div className="relative z-10 flex flex-col items-center justify-center gap-8 max-w-[1500px] flex-1">
+        <h1 className="mb-2 text-balance font-medium text-6xl md:text-7xl xl:text-[5.25rem]">
           {t("title")}
         </h1>
-        <p className="mt-0 mb-0 text-balance text-lg text-muted-foreground">
+        <p className="mt-0 mb-10 text-balance text-lg text-muted-foreground max-w-5xl">
           {t("subtitle")}
         </p>
         <div className="flex items-center gap-10">

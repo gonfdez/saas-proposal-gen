@@ -5,9 +5,9 @@
     "dashboard": "Dashboard"
   },
   "hero": {
-    "title": "Generate high-converting proposals in minutes, not hours",
-    "subtitle": "Transform your proposal creation process with AI-powered tools that craft compelling emails, PDFs, LinkedIn posts, and Reddit content that actually convert prospects into clients.",
-    "cta": "Start Free Trial",
+    "title": "Generate High-Impact Content in Seconds",
+    "subtitle": "Our AI empowers sales pros, marketers, and freelancers to craft compelling social posts, emails, and proposals without the writer's block. Stop writing, start growing.",
+    "cta": "Start Free",
     "demo": "Watch Demo"
   },
   "stats": {
@@ -147,7 +147,7 @@
   },
   "pricing": {
     "title": "Simple, Transparent Pricing",
-    "subtitle": "Choose the plan that fits your proposal generation needs",
+    "subtitle": "Choose the plan that fits your needs",
     "monthly": "Monthly",
     "annually": "Annually",
     "save": "Save 20%",

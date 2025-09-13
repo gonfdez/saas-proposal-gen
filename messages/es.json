@@ -5,9 +5,9 @@
     "dashboard": "Dashboard"
   },
   "hero": {
-    "title": "Genera propuestas que convierten en minutos, no en horas",
-    "subtitle": "Transforma tu proceso de creación de propuestas con herramientas impulsadas por IA que crean emails, PDFs, posts de LinkedIn y contenido de Reddit convincentes que realmente convierten prospectos en clientes.",
-    "cta": "Prueba Gratuita",
+    "title": "Genera Contenido de Alto Impacto en Segundos",
+    "subtitle": "Nuestra IA ayuda a vendedores, marketers y freelancers a crear posts, emails y propuestas persuasivas sin el bloqueo del escritor. Deja de escribir, empieza a crecer.",
+    "cta": "Empieza Gratis",
     "demo": "Ver Demo"
   },
   "stats": {
@@ -147,7 +147,7 @@
   },
   "pricing": {
     "title": "Precios Simples y Transparentes",
-    "subtitle": "Elige el plan que se adapte a tus necesidades de generación de propuestas",
+    "subtitle": "Elige el plan que se adapte a tus necesidades",
     "monthly": "Mensual",
     "annually": "Anual",
     "save": "Ahorra 20%",

@@ -26,9 +26,9 @@ export default function PricingPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      <PricingSection />
-
+    <>
+      <PricingSection className="min-h-[calc(100dvh-4rem)]"/>
+      
       {/* FAQ Section */}
       <div className="bg-white py-20 px-6">
         <div className="container mx-auto px-4">
@@ -46,6 +46,6 @@ export default function PricingPage() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
