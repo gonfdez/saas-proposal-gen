@@ -25,8 +25,9 @@ export default function UserOrBrandProfilesSection() {
               profile={profile}
               onDelete={handleDeleteProfile}
               onEdit={handleEditProfile}
-              isSelected={profile.id === selectedProfile?.id}
-              onSelect={() => setSelectedProfile(profile)}
+              showBadge={profile.id === selectedProfile?.id}
+              onClick={() => setSelectedProfile(profile)}
+              badgeText="Seleccionado"
             />
           ))}
         </div>

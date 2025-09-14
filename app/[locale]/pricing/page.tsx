@@ -27,7 +27,7 @@ export default function PricingPage() {
 
   return (
     <>
-      <PricingSection className="min-h-[calc(100dvh-4rem)]"/>
+      <PricingSection className="min-h-[calc(100vh-4rem)]"/>
       
       {/* FAQ Section */}
       <div className="bg-white py-20 px-6">

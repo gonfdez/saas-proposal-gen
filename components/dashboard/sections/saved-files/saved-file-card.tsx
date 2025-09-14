@@ -12,27 +12,27 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Mail, MoreHorizontal, Pencil, Text, Trash2 } from "lucide-react";
+import { Mail, MessageSquareText, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import { SavedFile } from "../../context/dashboard-context";
 
 interface SavedFileCardProps {
-  savedFile: SavedFile;
-  onDelete: (id: string) => void;
-  onEdit: (savedFile: SavedFile) => void;
+  savedFile: SavedFile
+  onDelete: (id: string) => void
+  onEdit: (savedFile: SavedFile) => void
 }
 
 export const SavedFileCard: React.FC<SavedFileCardProps> = ({ savedFile, onDelete, onEdit }) => (
-  <Card>
+  <Card className="h-fit">
     <CardHeader className="flex flex-row items-start justify-between">
       <div className="space-y-1.5">
         <CardTitle className="flex items-center gap-2">
           {savedFile.type === "text_message" ? (
-            <Text className="h-5 w-5 text-muted-foreground" />
+            <><MessageSquareText className="h-4 w-4" /> Mensaje de texto</>
           ) : (
-            <Mail className="h-5 w-5 text-muted-foreground" />
+            <><Mail className="h-4 w-4" />Email</>
           )}
         </CardTitle>
-        <CardDescription>Profile {savedFile.profileId}</CardDescription>
+        <CardDescription>Generado el {new Date(savedFile.meta.createdAt).toLocaleString()}</CardDescription>
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -53,7 +53,7 @@ export const SavedFileCard: React.FC<SavedFileCardProps> = ({ savedFile, onDelet
       </DropdownMenu>
     </CardHeader>
     <CardContent>
-      <p className="text-sm text-muted-foreground line-clamp-3">
+      <p className="text-sm text-muted-foreground border p-2">
         {savedFile.content}
       </p>
     </CardContent>
