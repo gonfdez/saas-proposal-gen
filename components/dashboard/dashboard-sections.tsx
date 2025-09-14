@@ -1,9 +1,8 @@
 import {
   CreditCard,
   DollarSign,
-  Files,
+  FilePen,
   FileText,
-  LayoutDashboard,
   Linkedin,
   Mail,
   MessageCircleQuestionMark,
@@ -11,14 +10,11 @@ import {
   StickyNote,
   Twitter,
   UserCircle,
-  UsersRound
 } from 'lucide-react';
 import React from 'react';
 
 export enum DashboardSectionKey {
-  OVERVIEW = "overview",
-  USER_OR_BRAND_PROFILES = "userOrBrandProfiles",
-  SAVED_FILES = "savedFiles",
+  PROFILES_AND_FILES = "profilesAndFiles",
   PRICIND_AND_PLANS = "princingAndPlans",
   GET_HELP = "getHelp",
   MESSAGE_GENERATOR = "messageGenerator",
@@ -38,16 +34,8 @@ export interface DashboardSection {
 
 export const mainDashboardSections: DashboardSection[] = [
   {
-    sectionKey: DashboardSectionKey.OVERVIEW,
-    icon: LayoutDashboard
-  },
-  {
-    sectionKey: DashboardSectionKey.USER_OR_BRAND_PROFILES,
-    icon: UsersRound
-  },
-  {
-    sectionKey: DashboardSectionKey.SAVED_FILES,
-    icon: Files
+    sectionKey: DashboardSectionKey.PROFILES_AND_FILES,
+    icon: FilePen
   },
 ]
 

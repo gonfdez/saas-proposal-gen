@@ -50,7 +50,7 @@ interface DashboardProviderProps {
 
 export const DashboardProvider = (props: DashboardProviderProps) => {
   const [isLoading, setIsLoading] = useState(true);
-  const [activeSection, setActiveSection] = useState<DashboardSectionKey>(DashboardSectionKey.OVERVIEW);
+  const [activeSection, setActiveSection] = useState<DashboardSectionKey>(DashboardSectionKey.PROFILES_AND_FILES);
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [selectedProfile, setSelectedProfile] = useState<Profile | null>(null);
   const [savedFiles, setSavedFiles] = useState<SavedFile[]>([]);
