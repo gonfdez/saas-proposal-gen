@@ -8,6 +8,7 @@ import UserOrBrandProfilesSection from "./sections/user-or-brand-profiles/user-o
 import OverviewSection from "./sections/overview/overview-section";
 import PricingSection from "../pricing-section";
 import { Spinner } from "../ui/shadcn-io/spinner";
+import SavedFilesSection from "./sections/saved-files/saved-files-section";
 
 const DashboardRenderer: React.FC = () => {
   const { activeSection, isLoading } = useDashboard();
@@ -28,6 +29,8 @@ const DashboardRenderer: React.FC = () => {
         return <OverviewSection />;
       case DashboardSectionKey.USER_OR_BRAND_PROFILES:
         return <UserOrBrandProfilesSection />;
+      case DashboardSectionKey.SAVED_FILES:
+        return <SavedFilesSection />;
       case DashboardSectionKey.MAIL_GENERATOR:
         return <ProposalWizard />;
       case DashboardSectionKey.PRICIND_AND_PLANS:
