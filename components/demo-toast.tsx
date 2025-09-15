@@ -11,7 +11,7 @@ export function DemoToast() {
       toast.dismiss()
       toast(t('toast'), {
         duration: Infinity,
-        className: "w-fit! font-bold",
+        className: "flex justify-center font-bold",
         position: "top-center"
       })
     }, 300)
