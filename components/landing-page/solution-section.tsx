@@ -32,7 +32,7 @@ export function SolutionSection() {
   ]
 
   return (
-    <section className="relative py-20 bg-muted/50 flex justify-center items-center min-h-[calc(100vh-4rem)]">
+    <section className="relative py-20 flex justify-center items-center min-h-[calc(100vh-4rem)]">
       <div className="absolute inset-0 z-9">
         <LetterGlitchBackground
           glitchColors={["#2b4539", "#61dca3", "#61b3dc"]}

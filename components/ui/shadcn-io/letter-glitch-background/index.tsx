@@ -253,7 +253,7 @@ export const LetterGlitchBackground = forwardRef<HTMLDivElement, LetterGlitchBac
   return (
     <div
       ref={ref}
-      className={cn("relative w-full h-full bg-background overflow-hidden", className)}
+      className={cn("relative w-full h-full overflow-hidden", className)}
       {...domProps}
     >
       <canvas ref={canvasRef} className="block w-full h-full" />
