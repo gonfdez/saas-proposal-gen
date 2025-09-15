@@ -273,10 +273,10 @@
       "toneOfVoice": {
         "label": "Tone of Voice",
         "placeholder": "Select a tone for the AI",
-        "profesional": "Professional and approachable",
-        "inspirador": "Inspirational and motivational",
-        "tecnico": "Technical and educational",
-        "cercano": "Fun and informal"
+        "professional": "Professional and approachable",
+        "inspiring": "Inspirational and motivational",
+        "technical": "Technical and educational",
+        "friendly": "Fun and informal"
       },
       "submit": "Save Profile",
       "error": {

@@ -11,7 +11,7 @@ export type Profile = {
   role: string
   valueProposition: string
   targetAudience: string
-  toneOfVoice: "profesional" | "inspirador" | "tecnico" | "cercano"
+  toneOfVoice: "professional" | "inspiring" | "technical" | "friendly"
 };
 
 export type SavedFile = {
@@ -63,9 +63,26 @@ export const DashboardProvider = (props: DashboardProviderProps) => {
     // TODO: Reemplaza esto con tu llamada real a Supabase
     // Mock data por ahora
     const mockData: Profile[] = [
-      { id: "1", type: "personal", name: "Juan Pérez", role: "Consultor de Marketing Digital", valueProposition: "Ayudo a empresas B2B a generar leads cualificados.", targetAudience: "Directores de Marketing en empresas de tecnología.", toneOfVoice: "profesional" },
-      { id: "2", type: "brand", name: "Acme Corp", role: "Agencia de Crecimiento", valueProposition: "Escalamos startups con estrategias de growth hacking.", targetAudience: "Startups en fase de crecimiento.", toneOfVoice: "inspirador" }
+      {
+        id: "1",
+        type: "personal",
+        name: "Juan Pérez",
+        role: "Digital Marketing Consultant",
+        valueProposition: "I help B2B companies generate qualified leads.",
+        targetAudience: "Marketing Directors in technology companies.",
+        toneOfVoice: "professional"
+      },
+      {
+        id: "2",
+        type: "brand",
+        name: "Acme Corp",
+        role: "Growth Agency",
+        valueProposition: "We scale startups with growth hacking strategies.",
+        targetAudience: "Startups in the growth phase.",
+        toneOfVoice: "inspiring"
+      }
     ];
+
     setTimeout(() => { // Simula el delay de la red
       setProfiles(mockData);
       // setSelectedProfile(mockData[0])
@@ -93,9 +110,10 @@ export const DashboardProvider = (props: DashboardProviderProps) => {
     // TODO: Reemplaza esto con tu llamada real a Supabase
     // Mock data por ahora
     const mockData: SavedFile[] = [
-      { id: "1", type: "text_message", profileId: "1", content: "¡Hola Equipo de Marketing de TechGrowth! Espero que este mensaje les encuentre bien. Soy Fulano Dominguez, Director de Ventas de SEO Consulting SL.\nMe he tomado la libertad de contactarles porque me entusiasma su trabajo y creo que podría tener una propuesta interesante para ustedes. En SEO Consulting SL, nos especializamos en optimizar la visibilidad online de empresas como la suya. Imaginen un aumento significativo en el tráfico web, con clientes potenciales tocando a la puerta de forma constante.\nHemos logrado resultados sorprendentes para otros clientes, incluyendo un incremento superior al 120% en el tráfico orgánico en tan solo cuatro meses. Nuestra estrategia incluye análisis exhaustivos, optimización de contenido y una sólida estrategia de linkbuilding.\nMe encantaría charlar con ustedes y explicarles cómo podemos potenciar el posicionamiento de TechGrowth. ¿Qué les parecería si coordinamos una breve conversación telefónica para explorar cómo podemos impulsar sus resultados? Estoy disponible cuando les venga bien. ¡Espero su respuesta!", meta: { createdAt: new Date().toISOString() } },
-      { id: "2", type: "email", profileId: "1", content: '<h2>Propuesta de Colaboración: Impulso SEO para TechGrowth</h2>\n\n<p>Estimado equipo de marketing de TechGrowth,</p>\n\n<p>Espero que este correo les encuentre bien. Mi nombre es Fulano Dominguez, Director de Ventas de SEO Consulting SL, y les escribo con una propuesta que podría llevar su presencia online al siguiente nivel. En SEO Consulting SL, nos especializamos en servicios de SEO mensual, incluyendo optimización de contenido y linkbuilding, auditoría técnica, mapa de keywords y optimización on-page. </p>\n\n<p>Hemos logrado resultados significativos para clientes similares, como un <strong>incremento del +120% en tráfico orgánico en solo cuatro meses</strong>. Nos encantaría replicar ese éxito con TechGrowth.</p>\n\n<p>Entendemos el valor de una estrategia SEO sólida y el impacto directo que tiene en el crecimiento. Por eso, me gustaría mucho tener la oportunidad de conversar con ustedes y explicarles cómo podemos ayudarles a alcanzar sus objetivos de marketing digital.</p>\n\n<p>¿Les parecería bien <strong>agendar una breve llamada</strong> donde pueda detallarles nuestros servicios?</p>\n\n<p>Quedo a su disposición. </p>\n\n<p>Saludos cordiales,</p>\n\n<p>Fulano Dominguez<br>Director de Ventas, SEO Consulting SL</p>', meta: { createdAt: new Date().toISOString() } }
+      { id: "1", type: "text_message", profileId: "1", content: "Hello TechGrowth Marketing Team! I hope this message finds you well. My name is Fulano Dominguez, Sales Director at SEO Consulting SL.\nI took the liberty of reaching out because I’m excited about your work and believe I have an interesting proposal for you. At SEO Consulting SL, we specialize in optimizing the online visibility of companies like yours. Imagine a significant increase in web traffic, with potential clients constantly knocking at your door.\nWe’ve achieved outstanding results for other clients, including an increase of over 120% in organic traffic in just four months. Our strategy includes thorough analysis, content optimization, and a solid link-building strategy.\nI’d love to chat with you and explain how we can boost TechGrowth’s search engine ranking. How about we schedule a brief phone conversation to explore how we can drive your results? I’m available whenever it’s convenient for you. I look forward to your response!", meta: { createdAt: new Date().toISOString() } },
+      { id: "2", type: "email", profileId: "1", content: '<h2>Collaboration Proposal: SEO Boost for TechGrowth</h2>\n\n<p>Dear TechGrowth marketing team,</p>\n\n<p>I hope this email finds you well. My name is Fulano Dominguez, Sales Director at SEO Consulting SL, and I’m writing to you with a proposal that could take your online presence to the next level. At SEO Consulting SL, we specialize in monthly SEO services, including content optimization and link-building, technical audits, keyword mapping, and on-page optimization.</p>\n\n<p>We’ve achieved significant results for similar clients, such as a <strong>+120% increase in organic traffic in just four months</strong>. We’d love to replicate that success with TechGrowth.</p>\n\n<p>We understand the value of a strong SEO strategy and the direct impact it has on growth. That’s why I would greatly appreciate the opportunity to talk with you and explain how we can help you reach your digital marketing goals.</p>\n\n<p>Would you be open to <strong>scheduling a brief call</strong> where I can detail our services?</p>\n\n<p>I remain at your disposal.</p>\n\n<p>Kind regards,</p>\n\n<p>Fulano Dominguez<br>Sales Director, SEO Consulting SL</p>', meta: { createdAt: new Date().toISOString() } }
     ];
+
     setTimeout(() => { // Simula el delay de la red
       setSavedFiles(mockData);
       setIsLoading(false);

@@ -34,17 +34,6 @@ import { PlusCircle } from "lucide-react";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
-const profileFormSchema = z.object({
-  type: z.enum(["personal", "brand"], { error: "error.type" }),
-  name: z.string().min(2, "error.name"),
-  role: z.string().min(3, "error.role"),
-  valueProposition: z.string().min(10, "error.valueProposition"),
-  targetAudience: z.string().min(10, "error.targetAudience"),
-  toneOfVoice: z.enum(["profesional", "inspirador", "tecnico", "cercano"], { error: "error.toneOfVoice" }),
-});
-
-type ProfileFormValues = z.infer<typeof profileFormSchema>;
-
 interface ProfileDialogProps {
   onProfileCreated: () => void;
   isFirstProfile?: boolean;
@@ -54,6 +43,15 @@ export const NewProfileDialog: React.FC<ProfileDialogProps> = ({ onProfileCreate
   const t = useTranslations("dashboard.newProfileDialog");
   const [open, setOpen] = useState(false);
 
+  const profileFormSchema = z.object({
+    type: z.enum(["personal", "brand"], { error: t("error.type") }),
+    name: z.string().min(2, t("error.name")),
+    role: z.string().min(3, t("error.role")),
+    valueProposition: z.string().min(10, t("error.valueProposition")),
+    targetAudience: z.string().min(10, t("error.targetAudience")),
+    toneOfVoice: z.enum(["professional","inspiring","technical","friendly"], { error: t("error.toneOfVoice") }),
+  });
+  type ProfileFormValues = z.infer<typeof profileFormSchema>;
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
@@ -190,10 +188,10 @@ export const NewProfileDialog: React.FC<ProfileDialogProps> = ({ onProfileCreate
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="profesional">{t("toneOfVoice.profesional")}</SelectItem>
-                      <SelectItem value="inspirador">{t("toneOfVoice.inspirador")}</SelectItem>
-                      <SelectItem value="tecnico">{t("toneOfVoice.tecnico")}</SelectItem>
-                      <SelectItem value="cercano">{t("toneOfVoice.cercano")}</SelectItem>
+                      <SelectItem value="professional">{t("toneOfVoice.professional")}</SelectItem>
+                      <SelectItem value="inspiring">{t("toneOfVoice.inspiring")}</SelectItem>
+                      <SelectItem value="technical">{t("toneOfVoice.technical")}</SelectItem>
+                      <SelectItem value="friendly">{t("toneOfVoice.friendly")}</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />

@@ -273,10 +273,10 @@
       "toneOfVoice": {
         "label": "Tono de Voz",
         "placeholder": "Selecciona un tono para la IA",
-        "profesional": "Profesional y cercano",
-        "inspirador": "Inspirador y motivacional",
-        "tecnico": "Técnico y didáctico",
-        "cercano": "Divertido e informal"
+        "professional": "Profesional y cercano",
+        "inspiring": "Inspirador y motivacional",
+        "technical": "Técnico y didáctico",
+        "friendly": "Divertido e informal"
       },
       "submit": "Guardar Perfil",
       "error": {
