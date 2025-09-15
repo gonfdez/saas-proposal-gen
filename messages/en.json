@@ -230,6 +230,7 @@
     "profilesAndFiles": {
       "description": "Manage the different identities the AI will use to generate content. Each profile has a unique tone and value proposition.",
       "yourProfiles": "Your Profiles",
+      "selected": "Selected",
       "noProfilesYet": "You don't have any profiles yet",
       "createFirstProfileToStart": "Create your first profile to start generating personalized content.",
       "yourFiles": "Generated Files",

@@ -230,6 +230,7 @@
     "profilesAndFiles": {
       "description": "Gestiona las diferentes identidades que usará la IA para generar contenido. Cada perfil tiene un tono y una propuesta de valor únicos.",
       "yourProfiles": "Tus perfiles",
+      "selected": "Seleccionado",
       "noProfilesYet": "No tienes perfiles todavía",
       "createFirstProfileToStart": "Crea tu primer perfil para empezar a generar contenido personalizado.",
       "yourFiles": "Archivos generados",

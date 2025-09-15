@@ -25,7 +25,7 @@ export default function ProfilesList() {
             onEdit={handleEditProfile}
             showBadge={profile.id === selectedProfile?.id}
             onClick={() => setSelectedProfile(profile)}
-            badgeText="Seleccionado"
+            badgeText={t("selected")}
           />
         ))}
       </div>
