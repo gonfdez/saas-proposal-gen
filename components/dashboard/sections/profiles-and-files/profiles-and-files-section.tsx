@@ -2,7 +2,7 @@
 
 import React from "react";
 import { NewProfileDialog } from "./new-profile-dialog";
-import useDashboard from "../../context/useDashboard";
+import useDashboard from "../../../../hooks/useDashboard";
 import { Label } from "@/components/ui/label";
 import SavedFilesList from "./saved-files-list";
 import ProfilesList from "./profiles-list";

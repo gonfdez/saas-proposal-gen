@@ -1,5 +1,5 @@
 import { Label } from "@/components/ui/label"
-import useDashboard from "../../context/useDashboard"
+import useDashboard from "../../../../hooks/useDashboard"
 import { ProfileCard } from "./profile-card"
 import { useTranslations } from "next-intl"
 

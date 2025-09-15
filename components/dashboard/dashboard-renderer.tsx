@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import useDashboard from "./context/useDashboard";
+import useDashboard from "../../hooks/useDashboard";
 import ProposalWizard from "../proposal-wizard/proposal-wizard";
 import { DashboardSectionKey } from "./dashboard-sections";
 import ProfilesAndFilesSection from "./sections/profiles-and-files/profiles-and-files-section";

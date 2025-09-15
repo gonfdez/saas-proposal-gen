@@ -3,7 +3,7 @@
 import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Button } from "../../ui/button"
-import useDashboard from "../context/useDashboard"
+import useDashboard from "../../../hooks/useDashboard"
 import { useTranslations } from "next-intl"
 
 export function SiteHeader() {

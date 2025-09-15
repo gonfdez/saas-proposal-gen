@@ -1,7 +1,7 @@
 "use client"
 
 import { useContext } from 'react';
-import { DashboardContext } from './dashboard-context';
+import { DashboardContext } from '../components/dashboard/context/dashboard-context';
 
 const useDashboard = () => {
   const context = useContext(DashboardContext);

@@ -26,7 +26,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import useDashboard from "../context/useDashboard"
+import useDashboard from "../../../hooks/useDashboard"
 import { userDashboardSections } from "../dashboard-sections"
 import { useTranslations } from "next-intl"
 

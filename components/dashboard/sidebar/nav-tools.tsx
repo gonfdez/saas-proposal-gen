@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/sidebar"
 import React from "react"
 import { toolDashboardSections } from "../dashboard-sections"
-import useDashboard from "../context/useDashboard"
+import useDashboard from "../../../hooks/useDashboard"
 import { useTranslations } from "next-intl"
 
 export function NavTools() {

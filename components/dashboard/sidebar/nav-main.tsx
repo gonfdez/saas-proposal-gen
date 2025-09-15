@@ -8,7 +8,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import React from "react"
-import useDashboard from "../context/useDashboard"
+import useDashboard from "../../../hooks/useDashboard"
 import { mainDashboardSections } from "../dashboard-sections"
 import { useTranslations } from "next-intl"
 

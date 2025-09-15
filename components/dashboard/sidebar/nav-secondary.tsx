@@ -10,7 +10,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { secondaryDashboardSections } from "../dashboard-sections"
-import useDashboard from "../context/useDashboard"
+import useDashboard from "../../../hooks/useDashboard"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { useTranslations } from "next-intl"
 
