@@ -1,4 +1,7 @@
 {
+  "demo": {
+    "toast": "🚧 This is a DEMO in development 🚧"
+  },
   "navigation": {
     "pricing": "Pricing",
     "login": "Sign In",

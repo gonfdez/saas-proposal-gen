@@ -1,4 +1,7 @@
 {
+  "demo": {
+    "toast": "🚧 Esta es una DEMO en desarrollo 🚧"
+  },
   "navigation": {
     "pricing": "Precios",
     "login": "Iniciar Sesión",

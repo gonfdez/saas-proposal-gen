@@ -4,12 +4,12 @@ import {
   SidebarInset,
   SidebarProvider,
 } from "@/components/ui/sidebar"
-import { DashboardProvider } from "@/components/dashboard/context/dashboard-context";
-import DashboardRenderer from "@/components/dashboard/dashboard-renderer";
-import { User } from "@supabase/supabase-js";
+import { DashboardProvider } from "@/components/dashboard/context/dashboard-context"
+import DashboardRenderer from "@/components/dashboard/dashboard-renderer"
+import { User } from "@supabase/supabase-js"
+import { DemoToast } from "@/components/demo-toast"
 
-export default async function Page() {
-
+export default function DemoDashboardPage() {
   const user: User = {
     aud: "demouseraud",
     id: "demouserid",
@@ -19,10 +19,11 @@ export default async function Page() {
     user_metadata: {
       name: "Demo User",
       lastName: "Lastname",
-    }
+    },
   }
 
-  return (
+  return (<>
+    <DemoToast />
     <DashboardProvider user={user}>
       <SidebarProvider
         style={
@@ -39,5 +40,5 @@ export default async function Page() {
         </SidebarInset>
       </SidebarProvider>
     </DashboardProvider>
-  )
+  </>)
 }
