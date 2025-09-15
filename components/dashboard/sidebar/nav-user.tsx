@@ -88,7 +88,7 @@ export function NavUser() {
               {userDashboardSections.map((item) => (
                 <DropdownMenuItem key={item.sectionKey} onClick={() => setActiveSection(item.sectionKey)}>
                   <item.icon />
-                  <span>{item.sectionKey}</span>
+                  <span>{t(`sectionTitle.${item.sectionKey}`)}</span>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuGroup>

@@ -4,9 +4,10 @@ import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Button } from "../../ui/button"
 import useDashboard from "../context/useDashboard"
+import { useTranslations } from "next-intl"
 
 export function SiteHeader() {
-
+  const t = useTranslations('dashboard')
   const { activeSection } = useDashboard()
 
   return (
@@ -17,11 +18,11 @@ export function SiteHeader() {
           orientation="vertical"
           className="mx-2 data-[orientation=vertical]:h-4"
         />
-        <h1 className="text-base font-medium">{activeSection}</h1>
+        <h1 className="text-base font-medium">{t(`sectionTitle.${activeSection}`)}</h1>
         <div className="ml-auto flex items-center gap-2">
           <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
             <span>
-              sendFeedback
+              {t('sendFeedback')}
             </span>
           </Button>
         </div>

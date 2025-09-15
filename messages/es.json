@@ -209,6 +209,20 @@
   },
   "dashboard": {
     "tools": "Herramientas",
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar sesión",
+    "sendFeedback": "Enviar Feedback",
+    "sectionTitle": {
+      "profilesAndFiles": "Perfiles y Archivos",
+      "princingAndPlans": "Precios y Planes",
+      "getHelp": "Obtener Ayuda",
+      "messageGenerator": "Generar Mensaje de Texto",
+      "pdfGenerator": "Generar PDF",
+      "linkedinPostGenerator": "Generar Post para LinkedIn",
+      "redditPostGenerator": "Generar Post para Reddit",
+      "twitterPostGenerator": "Generar Post para Twitter",
+      "mailGenerator": "Generar Email",
+      "account": "Cuenta",
+      "billing": "Facturación"
+    }
   }
 }

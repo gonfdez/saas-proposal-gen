@@ -24,7 +24,7 @@ export function NavTools() {
           <SidebarMenuItem key={item.sectionKey}>
             <SidebarMenuButton onClick={() => setActiveSection(item.sectionKey)}>
               <item.icon />
-              <span>{item.sectionKey}</span>
+              <span>{t(`sectionTitle.${item.sectionKey}`)}</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         ))}

@@ -209,6 +209,20 @@
   },
   "dashboard": {
     "tools": "Tools",
-    "logout": "Log out"
+    "logout": "Log out",
+    "sendFeedback": "Send Feedback",
+    "sectionTitle": {
+      "profilesAndFiles": "Profiles and Files",
+      "princingAndPlans": "Pricing and Plans",
+      "getHelp": "Get Help",
+      "messageGenerator": "Text Message Generator",
+      "pdfGenerator": "PDF Generator",
+      "linkedinPostGenerator": "LinkedIn Post Generator",
+      "redditPostGenerator": "Reddit Post Generator",
+      "twitterPostGenerator": "Twitter Post Generator",
+      "mailGenerator": "Mail Generator",
+      "account": "Account",
+      "billing": "Billing"
+    }
   }
 }

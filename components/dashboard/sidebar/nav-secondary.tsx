@@ -12,8 +12,10 @@ import {
 import { secondaryDashboardSections } from "../dashboard-sections"
 import useDashboard from "../context/useDashboard"
 import { LanguageSwitcher } from "@/components/language-switcher"
+import { useTranslations } from "next-intl"
 
 export function NavSecondary(props: React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
+  const t = useTranslations('dashboard.sectionTitle')
   const { setActiveSection } = useDashboard()
 
   return (
@@ -29,7 +31,7 @@ export function NavSecondary(props: React.ComponentPropsWithoutRef<typeof Sideba
             <SidebarMenuItem key={item.sectionKey}>
               <SidebarMenuButton onClick={() => setActiveSection(item.sectionKey)}>
                 <item.icon />
-                <span>{item.sectionKey}</span>
+                <span>{t(item.sectionKey)}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}

@@ -10,8 +10,10 @@ import {
 import React from "react"
 import useDashboard from "../context/useDashboard"
 import { mainDashboardSections } from "../dashboard-sections"
+import { useTranslations } from "next-intl"
 
 export function NavMain() {
+  const t = useTranslations('dashboard.sectionTitle')
   const { setActiveSection } = useDashboard()
 
   return (
@@ -22,7 +24,7 @@ export function NavMain() {
             <SidebarMenuItem key={item.sectionKey}>
               <SidebarMenuButton onClick={() => setActiveSection(item.sectionKey)}>
                 <item.icon />
-                <span>{item.sectionKey}</span>
+                <span>{t(item.sectionKey)}</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
