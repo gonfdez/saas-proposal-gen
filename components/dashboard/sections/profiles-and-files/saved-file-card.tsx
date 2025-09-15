@@ -25,16 +25,51 @@ interface SavedFileCardProps {
 export const SavedFileCard: React.FC<SavedFileCardProps> = ({ savedFile, onDelete, onEdit }) => {
   const t = useTranslations('dashboard.profilesAndFiles')
 
+  const renderFileCardTitle = () => {
+    switch (savedFile.type) {
+      case "text_message":
+        return <><MessageSquareText className="h-4 w-4" />{t('textMessage')}</>
+      case "email":
+        return <><Mail className="h-4 w-4" />{t('email')}</>
+      default:
+        return <>Unknown</>
+    }
+  }
+
+  const renderFileThumbnail = () => {
+    switch (savedFile.type) {
+      case "text_message":
+        return (
+          <div className="max-h-100 overflow-y-auto rounded-sm border bg-muted p-3 text-sm leading-relaxed">
+            <p className="whitespace-pre-wrap">
+              {savedFile.content}
+            </p>
+          </div>
+        )
+      case "email":
+        return (
+          <div className="max-h-100 overflow-y-auto rounded-sm border bg-muted p-3 text-sm leading-relaxed">
+            <div
+              className="space-y-3 [&>h2]:text-lg [&>h2]:font-semibold [&>h2]:mb-4 [&>p]:mb-3 [&>p]:text-muted-foreground"
+              dangerouslySetInnerHTML={{ __html: savedFile.content }}
+            />
+          </div>
+        )
+      default:
+        return (
+          <p className="text-sm text-muted-foreground border p-2">
+            {savedFile.content}
+          </p>
+        )
+    }
+  }
+
   return (
     <Card className="h-fit cursor-default">
       <CardHeader className="flex flex-row items-start justify-between">
         <div className="space-y-1.5">
           <CardTitle className="flex items-center gap-2">
-            {savedFile.type === "text_message" ? (
-              <><MessageSquareText className="h-4 w-4" />{t('textMessage')}</>
-            ) : (
-              <><Mail className="h-4 w-4" />{t('email')}</>
-            )}
+            {renderFileCardTitle()}
           </CardTitle>
           <CardDescription>{t('generatedAt')} {new Date(savedFile.meta.createdAt).toLocaleString()}</CardDescription>
         </div>
@@ -57,9 +92,7 @@ export const SavedFileCard: React.FC<SavedFileCardProps> = ({ savedFile, onDelet
         </DropdownMenu>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-muted-foreground border p-2">
-          {savedFile.content}
-        </p>
+        {renderFileThumbnail()}
       </CardContent>
     </Card>
   );

@@ -16,7 +16,7 @@ export default function ProfilesList() {
   return (
     <div className="space-y-3">
       <Label>{t('yourProfiles')}:</Label>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid gap-6 grid-cols-1 lg:grid-cols-3 xl:grid-cols-4">
         {profiles.map((profile) => (
           <ProfileCard
             key={profile.id}
