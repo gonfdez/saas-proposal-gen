@@ -228,7 +228,7 @@
       "billing": "Billing"
     },
     "profilesAndFiles": {
-      "description": "Manage the different identities the AI will use to generate content. Each profile has a unique tone and value proposition.",
+      "description": "Manage the different identities that the AI will use to generate content. Each profile has its own unique tone and value proposition.",
       "yourProfiles": "Your Profiles",
       "selected": "Selected",
       "noProfilesYet": "You don't have any profiles yet",
