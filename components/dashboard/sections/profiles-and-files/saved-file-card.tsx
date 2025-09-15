@@ -40,7 +40,7 @@ export const SavedFileCard: React.FC<SavedFileCardProps> = ({ savedFile, onDelet
     switch (savedFile.type) {
       case "text_message":
         return (
-          <div className="max-h-100 overflow-y-auto rounded-sm border bg-muted p-3 text-sm leading-relaxed">
+          <div className="max-h-100 overflow-y-auto rounded-sm border bg-background p-3 text-sm leading-relaxed">
             <p className="whitespace-pre-wrap">
               {savedFile.content}
             </p>
@@ -48,7 +48,7 @@ export const SavedFileCard: React.FC<SavedFileCardProps> = ({ savedFile, onDelet
         )
       case "email":
         return (
-          <div className="max-h-100 overflow-y-auto rounded-sm border bg-muted p-3 text-sm leading-relaxed">
+          <div className="max-h-100 overflow-y-auto rounded-sm border bg-background p-3 text-sm leading-relaxed">
             <div
               className="space-y-3 [&>h2]:text-lg [&>h2]:font-semibold [&>h2]:mb-4 [&>p]:mb-3 [&>p]:text-muted-foreground"
               dangerouslySetInnerHTML={{ __html: savedFile.content }}
