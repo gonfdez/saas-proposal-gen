@@ -100,7 +100,7 @@ export default function PricingSection({ className }: { className?: string }) {
               </TabsTrigger>
             </TabsList>
           </Tabs>
-          <div className="mt-8 grid w-full max-w-4xl gap-8 lg:grid-cols-3">
+          <div className="mt-8 grid w-full max-w-4xl gap-8 lg:grid-cols-2">
             {plans.map((plan) => (
               <Card
                 className={cn(
