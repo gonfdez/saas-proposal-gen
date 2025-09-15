@@ -88,7 +88,7 @@
   "cta": {
     "title": "¿Listo para Transformar tu Proceso de Propuestas?",
     "subtitle": "Únete a miles de profesionales que ya han optimizado su creación de propuestas",
-    "button": "Inicia tu Prueba Gratuita",
+    "button": "Empieza Gratis",
     "no_credit_card": "No se requiere tarjeta de crédito"
   },
   "auth": {
@@ -149,8 +149,10 @@
     "title": "Precios Simples y Transparentes",
     "subtitle": "Elige el plan que se adapte a tus necesidades",
     "monthly": "Mensual",
-    "annually": "Anual",
-    "save": "Ahorra 20%",
+    "yearly": "Anual",
+    "off": "más barato",
+    "month": "mes",
+    "billed": "facturación",
     "hobby": {
       "name": "Hobby",
       "price": "Gratis para siempre",

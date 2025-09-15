@@ -88,7 +88,7 @@
   "cta": {
     "title": "Ready to Transform Your Proposal Process?",
     "subtitle": "Join thousands of professionals who've already streamlined their proposal creation",
-    "button": "Start Your Free Trial",
+    "button": "Get Started Free",
     "no_credit_card": "No credit card required"
   },
   "auth": {
@@ -149,8 +149,10 @@
     "title": "Simple, Transparent Pricing",
     "subtitle": "Choose the plan that fits your needs",
     "monthly": "Monthly",
-    "annually": "Annually",
-    "save": "Save 20%",
+    "yearly": "Yearly",
+    "off": "off",
+    "month": "mes",
+    "billed": "billed",
     "hobby": {
       "name": "Hobby",
       "price": "Free forever",

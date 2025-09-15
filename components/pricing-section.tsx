@@ -93,10 +93,10 @@ export default function PricingSection({ className }: { className?: string }) {
           </p>
           <Tabs defaultValue={frequency} onValueChange={setFrequency}>
             <TabsList>
-              <TabsTrigger value="monthly">Monthly</TabsTrigger>
+              <TabsTrigger value="monthly">{t('monthly')}</TabsTrigger>
               <TabsTrigger value="yearly">
-                Yearly
-                <Badge variant="secondary">20% off</Badge>
+                {t('yearly')}
+                <Badge variant="secondary">20% {t('off')}</Badge>
               </TabsTrigger>
             </TabsList>
           </Tabs>
@@ -129,7 +129,7 @@ export default function PricingSection({ className }: { className?: string }) {
                           currency: 'USD',
                           maximumFractionDigits: 0,
                         }}
-                        suffix={`/month, billed ${frequency}.`}
+                        suffix={`/${t('month')}, ${t('billed')} ${t(frequency).toLocaleLowerCase()}.`}
                         value={
                           plan.price[
                           frequency as keyof typeof plan.price
