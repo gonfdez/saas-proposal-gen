@@ -36,13 +36,13 @@ export function SolutionSection() {
       <div className="absolute inset-0 z-9">
         <LetterGlitchBackground
           glitchColors={["#2b4539", "#61dca3", "#61b3dc"]}
-          glitchSpeed={200}
+          glitchSpeed={50}
           centerVignette={false}
           outerVignette={false}
           smooth={true}
-          fontSize={60}
-          charWidth={70}
-          charHeight={80}
+          fontSize={10}
+          charWidth={50}
+          charHeight={50}
         />
       </div>
       <div className="w-full z-10">
