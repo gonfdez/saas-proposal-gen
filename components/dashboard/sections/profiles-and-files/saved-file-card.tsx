@@ -22,7 +22,7 @@ interface SavedFileCardProps {
 }
 
 export const SavedFileCard: React.FC<SavedFileCardProps> = ({ savedFile, onDelete, onEdit }) => (
-  <Card className="h-fit">
+  <Card className="h-fit cursor-default">
     <CardHeader className="flex flex-row items-start justify-between">
       <div className="space-y-1.5">
         <CardTitle className="flex items-center gap-2">

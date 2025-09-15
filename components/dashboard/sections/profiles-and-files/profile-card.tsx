@@ -30,7 +30,7 @@ interface ProfileCardProps {
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, showBadge = false, onClick, onDelete, onEdit, className, badgeText, footer }) => (
-  <Card className={`relative ${showBadge && 'ring-2 ring-primary'} ${className || ''}`} onClick={() => onClick && onClick()}>
+  <Card className={`relative ${showBadge && 'ring-2 ring-primary'} ${className || ''} cursor-default`} onClick={() => onClick && onClick()}>
     {showBadge && (
       <Badge className="-translate-x-1/2 -translate-y-1/2 absolute top-0 left-1/2 rounded-full">
         {badgeText}

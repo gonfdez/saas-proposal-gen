@@ -2,19 +2,15 @@
 
 import React from "react";
 import { NewProfileDialog } from "./new-profile-dialog";
-import { ProfileCard } from "./profile-card";
 import useDashboard from "../../context/useDashboard";
 import { Label } from "@/components/ui/label";
 import SavedFilesList from "./saved-files-list";
+import ProfilesList from "./profiles-list";
 
 export default function ProfilesAndFilesSection() {
   const {
-    selectedProfile,
-    setSelectedProfile,
     profiles,
     fetchProfiles,
-    handleDeleteProfile,
-    handleEditProfile
   } = useDashboard()
 
   return (
@@ -28,22 +24,7 @@ export default function ProfilesAndFilesSection() {
       </div>
       {profiles.length > 0 ? (
         <>
-          <div className="space-y-3">
-            <Label>Tus perfiles:</Label>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {profiles.map((profile) => (
-                <ProfileCard
-                  key={profile.id}
-                  profile={profile}
-                  onDelete={handleDeleteProfile}
-                  onEdit={handleEditProfile}
-                  showBadge={profile.id === selectedProfile?.id}
-                  onClick={() => setSelectedProfile(profile)}
-                  badgeText="Seleccionado"
-                />
-              ))}
-            </div>
-          </div>
+          <ProfilesList />
           <SavedFilesList />
         </>
       ) : (
