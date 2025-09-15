@@ -12,7 +12,7 @@ export function DemoToast() {
       toast(t('toast'), {
         duration: Infinity,
         className: "flex justify-center font-bold",
-        position: "top-center"
+        position: "bottom-center"
       })
     }, 300)
   }, [t])
