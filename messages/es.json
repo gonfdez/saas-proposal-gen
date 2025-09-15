@@ -226,6 +226,67 @@
       "mailGenerator": "Generar Email",
       "account": "Cuenta",
       "billing": "Facturación"
+    },
+    "profilesAndFiles": {
+      "description": "Gestiona las diferentes identidades que usará la IA para generar contenido. Cada perfil tiene un tono y una propuesta de valor únicos.",
+      "yourProfiles": "Tus perfiles",
+      "noProfilesYet": "No tienes perfiles todavía",
+      "createFirstProfileToStart": "Crea tu primer perfil para empezar a generar contenido personalizado.",
+      "yourFiles": "Archivos generados",
+      "selectAProfile": "Selecciona un perfil",
+      "selectProfileToSeeFiles": "Selecciona un perfi para ver su contenido generado aqui.",
+      "noFilesYet": "No tienes archivos generados con este perfil",
+      "generateFirstContentToSeeIt": "Crea tu primer contenido para verlo aqui.",
+      "generateFirstContent": "Generar Primer Contenido",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "generatedAt": "Generado el",
+      "textMessage": "Mensaje de Texto",
+      "email": "Correo electrónico"
+    },
+    "newProfileDialog": {
+      "createFirstProfile": "Crear Primer Perfil",
+      "createNewProfile": "Crear Nuevo Perfil",
+      "title": "Crear Nuevo Perfil",
+      "description": "Completa los detalles de esta identidad. La IA la usará para adaptar el tono y el contenido.",
+      "type": {
+        "label": "Tipo de Perfil",
+        "personal": "Personal",
+        "brand": "Marca"
+      },
+      "name": {
+        "label": "Nombre del Perfil",
+        "placeholder": "Ej: Juan Pérez o Acme Corp"
+      },
+      "role": {
+        "label": "¿Quién soy? (Mi Rol)",
+        "placeholder": "Ej: Consultor de Marketing, Diseñador Freelance"
+      },
+      "valueProposition": {
+        "label": "¿Qué hago/vendo? (Propuesta de Valor)",
+        "placeholder": "Ej: Ayudo a empresas a..."
+      },
+      "targetAudience": {
+        "label": "Mi Público Objetivo",
+        "placeholder": "Ej: Directores de marketing en startups tecnológicas"
+      },
+      "toneOfVoice": {
+        "label": "Tono de Voz",
+        "placeholder": "Selecciona un tono para la IA",
+        "profesional": "Profesional y cercano",
+        "inspirador": "Inspirador y motivacional",
+        "tecnico": "Técnico y didáctico",
+        "cercano": "Divertido e informal"
+      },
+      "submit": "Guardar Perfil",
+      "error": {
+        "type": "Selecciona un tipo de perfil.",
+        "name": "El nombre debe tener al menos 2 caracteres.",
+        "role": "El rol es demasiado corto.",
+        "valueProposition": "Describe tu propuesta de valor con más detalle.",
+        "targetAudience": "Describe tu público objetivo con más detalle.",
+        "toneOfVoice": "Selecciona un tono de voz."
+      }
     }
   }
 }

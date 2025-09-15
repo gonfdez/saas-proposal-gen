@@ -1,8 +1,10 @@
 import { Label } from "@/components/ui/label"
 import useDashboard from "../../context/useDashboard"
 import { ProfileCard } from "./profile-card"
+import { useTranslations } from "next-intl"
 
 export default function ProfilesList() {
+  const t = useTranslations('dashboard.profilesAndFiles')
   const {
     profiles,
     selectedProfile,
@@ -13,7 +15,7 @@ export default function ProfilesList() {
 
   return (
     <div className="space-y-3">
-      <Label>Tus perfiles:</Label>
+      <Label>{t('yourProfiles')}:</Label>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {profiles.map((profile) => (
           <ProfileCard

@@ -1,3 +1,5 @@
+"use client"
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -30,23 +32,15 @@ import {
 } from "@/components/ui/select";
 import { PlusCircle } from "lucide-react";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 const profileFormSchema = z.object({
-  type: z.enum(["personal", "brand"],
-    { error: "Selecciona un tipo de perfil." }
-  ),
-  name: z.string().min(2, "El nombre debe tener al menos 2 caracteres."),
-  role: z.string().min(3, "El rol es demasiado corto."),
-  valueProposition: z
-    .string()
-    .min(10, "Describe tu propuesta de valor con más detalle."),
-  targetAudience: z
-    .string()
-    .min(10, "Describe tu público objetivo con más detalle."),
-  toneOfVoice: z.enum(
-    ["profesional", "inspirador", "tecnico", "cercano"],
-    { error: "Selecciona un tono de voz." }
-  ),
+  type: z.enum(["personal", "brand"], { error: "error.type" }),
+  name: z.string().min(2, "error.name"),
+  role: z.string().min(3, "error.role"),
+  valueProposition: z.string().min(10, "error.valueProposition"),
+  targetAudience: z.string().min(10, "error.targetAudience"),
+  toneOfVoice: z.enum(["profesional", "inspirador", "tecnico", "cercano"], { error: "error.toneOfVoice" }),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -57,7 +51,9 @@ interface ProfileDialogProps {
 }
 
 export const NewProfileDialog: React.FC<ProfileDialogProps> = ({ onProfileCreated, isFirstProfile = false }) => {
+  const t = useTranslations("dashboard.newProfileDialog");
   const [open, setOpen] = useState(false);
+
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
@@ -70,24 +66,21 @@ export const NewProfileDialog: React.FC<ProfileDialogProps> = ({ onProfileCreate
   });
 
   async function onSubmit(values: ProfileFormValues) {
-    // TODO: Aquí va tu lógica para guardar en Supabase.
-    console.log("Datos del formulario a guardar:", values);
-
-    // Simulamos que la operación fue exitosa
+    console.log("Form values:", values);
     form.reset();
     setOpen(false);
-    onProfileCreated(); // Llamamos a la función para refrescar la lista
+    onProfileCreated();
   }
 
   const triggerButton = isFirstProfile ? (
     <Button className="w-full lg:w-fit">
       <PlusCircle className="mr-2 h-4 w-4" />
-      Crear Primer Perfil
+      {t("createFirstProfile")}
     </Button>
   ) : (
     <Button variant="outline" className="w-full lg:w-fit">
       <PlusCircle className="mr-2 h-4 w-4" />
-      Crear Nuevo Perfil
+      {t("createNewProfile")}
     </Button>
   );
 
@@ -96,11 +89,8 @@ export const NewProfileDialog: React.FC<ProfileDialogProps> = ({ onProfileCreate
       <DialogTrigger asChild>{triggerButton}</DialogTrigger>
       <DialogContent className="sm:max-w-[525px]">
         <DialogHeader>
-          <DialogTitle>Crear Nuevo Perfil</DialogTitle>
-          <DialogDescription>
-            Completa los detalles de esta identidad. La IA la usará para
-            adaptar el tono y el contenido.
-          </DialogDescription>
+          <DialogTitle>{t("title")}</DialogTitle>
+          <DialogDescription>{t("description")}</DialogDescription>
         </DialogHeader>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -109,24 +99,20 @@ export const NewProfileDialog: React.FC<ProfileDialogProps> = ({ onProfileCreate
               name="type"
               render={({ field }) => (
                 <FormItem className="space-y-3">
-                  <FormLabel>Tipo de Perfil</FormLabel>
+                  <FormLabel>{t("type.label")}</FormLabel>
                   <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      className="flex space-x-4"
-                    >
+                    <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex space-x-4">
                       <FormItem className="flex items-center space-x-2 space-y-0">
                         <FormControl>
                           <RadioGroupItem value="personal" />
                         </FormControl>
-                        <FormLabel className="font-normal">Personal</FormLabel>
+                        <FormLabel className="font-normal">{t("type.personal")}</FormLabel>
                       </FormItem>
                       <FormItem className="flex items-center space-x-2 space-y-0">
                         <FormControl>
                           <RadioGroupItem value="brand" />
                         </FormControl>
-                        <FormLabel className="font-normal">Marca</FormLabel>
+                        <FormLabel className="font-normal">{t("type.brand")}</FormLabel>
                       </FormItem>
                     </RadioGroup>
                   </FormControl>
@@ -140,9 +126,9 @@ export const NewProfileDialog: React.FC<ProfileDialogProps> = ({ onProfileCreate
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nombre del Perfil</FormLabel>
+                  <FormLabel>{t("name.label")}</FormLabel>
                   <FormControl>
-                    <Input placeholder="Ej: Juan Pérez o Acme Corp" {...field} />
+                    <Input placeholder={t("name.placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -154,9 +140,9 @@ export const NewProfileDialog: React.FC<ProfileDialogProps> = ({ onProfileCreate
               name="role"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Quién soy? (Mi Rol)</FormLabel>
+                  <FormLabel>{t("role.label")}</FormLabel>
                   <FormControl>
-                    <Input placeholder="Ej: Consultor de Marketing, Diseñador Freelance" {...field} />
+                    <Input placeholder={t("role.placeholder")} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -168,13 +154,9 @@ export const NewProfileDialog: React.FC<ProfileDialogProps> = ({ onProfileCreate
               name="valueProposition"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>¿Qué hago/vendo? (Propuesta de Valor)</FormLabel>
+                  <FormLabel>{t("valueProposition.label")}</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="Ej: Ayudo a empresas a..."
-                      className="resize-none"
-                      {...field}
-                    />
+                    <Textarea placeholder={t("valueProposition.placeholder")} className="resize-none" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -186,13 +168,9 @@ export const NewProfileDialog: React.FC<ProfileDialogProps> = ({ onProfileCreate
               name="targetAudience"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Mi Público Objetivo</FormLabel>
+                  <FormLabel>{t("targetAudience.label")}</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="Ej: Directores de marketing en startups tecnológicas"
-                      className="resize-none"
-                      {...field}
-                    />
+                    <Textarea placeholder={t("targetAudience.placeholder")} className="resize-none" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -204,18 +182,18 @@ export const NewProfileDialog: React.FC<ProfileDialogProps> = ({ onProfileCreate
               name="toneOfVoice"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Tono de Voz</FormLabel>
+                  <FormLabel>{t("toneOfVoice.label")}</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="Selecciona un tono para la IA" />
+                        <SelectValue placeholder={t("toneOfVoice.placeholder")} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="profesional">Profesional y cercano</SelectItem>
-                      <SelectItem value="inspirador">Inspirador y motivacional</SelectItem>
-                      <SelectItem value="tecnico">Técnico y didáctico</SelectItem>
-                      <SelectItem value="cercano">Divertido e informal</SelectItem>
+                      <SelectItem value="profesional">{t("toneOfVoice.profesional")}</SelectItem>
+                      <SelectItem value="inspirador">{t("toneOfVoice.inspirador")}</SelectItem>
+                      <SelectItem value="tecnico">{t("toneOfVoice.tecnico")}</SelectItem>
+                      <SelectItem value="cercano">{t("toneOfVoice.cercano")}</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -224,7 +202,7 @@ export const NewProfileDialog: React.FC<ProfileDialogProps> = ({ onProfileCreate
             />
 
             <Button type="submit" className="w-full">
-              Guardar Perfil
+              {t("submit")}
             </Button>
           </form>
         </Form>

@@ -6,8 +6,10 @@ import useDashboard from "../../context/useDashboard";
 import { Label } from "@/components/ui/label";
 import SavedFilesList from "./saved-files-list";
 import ProfilesList from "./profiles-list";
+import { useTranslations } from "next-intl";
 
 export default function ProfilesAndFilesSection() {
+  const t = useTranslations('dashboard.profilesAndFiles')
   const {
     profiles,
     fetchProfiles,
@@ -17,8 +19,7 @@ export default function ProfilesAndFilesSection() {
     <div className="p-4 sm:p-6 lg:p-8 space-y-6 h-full flex flex-col">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
         <p className="text-muted-foreground">
-          Gestiona las diferentes identidades que usará la IA para generar contenido.
-          Cada perfil tiene un tono y una propuesta de valor únicos.
+          {t('description')}
         </p>
         <NewProfileDialog onProfileCreated={fetchProfiles} />
       </div>
@@ -29,11 +30,11 @@ export default function ProfilesAndFilesSection() {
         </>
       ) : (
         <div className="space-y-3 flex flex-col h-full">
-          <Label>Tus perfiles:</Label>
+          <Label>{t('yourProfiles')}:</Label>
           <div className="flex-1 flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-muted-foreground/30 p-12 text-center">
-            <h3 className="text-xl font-semibold">No tienes perfiles todavía</h3>
+            <h3 className="text-xl font-semibold">{t('noProfilesYet')}</h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Crea tu primer perfil para empezar a generar contenido personalizado.
+              {t('createFirstProfileToStart')}
             </p>
             <div className="mt-6">
               <NewProfileDialog onProfileCreated={fetchProfiles} isFirstProfile={true} />
