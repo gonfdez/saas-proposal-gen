@@ -66,7 +66,7 @@ export const DashboardProvider = (props: DashboardProviderProps) => {
       {
         id: "1",
         type: "personal",
-        name: "Juan Pérez",
+        name: "Jonh Doe",
         role: "Digital Marketing Consultant",
         valueProposition: "I help B2B companies generate qualified leads.",
         targetAudience: "Marketing Directors in technology companies.",
