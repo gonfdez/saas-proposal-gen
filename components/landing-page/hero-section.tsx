@@ -25,7 +25,7 @@ export function HeroSection() {
             </Link>
           </Button>
           <Button asChild variant="outline">
-            <Link className="no-underline" href="#">
+            <Link className="no-underline" href="/demo">
               <Play className="mr-2 h-4 w-4" />
               {t("demo")}
             </Link>
