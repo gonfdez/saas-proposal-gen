@@ -23,10 +23,10 @@ export default function FaqSection({ className }: { className?: string}) {
   ]
 
   return (
-    <div className={`py-20 px-6 ${className || ''}`}>
+    <div className={className}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 mb-4">{t("faq.title")}</h2>
+          <h2 className="mb-4 text-balance font-medium text-5xl tracking-tighter!">{t("faq.title")}</h2>
         </div>
         <div className="max-w-3xl mx-auto space-y-8">
           {faqs.map((faq, index) => (
