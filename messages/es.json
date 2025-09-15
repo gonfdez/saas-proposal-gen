@@ -243,7 +243,9 @@
       "delete": "Eliminar",
       "generatedAt": "Generado el",
       "textMessage": "Mensaje de Texto",
-      "email": "Correo electrónico"
+      "email": "Correo electrónico",
+      "audience": "Audiencia",
+      "tone": "Tono"
     },
     "newProfileDialog": {
       "createFirstProfile": "Crear Primer Perfil",
@@ -272,7 +274,7 @@
         "placeholder": "Ej: Directores de marketing en startups tecnológicas"
       },
       "toneOfVoice": {
-        "label": "Tono de Voz",
+        "label": "Tono",
         "placeholder": "Selecciona un tono para la IA",
         "professional": "Profesional y cercano",
         "inspiring": "Inspirador y motivacional",

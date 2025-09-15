@@ -31,10 +31,11 @@ interface ProfileCardProps {
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, showBadge = false, onClick, onDelete, onEdit, className, badgeText, footer }) => {
- const t = useTranslations('dashboard.profilesAndFiles')
+  const t = useTranslations('dashboard.profilesAndFiles')
+  const tTone = useTranslations('dashboard.newProfileDialog.toneOfVoice')
 
   return (
-    <Card className={`relative ${showBadge && 'ring-2 ring-primary'} ${className || ''} cursor-default`} onClick={() => onClick && onClick()}>
+    <Card className={`relative ${showBadge && 'ring-2 ring-primary'} ${className || ''} cursor-default h-fit`} onClick={() => onClick && onClick()}>
       {showBadge && (
         <Badge className="-translate-x-1/2 -translate-y-1/2 absolute top-0 left-1/2 rounded-full">
           {badgeText}
@@ -50,7 +51,9 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, showBadge = f
             )}
             {profile.name}
           </CardTitle>
-          <CardDescription>{profile.role}</CardDescription>
+          <CardDescription className="text-normal">
+            {profile.role}
+          </CardDescription>
         </div>
         {(onEdit || onDelete) &&
           <DropdownMenu>
@@ -76,9 +79,15 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile, showBadge = f
           </DropdownMenu>
         }
       </CardHeader>
-      <CardContent>
-        <p className="text-sm text-muted-foreground line-clamp-3">
+      <CardContent className="space-y-2">
+        <p className="text-sm line-clamp-3">
           {profile.valueProposition}
+        </p>
+        <p className="text-sm line-clamp-3">
+          <span className="text-muted-foreground">{t('audience')}:</span> {profile.targetAudience}
+        </p>
+        <p className="text-sm">
+          <span className="text-muted-foreground">{t('tone')}:</span> {tTone(profile.toneOfVoice)}
         </p>
       </CardContent>
       {footer &&
