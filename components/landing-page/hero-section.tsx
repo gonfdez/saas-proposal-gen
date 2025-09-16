@@ -25,7 +25,7 @@ export function HeroSection() {
           <h1 className="text-balance font-medium text-5xl lg:text-7xl tracking-tighter!">
             {t("title")}
           </h1>
-          <p className="text-balance text-lg text-muted-foreground bg-background w-fit rounded-lg p-1">
+          <p className="text-balance text-lg text-muted-foreground">
             {t("subtitle")}
           </p>
         </div>
