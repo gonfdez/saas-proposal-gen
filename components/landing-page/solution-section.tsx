@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl"
 import { Card, CardContent } from "@/components/ui/card"
 import { Mail, FileText, Share2, Edit3 } from "lucide-react"
-import LetterGlitchBackground from "../ui/shadcn-io/letter-glitch-background"
 
 export function SolutionSection() {
   const t = useTranslations("solution")
@@ -32,23 +31,11 @@ export function SolutionSection() {
   ]
 
   return (
-    <section className="relative py-20 flex justify-center items-center min-h-[calc(100vh-4rem)]">
-      <div className="absolute inset-0 z-9">
-        <LetterGlitchBackground
-          glitchColors={["#2b4539", "#61dca3", "#61b3dc"]}
-          glitchSpeed={50}
-          centerVignette={false}
-          outerVignette={false}
-          smooth={true}
-          fontSize={7}
-          charWidth={20}
-          charHeight={20}
-        />
-      </div>
+    <section className="relative py-20 flex justify-center items-center min-h-[calc(100vh-4rem)] bg-muted/50">
       <div className="w-full z-10">
         <div className="p-6 flex flex-col items-center justify-center gap-8 text-center">
           <h1 className="mb-2 text-balance font-medium text-5xl lg:text-7xl tracking-tighter!">{t("title")}</h1>
-          <p className="my-0 text-balance text-lg text-muted-foreground bg-background w-fit rounded-lg p-1">{t("subtitle")}</p>
+          <p className="my-0 text-balance text-lg text-muted-foreground w-fit">{t("subtitle")}</p>
         </div>
         <div className="mx-auto mt-16 grid max-w-6xl grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 px-6">
           {features.map((feature, index) => (
